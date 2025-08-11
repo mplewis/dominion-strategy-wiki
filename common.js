@@ -223,7 +223,7 @@
   function toggleSidebarExpansions() {
     const optionInput = document.querySelector("#showExpansionsChanger");
     let curVal = 0;
-    if (optionInput.checked === true) {
+    if (optionInput.checked) {
       curVal = 1;
     }
     setSidebarExpansions(curVal);
@@ -473,7 +473,7 @@
   function toggleNavboxImages() {
     const optionInput = document.querySelector("#hoverInsideCollapsibles");
     let curVal = 0;
-    if (optionInput.checked === true) {
+    if (optionInput.checked) {
       curVal = 1;
     }
     setNavboxImages(curVal);
@@ -514,7 +514,7 @@
       if (thingToClick) {
         thingToClick.click();
         clickedThings = true;
-      } else if (clickedThings === false) {
+      } else if (!clickedThings) {
         setTimeout(clickThings);
       }
     }
