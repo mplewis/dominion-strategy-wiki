@@ -6,7 +6,14 @@
       "mcp__puppeteer__puppeteer_click",
       "mcp__puppeteer__puppeteer_evaluate",
       "mcp__fetch__imageFetch",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm config get:*)",
+      "Bash(pnpm cache:*)",
+      "Bash(pnpm store prune:*)",
+      "Bash(pnpm:*)"
     ],
     "deny": []
   }
