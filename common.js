@@ -17,10 +17,10 @@
     var ca = decodedCookie.split(";");
     for (var i = 0; i < ca.length; i++) {
       var c = ca[i];
-      while (c.charAt(0) == " ") {
+      while (c.charAt(0) === " ") {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
+      if (c.indexOf(name) === 0) {
         return c.substring(name.length, c.length);
       }
     }
@@ -96,12 +96,12 @@
       var elem = elems[i];
       var newSize = getNewSize(elem.offsetWidth);
       if (newSize > 0) {
-        if (bSize == 0) {
+        if (bSize === 0) {
           newSize = 0;
         }
-        if (elem.parentElement.className != "cardborderchanger") {
+        if (elem.parentElement.className !== "cardborderchanger") {
           elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${newSize - 1}px; background:black;">${elem.outerHTML}</span>`;
-        } else if (elem.parentElement.className == "cardborderchanger") {
+        } else if (elem.parentElement.className === "cardborderchanger") {
           elem.parentElement.style.padding = `${newSize}px`;
           elem.parentElement.style.borderRadius = `${newSize - 1}px`;
         }
@@ -121,9 +121,9 @@
     if (curVal > 0) {
       var newSize = getNewSize(elem.offsetWidth);
       if (newSize > 0) {
-        if (elem.parentElement.className != "cardborderchanger") {
+        if (elem.parentElement.className !== "cardborderchanger") {
           elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${newSize - 1}px; background:black;">${elem.outerHTML}</span>`;
-        } else if (elem.parentElement.className == "cardborderchanger") {
+        } else if (elem.parentElement.className === "cardborderchanger") {
           elem.parentElement.style.padding = `${newSize}px`;
           elem.parentElement.style.borderRadius = `${newSize - 1}px`;
         }
@@ -153,7 +153,7 @@
     if (!document.querySelector(`#${optionId}`)) {
       var curVal = getCookie(optionCookie);
       var checked = "";
-      if (curVal == "") {
+      if (curVal === "") {
         curVal = optionDefault;
       }
       if (curVal > 0) {
@@ -217,7 +217,7 @@
   function toggleSidebarExpansions() {
     var optionInput = document.querySelector("#showExpansionsChanger");
     var curVal = 0;
-    if (optionInput.checked == true) {
+    if (optionInput.checked === true) {
       curVal = 1;
     }
     setSidebarExpansions(curVal);
@@ -233,14 +233,14 @@
    * @returns {void}
    */
   function setSidebarExpansions(curVal) {
-    if (curVal == "cookie") {
+    if (curVal === "cookie") {
       curVal = getCookie("showexpansions");
-      if (curVal == "") {
+      if (curVal === "") {
         curVal = 1;
       }
     }
     var visibility = "none";
-    if (curVal == 1) {
+    if (curVal === 1) {
       visibility = "block";
     }
     var elems = document.querySelectorAll(".showExpansionItem");
@@ -322,20 +322,20 @@
           var extrachar = "";
           var lastchar = costplus.charAt(costplus.length - 1).toLowerCase();
           if (
-            lastchar != "*" &&
-            lastchar != "+" &&
-            lastchar != "p" &&
-            lastchar != "d"
+            lastchar !== "*" &&
+            lastchar !== "+" &&
+            lastchar !== "p" &&
+            lastchar !== "d"
           ) {
             extrachar = "!";
           }
           var costpluscardname = `${costplus}${extrachar}${cardname}`;
           cardsByCostName.push([costpluscardname, elems[i]]);
           if (
-            costplus != "cost$00" &&
-            costplus != "cost$00*" &&
-            costplus != "cost$00+" &&
-            costplus != "cost"
+            costplus !== "cost$00" &&
+            costplus !== "cost$00*" &&
+            costplus !== "cost$00+" &&
+            costplus !== "cost"
           ) {
             hasNonZeroCost = true;
           }
@@ -343,7 +343,7 @@
       }
     }
     var sortlist = [];
-    if (sortby == "sortbyname") {
+    if (sortby === "sortbyname") {
       cardsByName.sort(function (a, b) {
         var a0 = a[0].toLowerCase();
         var b0 = b[0].toLowerCase();
@@ -375,7 +375,7 @@
     }
     elems = document.querySelectorAll(`.switchsort.sortbyname.${sortid}`);
     for (i = 0; i < elems.length; i++) {
-      if (sortby == "sortbyname" || !hasNonZeroCost) {
+      if (sortby === "sortbyname" || !hasNonZeroCost) {
         elems[i].style.display = "none";
       } else {
         elems[i].style.display = "";
@@ -383,7 +383,7 @@
     }
     elems = document.querySelectorAll(`.switchsort.sortbycost.${sortid}`);
     for (i = 0; i < elems.length; i++) {
-      if (sortby == "sortbycost" || !hasNonZeroCost) {
+      if (sortby === "sortbycost" || !hasNonZeroCost) {
         elems[i].style.display = "none";
       } else {
         elems[i].style.display = "";
@@ -441,13 +441,13 @@
    * @returns {void}
    */
   function setCardSortBy(curVal) {
-    if (curVal == "cookie") {
+    if (curVal === "cookie") {
       curVal = getCookie("cardsortby");
-      if (curVal == "") {
+      if (curVal === "") {
         curVal = 0;
       }
     }
-    if (curVal == 1) {
+    if (curVal === 1) {
       var elems = document.querySelectorAll(".switchsort.sortbycost");
       for (var i = 0; i < elems.length; i++) {
         elems[i].click();
@@ -485,7 +485,7 @@
   function toggleNavboxImages() {
     var optionInput = document.querySelector("#hoverInsideCollapsibles");
     var curVal = 0;
-    if (optionInput.checked == true) {
+    if (optionInput.checked === true) {
       curVal = 1;
     }
     setNavboxImages(curVal);
@@ -501,13 +501,13 @@
    * @returns {void}
    */
   function setNavboxImages(curVal) {
-    if (curVal == "cookie") {
+    if (curVal === "cookie") {
       curVal = getCookie("hoverinsidecollapsibles");
-      if (curVal == "") {
+      if (curVal === "") {
         curVal = 0;
       }
     }
-    if (curVal == 1) {
+    if (curVal === 1) {
       while (document.adoptedStyleSheets.pop());
     } else {
       document.adoptedStyleSheets.push(dominionStrategyStyleSheet);
@@ -521,12 +521,12 @@
    * @returns {void}
    */
   function clickThings() {
-    if (window.location.href.search("Legacy_All_Cards_Navbox") != -1) {
+    if (window.location.href.search("Legacy_All_Cards_Navbox") !== -1) {
       var thingToClick = document.querySelector(".mw-collapsible-text");
       if (thingToClick) {
         thingToClick.click();
         clickedThings = true;
-      } else if (clickedThings == false) {
+      } else if (clickedThings === false) {
         setTimeout(clickThings);
       }
     }
