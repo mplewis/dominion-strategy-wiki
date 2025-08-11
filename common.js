@@ -100,7 +100,9 @@
           newSize = 0;
         }
         if (elem.parentElement.className !== "cardborderchanger") {
-          elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${newSize - 1}px; background:black;">${elem.outerHTML}</span>`;
+          elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${
+            newSize - 1
+          }px; background:black;">${elem.outerHTML}</span>`;
         } else if (elem.parentElement.className === "cardborderchanger") {
           elem.parentElement.style.padding = `${newSize}px`;
           elem.parentElement.style.borderRadius = `${newSize - 1}px`;
@@ -122,7 +124,9 @@
       let newSize = getNewSize(elem.offsetWidth);
       if (newSize > 0) {
         if (elem.parentElement.className !== "cardborderchanger") {
-          elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${newSize - 1}px; background:black;">${elem.outerHTML}</span>`;
+          elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${
+            newSize - 1
+          }px; background:black;">${elem.outerHTML}</span>`;
         } else if (elem.parentElement.className === "cardborderchanger") {
           elem.parentElement.style.padding = `${newSize}px`;
           elem.parentElement.style.borderRadius = `${newSize - 1}px`;
@@ -184,7 +188,9 @@
       elem = e;
     }
     if (elem.getBoundingClientRect().x > window.innerWidth / 2) {
-      elem.style.left = `-${elem.offsetWidth - elem.previousElementSibling.offsetWidth + 20}px`;
+      elem.style.left = `-${
+        elem.offsetWidth - elem.previousElementSibling.offsetWidth + 20
+      }px`;
     } else {
       elem.style.left = "20px";
     }
@@ -307,75 +313,57 @@
    * @returns {void}
    */
   function sortSortables(startsort, sortby, sortid) {
-    const cardsByName = [];
-    const cardsByCostName = [];
-    let hasNonZeroCost = false;
+    const cards = [];
+    let sameCost = true;
+    let firstCost;
     const elems = startsort.querySelectorAll(".cardcost");
     for (let i = 0; i < elems.length; i++) {
       const cardname = elems[i].querySelector("a").title;
-      cardsByName.push([cardname, elems[i]]);
+      if (sortby === "sortbyname") {
+        cards.push([cardname, elems[i]]);
+      }
       for (let j = 0; j < elems[i].classList.length; j++) {
-        const costplus = elems[i].classList[j];
-        const re = /^cost/i;
-        const found = costplus.match(re);
+        const cost = elems[i].classList[j];
+        const re = /^cost(\$)?(\d\d)?([\*\+])?((\d\d)[Dd])?([Pp])?$/i;
+        const found = cost.match(re);
         if (found) {
-          let extrachar = "";
-          const lastchar = costplus.charAt(costplus.length - 1).toLowerCase();
-          if (
-            lastchar !== "*" &&
-            lastchar !== "+" &&
-            lastchar !== "p" &&
-            lastchar !== "d"
-          ) {
-            extrachar = "!";
+          if (i === 0) {
+            firstCost = cost;
+          } else if (cost !== firstCost) {
+            sameCost = false;
           }
-          const costpluscardname = `${costplus}${extrachar}${cardname}`;
-          cardsByCostName.push([costpluscardname, elems[i]]);
-          if (
-            costplus !== "cost$00" &&
-            costplus !== "cost$00*" &&
-            costplus !== "cost$00+" &&
-            costplus !== "cost"
-          ) {
-            hasNonZeroCost = true;
+          if (sortby !== "sortbyname") {
+            let coststr;
+            if (found[1] === undefined) {
+              coststr = "-----";
+            } else {
+              coststr = found[2] !== undefined ? found[2] : "00";
+              if (found[6] !== undefined) {
+                coststr += "PP";
+              } else {
+                coststr += found[5] !== undefined ? found[5] : "00";
+              }
+              if (found[3] !== undefined) {
+                coststr += found[3];
+              } else {
+                coststr += " ";
+              }
+            }
+            cards.push([coststr + cardname, elems[i]]);
           }
+          break;
         }
       }
     }
-    let sortlist = [];
-    if (sortby === "sortbyname") {
-      cardsByName.sort(function (a, b) {
-        const a0 = a[0].toLowerCase();
-        const b0 = b[0].toLowerCase();
-        if (a0 < b0) {
-          return -1;
-        }
-        if (a0 > b0) {
-          return 1;
-        }
-        return 0;
-      });
-      sortlist = cardsByName;
-    } else {
-      cardsByCostName.sort(function (a, b) {
-        const a0 = a[0].toLowerCase();
-        const b0 = b[0].toLowerCase();
-        if (a0 < b0) {
-          return -1;
-        }
-        if (a0 > b0) {
-          return 1;
-        }
-        return 0;
-      });
-      sortlist = cardsByCostName;
+    cards.sort();
+    for (let i = 0; i < cards.length; i++) {
+      startsort.insertBefore(cards[i][1], null);
     }
-    for (let i = 0; i < sortlist.length; i++) {
-      startsort.insertBefore(sortlist[i][1], null);
-    }
-    let switchElems = document.querySelectorAll(`.switchsort.sortbyname.${sortid}`);
+    let switchElems = document.querySelectorAll(
+      `.switchsort.sortbyname.${sortid}`
+    );
     for (let i = 0; i < switchElems.length; i++) {
-      if (sortby === "sortbyname" || !hasNonZeroCost) {
+      if (sortby === "sortbyname" || sameCost) {
         switchElems[i].style.display = "none";
       } else {
         switchElems[i].style.display = "";
@@ -383,7 +371,7 @@
     }
     switchElems = document.querySelectorAll(`.switchsort.sortbycost.${sortid}`);
     for (let i = 0; i < switchElems.length; i++) {
-      if (sortby === "sortbycost" || !hasNonZeroCost) {
+      if (sortby === "sortbycost" || sameCost) {
         switchElems[i].style.display = "none";
       } else {
         switchElems[i].style.display = "";
