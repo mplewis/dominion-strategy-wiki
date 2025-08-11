@@ -6,6 +6,11 @@
     ".mw-collapsible span.card-popup a:hover+span,.mw-collapsible span.card-popup img{display:none;visibility:hidden;opacity:0}"
   );
 
+  /**
+   * Retrieves the value of a specified cookie from the browser's document.cookie string.
+   * @param {string} cname - The name of the cookie to retrieve
+   * @returns {string} The value of the cookie, or empty string if not found
+   */
   function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -22,6 +27,11 @@
     return "";
   }
 
+  /**
+   * Event handler for the card border checkbox. Toggles black borders around card images
+   * and saves the preference as a cookie with a 1-year expiration.
+   * @returns {void}
+   */
   function changeBorder() {
     var optionInput = document.querySelector("#cardBorderChanger");
     var curVal = 0;
@@ -39,6 +49,12 @@
     setBlackBorder(curVal);
   }
 
+  /**
+   * Calculates the appropriate border padding size based on image width.
+   * Maps specific image widths to corresponding border padding values for card styling.
+   * @param {number} width - The width of the image in pixels
+   * @returns {number} The padding size in pixels, or 0 if width doesn't match predefined sizes
+   */
   function getNewSize(width) {
     var newSize = 0;
     switch (width) {
@@ -73,6 +89,12 @@
     return newSize;
   }
 
+  /**
+   * Applies or removes black borders around all card images on the page.
+   * Creates a black border wrapper around eligible images or updates existing borders.
+   * @param {number} bSize - Border size setting (0 = no border, >0 = show border)
+   * @returns {void}
+   */
   function setBlackBorder(bSize) {
     var elems = document.querySelectorAll("img");
     for (var i = 0; i < elems.length; i++) {
@@ -99,6 +121,12 @@
     }
   }
 
+  /**
+   * Initializes black border for a specific card image when it's hovered.
+   * Checks cookie setting and applies border if enabled. Used for card popup hover effects.
+   * @param {Event} e - The mouse event (typically mouseover)
+   * @returns {void}
+   */
   function initBlackBorder(e) {
     var elem = e.target.parentElement.parentElement.querySelector("img");
     var curVal = getCookie("cardbordersize");
@@ -122,6 +150,17 @@
     }
   }
 
+  /**
+   * Creates a user preference checkbox option in the sidebar navigation.
+   * Adds a checkbox with label that persists state via cookies and calls handlers on change.
+   * @param {string} optionCookie - Cookie name to store the option value
+   * @param {string} optionId - HTML ID for the checkbox element
+   * @param {string} optionText - Display text for the checkbox label
+   * @param {number} optionDefault - Default value if no cookie exists
+   * @param {Function} optionFunc - Event handler function for checkbox changes
+   * @param {Function} optionSetFunc - Function to apply the option setting
+   * @returns {void}
+   */
   function addSiteOption(
     optionCookie,
     optionId,
@@ -158,6 +197,13 @@
     }
   }
 
+  /**
+   * Adjusts the horizontal position of card popup tooltips to prevent them from
+   * extending beyond the viewport boundaries. Positions popup to the left or right
+   * based on available screen space.
+   * @param {Event|Element} e - Either a mouse event or the popup element itself
+   * @returns {void}
+   */
   function fixCardPopup(e) {
     var elem;
     if (e.target) {
@@ -175,6 +221,12 @@
     }
   }
 
+  /**
+   * Initializes all card popup elements on the page by removing default tooltips,
+   * adding mouse event listeners for positioning and border effects.
+   * Processes both link and image elements within card popups.
+   * @returns {void}
+   */
   function fixCardPopups() {
     var elems = document.querySelectorAll(".card-popup > a");
     for (var i = 0; i < elems.length; i++) {
@@ -188,6 +240,11 @@
     }
   }
 
+  /**
+   * Event handler for the 'Show Expansions' checkbox. Toggles visibility of
+   * Dominion expansion links in the sidebar navigation and saves preference to cookie.
+   * @returns {void}
+   */
   function toggleSidebarExpansions() {
     var optionInput = document.querySelector("#showExpansionsChanger");
     var curVal = 0;
@@ -205,6 +262,12 @@
       ";";
   }
 
+  /**
+   * Shows or hides Dominion expansion links in the sidebar based on user preference.
+   * Can read setting from cookie if 'cookie' is passed as parameter.
+   * @param {string|number} curVal - Display setting: 1 to show, 0 to hide, 'cookie' to read from cookie
+   * @returns {void}
+   */
   function setSidebarExpansions(curVal) {
     if (curVal == "cookie") {
       curVal = getCookie("showexpansions");
@@ -222,6 +285,13 @@
     }
   }
 
+  /**
+   * Creates a navigation link for a specific Dominion expansion in the sidebar.
+   * Uses MediaWiki's article path configuration to generate proper URLs.
+   * @param {string} link - The wiki page name/path for the expansion
+   * @param {string} title - Display text for the expansion link
+   * @returns {void}
+   */
   function addExpansionLink(link, title) {
     var pNavigationUl = document.querySelector("#p-navigation ul");
     var optionLi = document.createElement("li");
@@ -231,6 +301,12 @@
     pNavigationUl.insertBefore(optionLi, null);
   }
 
+  /**
+   * Populates the sidebar with navigation links to all Dominion expansions.
+   * Creates links for all major expansions from Base Set through Rising Sun plus Promos.
+   * Only runs once per page load to avoid duplicates.
+   * @returns {void}
+   */
   function addExpansionSidebarLinks() {
     var pNavigationUl = document.querySelector("#p-navigation ul");
     if (pNavigationUl && !document.querySelector("#expansionSidebarLinks")) {
@@ -257,6 +333,15 @@
     }
   }
 
+  /**
+   * Sorts card elements within a container by either name or cost.
+   * Extracts card names and cost information from CSS classes, sorts accordingly,
+   * and updates the DOM. Also manages visibility of sort toggle buttons.
+   * @param {Element} startsort - Container element holding card elements to sort
+   * @param {string} sortby - Sort method: 'sortbyname' or 'sortbycost'
+   * @param {string} sortid - CSS class identifier for this sortable group
+   * @returns {void}
+   */
   function sortSortables(startsort, sortby, sortid) {
     var cardsByName = [];
     var cardsByCostName = [];
@@ -342,6 +427,12 @@
     }
   }
 
+  /**
+   * Event handler for sort toggle buttons. Extracts sorting parameters from
+   * the clicked element's CSS classes and triggers sorting for all matching containers.
+   * @param {Event} e - Click event from a sort toggle button
+   * @returns {void}
+   */
   function startSort(e) {
     var sortby = "";
     var sortid = "";
@@ -363,6 +454,11 @@
     }
   }
 
+  /**
+   * Initializes the card sorting system by attaching click handlers to sort buttons
+   * and triggering an initial alphabetical sort by clicking all 'sort by name' buttons.
+   * @returns {void}
+   */
   function initSorting() {
     var elems = document.querySelectorAll(".switchsort");
     for (var i = 0; i < elems.length; i++) {
@@ -374,6 +470,12 @@
     }
   }
 
+  /**
+   * Applies card sorting preference by programmatically clicking appropriate sort buttons.
+   * Can read setting from cookie if 'cookie' is passed as parameter.
+   * @param {string|number} curVal - Sort preference: 0/false for name, 1/true for cost, 'cookie' to read from cookie
+   * @returns {void}
+   */
   function setCardSortBy(curVal) {
     if (curVal == "cookie") {
       curVal = getCookie("cardsortby");
@@ -394,6 +496,11 @@
     }
   }
 
+  /**
+   * Event handler for the card sort preference checkbox. Updates sorting method
+   * between alphabetical and cost-based, saves preference to cookie.
+   * @returns {void}
+   */
   function changeCardSortBy() {
     var optionInput = document.querySelector("#cardGallerySorter");
     var curVal = 0;
@@ -407,6 +514,11 @@
     setCardSortBy(curVal);
   }
 
+  /**
+   * Event handler for the navbox images checkbox. Toggles whether card images
+   * are visible when hovering inside collapsible navboxes and saves preference to cookie.
+   * @returns {void}
+   */
   function toggleNavboxImages() {
     var optionInput = document.querySelector("#hoverInsideCollapsibles");
     var curVal = 0;
@@ -424,6 +536,12 @@
       ";";
   }
 
+  /**
+   * Controls visibility of card hover images within collapsible navboxes by
+   * managing CSS stylesheets. Can read setting from cookie if 'cookie' is passed.
+   * @param {string|number} curVal - Display setting: 1 to show images, 0 to hide, 'cookie' to read from cookie
+   * @returns {void}
+   */
   function setNavboxImages(curVal) {
     if (curVal == "cookie") {
       curVal = getCookie("hoverinsidecollapsibles");
@@ -439,6 +557,11 @@
   }
 
   var clickedThings = false;
+  /**
+   * Auto-expands collapsible elements on the Legacy All Cards Navbox page.
+   * Uses recursive setTimeout to keep trying until the collapsible element is found and clicked.
+   * @returns {void}
+   */
   function clickThings() {
     if (window.location.href.search("Legacy_All_Cards_Navbox") != -1) {
       var thingToClick = document.querySelector(".mw-collapsible-text");
@@ -451,6 +574,12 @@
     }
   }
 
+  /**
+   * Main initialization function that sets up all wiki functionality.
+   * Creates user preference checkboxes, initializes card popups, sorting, expansion links,
+   * and applies saved user preferences from cookies.
+   * @returns {void}
+   */
   function initCommon() {
     addSiteOption(
       "cardsortby",
