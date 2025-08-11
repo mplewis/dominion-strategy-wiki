@@ -1,6 +1,22 @@
 /* Any JavaScript here will be loaded for all users on every page load. */
 
 (function () {
+  // Constants for card border functionality
+  const BORDER_SIZE_ENABLED = 11;
+  const COOKIE_EXPIRATION_YEARS = 1;
+  // Maps image width (px) to appropriate border padding size (px) for card styling
+  const SIZE_MAPPINGS = {
+    75: 4,
+    100: 5,
+    120: 6,
+    150: 8,
+    160: 9,
+    200: 11,
+    320: 11,
+    375: 21,
+    800: 21,
+  };
+
   var dominionStrategyStyleSheet = new CSSStyleSheet();
   dominionStrategyStyleSheet.replaceSync(
     ".mw-collapsible span.card-popup a:hover+span,.mw-collapsible span.card-popup img{display:none;visibility:hidden;opacity:0}"
@@ -36,10 +52,10 @@
     const optionInput = document.querySelector("#cardBorderChanger");
     let curVal = 0;
     if (optionInput.checked) {
-      curVal = 11;
+      curVal = BORDER_SIZE_ENABLED;
     }
     const cookieDate = new Date();
-    cookieDate.setFullYear(cookieDate.getFullYear() + 1);
+    cookieDate.setFullYear(cookieDate.getFullYear() + COOKIE_EXPIRATION_YEARS);
     document.cookie = `cardbordersize=${curVal}; expires=${cookieDate.toUTCString()};`;
     setBlackBorder(curVal);
   }
@@ -51,37 +67,7 @@
    * @returns {number} The padding size in pixels, or 0 if width doesn't match predefined sizes
    */
   function getNewSize(width) {
-    let newSize = 0;
-    switch (width) {
-      case 75:
-        newSize = 4;
-        break;
-      case 100:
-        newSize = 5;
-        break;
-      case 120:
-        newSize = 6;
-        break;
-      case 150:
-        newSize = 8;
-        break;
-      case 160:
-        newSize = 9;
-        break;
-      case 200:
-        newSize = 11;
-        break;
-      case 320:
-        newSize = 11;
-        break;
-      case 375:
-        newSize = 21;
-        break;
-      case 800:
-        newSize = 21;
-        break;
-    }
-    return newSize;
+    return SIZE_MAPPINGS[width] || 0;
   }
 
   /**
@@ -228,7 +214,7 @@
     }
     setSidebarExpansions(curVal);
     const cookieDate = new Date();
-    cookieDate.setFullYear(cookieDate.getFullYear() + 1);
+    cookieDate.setFullYear(cookieDate.getFullYear() + COOKIE_EXPIRATION_YEARS);
     document.cookie = `showexpansions=${curVal}; expires=${cookieDate.toUTCString()};`;
   }
 
@@ -460,7 +446,7 @@
       curVal = 1;
     }
     const cookieDate = new Date();
-    cookieDate.setFullYear(cookieDate.getFullYear() + 1);
+    cookieDate.setFullYear(cookieDate.getFullYear() + COOKIE_EXPIRATION_YEARS);
     document.cookie = `cardsortby=${curVal}; expires=${cookieDate.toUTCString()};`;
     setCardSortBy(curVal);
   }
@@ -478,7 +464,7 @@
     }
     setNavboxImages(curVal);
     const cookieDate = new Date();
-    cookieDate.setFullYear(cookieDate.getFullYear() + 1);
+    cookieDate.setFullYear(cookieDate.getFullYear() + COOKIE_EXPIRATION_YEARS);
     document.cookie = `hoverinsidecollapsibles=${curVal}; expires=${cookieDate.toUTCString()};`;
   }
 
