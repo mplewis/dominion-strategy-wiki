@@ -12,7 +12,7 @@
    * @returns {string} The value of the cookie, or empty string if not found
    */
   function getCookie(cname) {
-    var name = cname + "=";
+    var name = `${cname}=`;
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(";");
     for (var i = 0; i < ca.length; i++) {
@@ -40,12 +40,7 @@
     }
     var CookieDate = new Date();
     CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-    document.cookie =
-      "cardbordersize=" +
-      curVal +
-      "; expires=" +
-      CookieDate.toUTCString() +
-      ";";
+    document.cookie = `cardbordersize=${curVal}; expires=${CookieDate.toUTCString()};`;
     setBlackBorder(curVal);
   }
 
@@ -105,17 +100,10 @@
           newSize = 0;
         }
         if (elem.parentElement.className != "cardborderchanger") {
-          elem.outerHTML =
-            '<span class="cardborderchanger" style="display:inline-block; padding:' +
-            newSize +
-            "px; border-radius:" +
-            (newSize - 1) +
-            'px; background:black;">' +
-            elem.outerHTML +
-            "</span>";
+          elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${newSize - 1}px; background:black;">${elem.outerHTML}</span>`;
         } else if (elem.parentElement.className == "cardborderchanger") {
-          elem.parentElement.style.padding = newSize + "px";
-          elem.parentElement.style.borderRadius = newSize - 1 + "px";
+          elem.parentElement.style.padding = `${newSize}px`;
+          elem.parentElement.style.borderRadius = `${newSize - 1}px`;
         }
       }
     }
@@ -134,17 +122,10 @@
       var newSize = getNewSize(elem.offsetWidth);
       if (newSize > 0) {
         if (elem.parentElement.className != "cardborderchanger") {
-          elem.outerHTML =
-            '<span class="cardborderchanger" style="display:inline-block; padding:' +
-            newSize +
-            "px; border-radius:" +
-            (newSize - 1) +
-            'px; background:black;">' +
-            elem.outerHTML +
-            "</span>";
+          elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${newSize - 1}px; background:black;">${elem.outerHTML}</span>`;
         } else if (elem.parentElement.className == "cardborderchanger") {
-          elem.parentElement.style.padding = newSize + "px";
-          elem.parentElement.style.borderRadius = newSize - 1 + "px";
+          elem.parentElement.style.padding = `${newSize}px`;
+          elem.parentElement.style.borderRadius = `${newSize - 1}px`;
         }
       }
     }
@@ -169,7 +150,7 @@
     optionFunc,
     optionSetFunc
   ) {
-    if (!document.querySelector("#" + optionId)) {
+    if (!document.querySelector(`#${optionId}`)) {
       var curVal = getCookie(optionCookie);
       var checked = "";
       if (curVal == "") {
@@ -181,18 +162,9 @@
       }
       var pNavigationUl = document.querySelector("#p-navigation ul");
       var optionLi = document.createElement("li");
-      optionLi.innerHTML =
-        '<label for="' +
-        optionId +
-        '" style="cursor:pointer; user-select:none">' +
-        optionText +
-        '&nbsp;</label><input style="height:8px" type="checkbox" id="' +
-        optionId +
-        '" ' +
-        checked +
-        ">";
+      optionLi.innerHTML = `<label for="${optionId}" style="cursor:pointer; user-select:none">${optionText}&nbsp;</label><input style="height:8px" type="checkbox" id="${optionId}" ${checked}>`;
       pNavigationUl.insertBefore(optionLi, null);
-      var optionInput = document.querySelector("#" + optionId);
+      var optionInput = document.querySelector(`#${optionId}`);
       optionInput.addEventListener("change", optionFunc);
     }
   }
@@ -212,10 +184,7 @@
       elem = e;
     }
     if (elem.getBoundingClientRect().x > window.innerWidth / 2) {
-      elem.style.left =
-        "-" +
-        (elem.offsetWidth - elem.previousElementSibling.offsetWidth + 20) +
-        "px";
+      elem.style.left = `-${elem.offsetWidth - elem.previousElementSibling.offsetWidth + 20}px`;
     } else {
       elem.style.left = "20px";
     }
@@ -254,12 +223,7 @@
     setSidebarExpansions(curVal);
     var CookieDate = new Date();
     CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-    document.cookie =
-      "showexpansions=" +
-      curVal +
-      "; expires=" +
-      CookieDate.toUTCString() +
-      ";";
+    document.cookie = `showexpansions=${curVal}; expires=${CookieDate.toUTCString()};`;
   }
 
   /**
@@ -297,7 +261,7 @@
     var optionLi = document.createElement("li");
     optionLi.classList.add("showExpansionItem");
     var urlBase = mw.config.values.wgArticlePath.replace("$1", "");
-    optionLi.innerHTML = '<a href="' + urlBase + link + '">' + title + "</a>";
+    optionLi.innerHTML = `<a href="${urlBase}${link}">${title}</a>`;
     pNavigationUl.insertBefore(optionLi, null);
   }
 
@@ -365,7 +329,7 @@
           ) {
             extrachar = "!";
           }
-          var costpluscardname = costplus + extrachar + cardname;
+          var costpluscardname = `${costplus}${extrachar}${cardname}`;
           cardsByCostName.push([costpluscardname, elems[i]]);
           if (
             costplus != "cost$00" &&
@@ -409,7 +373,7 @@
     for (i = 0; i < sortlist.length; i++) {
       startsort.insertBefore(sortlist[i][1], null);
     }
-    elems = document.querySelectorAll(".switchsort.sortbyname." + sortid);
+    elems = document.querySelectorAll(`.switchsort.sortbyname.${sortid}`);
     for (i = 0; i < elems.length; i++) {
       if (sortby == "sortbyname" || !hasNonZeroCost) {
         elems[i].style.display = "none";
@@ -417,7 +381,7 @@
         elems[i].style.display = "";
       }
     }
-    elems = document.querySelectorAll(".switchsort.sortbycost." + sortid);
+    elems = document.querySelectorAll(`.switchsort.sortbycost.${sortid}`);
     for (i = 0; i < elems.length; i++) {
       if (sortby == "sortbycost" || !hasNonZeroCost) {
         elems[i].style.display = "none";
@@ -448,7 +412,7 @@
         sortid = e.target.classList[i];
       }
     }
-    var elems = document.querySelectorAll(".startsort." + sortid);
+    var elems = document.querySelectorAll(`.startsort.${sortid}`);
     for (i = 0; i < elems.length; i++) {
       sortSortables(elems[i], sortby, sortid);
     }
@@ -509,8 +473,7 @@
     }
     var CookieDate = new Date();
     CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-    document.cookie =
-      "cardsortby=" + curVal + "; expires=" + CookieDate.toUTCString() + ";";
+    document.cookie = `cardsortby=${curVal}; expires=${CookieDate.toUTCString()};`;
     setCardSortBy(curVal);
   }
 
@@ -528,12 +491,7 @@
     setNavboxImages(curVal);
     var CookieDate = new Date();
     CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-    document.cookie =
-      "hoverinsidecollapsibles=" +
-      curVal +
-      "; expires=" +
-      CookieDate.toUTCString() +
-      ";";
+    document.cookie = `hoverinsidecollapsibles=${curVal}; expires=${CookieDate.toUTCString()};`;
   }
 
   /**
