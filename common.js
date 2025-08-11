@@ -17,7 +17,7 @@
     800: 21,
   };
 
-  var dominionStrategyStyleSheet = new CSSStyleSheet();
+  const dominionStrategyStyleSheet = new CSSStyleSheet();
   dominionStrategyStyleSheet.replaceSync(
     ".mw-collapsible span.card-popup a:hover+span,.mw-collapsible span.card-popup img{display:none;visibility:hidden;opacity:0}"
   );
