@@ -2,9 +2,8 @@
 
 require("dotenv/config");
 const axios = require("axios");
-const fs = require("fs");
-const path = require("path");
-const { execSync } = require("child_process");
+const fs = require("node:fs");
+const path = require("node:path");
 const pino = require("pino");
 
 const MEDIAWIKI_API_URL = "https://wiki.dominionstrategy.com/api.php";
@@ -34,38 +33,26 @@ const MEDIAWIKI_USERNAME = mustEnv("MEDIAWIKI_USERNAME");
 const MEDIAWIKI_PASSWORD = mustEnv("MEDIAWIKI_PASSWORD");
 const COMPILED_JS_PATH = path.join(__dirname, "..", "common.js");
 
-interface MediaWikiLoginResponse {
-  login: {
-    result: string;
+interface AxiosResponse {
+  headers: Record<string, string | string[]>;
+  data: {
+    login?: { result: string; reason?: string };
+    query?: { tokens: { logintoken?: string; csrftoken?: string } };
+    edit?: { result: string };
   };
 }
 
-interface MediaWikiTokenResponse {
-  query: {
-    tokens: {
-      logintoken?: string;
-      csrftoken?: string;
-    };
-  };
-}
-
-interface MediaWikiEditResponse {
-  edit?: {
-    result: string;
-  };
-}
-
-let cookies: string[] = [];
+const cookies: string[] = [];
 let editToken: string | null = null;
 
 /** Extract and store cookies from response headers */
-function storeCookies(response: any): void {
+function storeCookies(response: AxiosResponse): void {
   const setCookieHeaders = response.headers["set-cookie"];
   if (setCookieHeaders) {
-    setCookieHeaders.forEach((cookie: string) => {
+    for (const cookie of setCookieHeaders as string[]) {
       const cookiePart = cookie.split(";")[0];
       cookies.push(cookiePart);
-    });
+    }
   }
 }
 
@@ -76,10 +63,7 @@ function getCookieHeader(): string {
 
 /** Login to MediaWiki */
 async function login(): Promise<void> {
-  log.info(
-    { apiUrl: MEDIAWIKI_API_URL, username: MEDIAWIKI_USERNAME },
-    "Logging in to MediaWiki"
-  );
+  log.info({ apiUrl: MEDIAWIKI_API_URL, username: MEDIAWIKI_USERNAME }, "Logging in to MediaWiki");
 
   const tokenResponse = await axios.get(MEDIAWIKI_API_URL, {
     params: { action: "query", meta: "tokens", type: "login", format: "json" },
@@ -106,10 +90,7 @@ async function login(): Promise<void> {
   storeCookies(loginResponse);
 
   const result = loginResponse.data?.login?.result;
-  log.debug(
-    { result, loginResponse: loginResponse.data },
-    "Login response received"
-  );
+  log.debug({ result, loginResponse: loginResponse.data }, "Login response received");
 
   if (result === "NeedToken") {
     log.info("Login requires token, retrying with new token");
@@ -120,9 +101,7 @@ async function login(): Promise<void> {
   if (result !== "Success") {
     log.error({ response: loginResponse.data }, "Login failed");
     throw new Error(
-      `MediaWiki login failed: ${result} - ${
-        loginResponse.data?.login?.reason || "Unknown error"
-      }`
+      `MediaWiki login failed: ${result} - ${loginResponse.data?.login?.reason || "Unknown error"}`
     );
   }
   log.info("Login successful");
@@ -143,17 +122,14 @@ async function getEditToken(): Promise<void> {
 }
 
 /** Update the MediaWiki page with new content */
-async function updatePage(content: string): Promise<any> {
-  log.info(
-    { page: TARGET_PAGE, contentLength: content.length },
-    "Updating page"
-  );
+async function updatePage(content: string): Promise<{ result: string }> {
+  log.info({ page: TARGET_PAGE, contentLength: content.length }, "Updating page");
 
   const editData = new URLSearchParams({
     action: "edit",
     title: TARGET_PAGE,
     text: content,
-    token: editToken!,
+    token: editToken || "",
     summary: "Automated update from GitHub Actions",
     format: "json",
   });
@@ -168,9 +144,8 @@ async function updatePage(content: string): Promise<any> {
   if (response.data.edit && response.data.edit.result === "Success") {
     log.info("Page updated successfully");
     return response.data.edit;
-  } else {
-    throw new Error(`Edit failed: ${JSON.stringify(response.data)}`);
   }
+  throw new Error(`Edit failed: ${JSON.stringify(response.data)}`);
 }
 
 /** Verify the page content matches what we uploaded */
@@ -220,7 +195,9 @@ async function main(): Promise<void> {
   await updatePage(jsContent);
 
   const isVerified = await verifyContent(jsContent);
-  if (!isVerified) process.exit(1);
+  if (!isVerified) {
+    process.exit(1);
+  }
 
   log.info("Deployment completed successfully");
 }
