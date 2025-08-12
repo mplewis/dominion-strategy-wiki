@@ -15,11 +15,11 @@
     "removeComments": false,
     "noEmitOnError": true,
     "pretty": true,
-    
+
     // Browser compatibility settings
     "downlevelIteration": false,
     "importHelpers": false,
-    
+
     // Strict type checking
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -29,19 +29,14 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
-    
+
     // Additional checks
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "exactOptionalPropertyTypes": true,
     "noImplicitThis": true,
     "alwaysStrict": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/scripts/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

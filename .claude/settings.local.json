@@ -14,7 +14,8 @@
       "Bash(pnpm cache:*)",
       "Bash(pnpm store prune:*)",
       "Bash(pnpm:*)",
-      "Bash(act:*)"
+      "Bash(act:*)",
+      "Bash(mv:*)"
     ],
     "deny": []
   }

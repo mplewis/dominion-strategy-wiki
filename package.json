@@ -4,19 +4,25 @@
   "description": "TypeScript-powered interactive functionality for the Dominion Strategy Wiki",
   "main": "common.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "type-check": "tsc --noEmit",
+    "build": "tsc -p tsconfig.common.json && tsc",
+    "type-check": "tsc -p tsconfig.common.json --noEmit && tsc --noEmit",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "format": "biome format --write .",
     "check": "biome check .",
     "check:fix": "biome check --write .",
-    "tidy": "pnpm check:fix && pnpm lint:fix && pnpm format"
+    "tidy": "pnpm check:fix && pnpm lint:fix && pnpm format",
+    "deploy-mediawiki": "node --enable-source-maps dist/scripts/deploy-to-mediawiki.js"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.4.0",
     "@types/jquery": "^3.5.29",
+    "@types/node": "^24.2.1",
+    "axios": "^1.11.0",
+    "dotenv": "^17.2.1",
+    "pino": "^9.8.0",
+    "pino-pretty": "^13.1.1",
+    "tsx": "^4.20.4",
     "typescript": "^5.3.0"
   },
   "private": true,

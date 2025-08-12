@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "none",
+    "outFile": "./dist/common.js"
+  },
+  "include": [
+    "src/wiki/**/*"
+  ]
+}
