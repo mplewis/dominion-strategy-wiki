@@ -20,7 +20,7 @@
 	},
 	"overrides": [
 		{
-			"includes": ["src/scripts/**"],
+			"includes": ["src/dev/**", "src/scripts/**"],
 			"linter": {
 				"rules": {
 					"suspicious": {

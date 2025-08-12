@@ -31,6 +31,9 @@ jobs:
       - name: Type check
         run: pnpm type-check
 
+      - name: Run tests
+        run: pnpm test:run
+
       - name: Check code formatting and linting
         run: pnpm tidy:check
 
