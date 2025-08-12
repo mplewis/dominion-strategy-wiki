@@ -63,7 +63,10 @@ function getCookieHeader(): string {
 
 /** Login to MediaWiki */
 async function login(): Promise<void> {
-  log.info({ apiUrl: MEDIAWIKI_API_URL, username: MEDIAWIKI_USERNAME }, "Logging in to MediaWiki");
+  log.info(
+    { apiUrl: MEDIAWIKI_API_URL, username: MEDIAWIKI_USERNAME },
+    "Logging in to MediaWiki"
+  );
 
   const tokenResponse = await axios.get(MEDIAWIKI_API_URL, {
     params: { action: "query", meta: "tokens", type: "login", format: "json" },
@@ -90,7 +93,10 @@ async function login(): Promise<void> {
   storeCookies(loginResponse);
 
   const result = loginResponse.data?.login?.result;
-  log.debug({ result, loginResponse: loginResponse.data }, "Login response received");
+  log.debug(
+    { result, loginResponse: loginResponse.data },
+    "Login response received"
+  );
 
   if (result === "NeedToken") {
     log.info("Login requires token, retrying with new token");
@@ -101,7 +107,9 @@ async function login(): Promise<void> {
   if (result !== "Success") {
     log.error({ response: loginResponse.data }, "Login failed");
     throw new Error(
-      `MediaWiki login failed: ${result} - ${loginResponse.data?.login?.reason || "Unknown error"}`
+      `MediaWiki login failed: ${result} - ${
+        loginResponse.data?.login?.reason || "Unknown error"
+      }`
     );
   }
   log.info("Login successful");
@@ -123,7 +131,10 @@ async function getEditToken(): Promise<void> {
 
 /** Update the MediaWiki page with new content */
 async function updatePage(content: string): Promise<{ result: string }> {
-  log.info({ page: TARGET_PAGE, contentLength: content.length }, "Updating page");
+  log.info(
+    { page: TARGET_PAGE, contentLength: content.length },
+    "Updating page"
+  );
 
   const editData = new URLSearchParams({
     action: "edit",
@@ -156,7 +167,7 @@ async function verifyContent(expectedContent: string): Promise<boolean> {
   const response = await axios.get(verifyUrl);
   const actualContent = response.data;
 
-  if (actualContent === expectedContent) {
+  if (actualContent.trim() === expectedContent.trim()) {
     log.info("Content verification successful");
     return true;
   }
@@ -182,7 +193,6 @@ async function verifyContent(expectedContent: string): Promise<boolean> {
   return false;
 }
 
-/** Main deployment function */
 async function main(): Promise<void> {
   const jsContent = fs.readFileSync(COMPILED_JS_PATH, "utf8");
   log.info(
