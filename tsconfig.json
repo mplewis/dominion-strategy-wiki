@@ -2,8 +2,8 @@
 	"compilerOptions": {
 		"target": "ES2017",
 		"lib": ["DOM", "ES2017"],
-		"module": "none",
-		"moduleResolution": "classic",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
 		"outDir": "./dist",
 		"rootDir": "./src",
 		"strict": true,

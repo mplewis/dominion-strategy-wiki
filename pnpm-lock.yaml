@@ -23,6 +23,9 @@ importers:
       dotenv:
         specifier: ^17.2.1
         version: 17.2.1
+      esbuild:
+        specifier: ^0.25.8
+        version: 0.25.8
       pino:
         specifier: ^9.8.0
         version: 9.8.0

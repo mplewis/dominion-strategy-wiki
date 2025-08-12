@@ -4,7 +4,7 @@
 	"description": "TypeScript-powered interactive functionality for the Dominion Strategy Wiki",
 	"main": "common.js",
 	"scripts": {
-		"build": "tsc -p tsconfig.common.json && tsc && node dist/scripts/add-header.js",
+		"build": "tsc && node dist/scripts/build-common.js",
 		"type-check": "tsc -p tsconfig.common.json --noEmit && tsc --noEmit",
 		"tidy": "biome check --write . && prettier --write .",
 		"tidy:check": "biome check . && prettier --check .",
@@ -16,6 +16,7 @@
 		"@types/node": "^24.2.1",
 		"axios": "^1.11.0",
 		"dotenv": "^17.2.1",
+		"esbuild": "^0.25.8",
 		"pino": "^9.8.0",
 		"pino-pretty": "^13.1.1",
 		"prettier": "^3.6.2",
