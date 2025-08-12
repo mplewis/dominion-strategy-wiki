@@ -41,7 +41,6 @@
       "style": {
         "noArguments": "error",
         "noVar": "error",
-        "useBlockStatements": "error",
         "useConst": "error",
         "useExponentiationOperator": "error",
         "useTemplate": "error"
