@@ -7,8 +7,12 @@ const path = require("node:path");
 const pino = require("pino");
 const { execSync } = require("node:child_process");
 
-const MEDIAWIKI_API_URL = "https://wiki.dominionstrategy.com/api.php";
-const TARGET_PAGE = "MediaWiki:Common.js";
+const MEDIAWIKI_BASE_URL = "https://wiki.dominionstrategy.com";
+const TARGET_PAGE_NAME = "MediaWiki:Common.js";
+const MAX_PREVIEW_LENGTH = 500;
+
+const MEDIAWIKI_API_URL = `${MEDIAWIKI_BASE_URL}/api.php`;
+const VERIFY_CONTENT_URL = `${MEDIAWIKI_BASE_URL}/index.php?title=${TARGET_PAGE_NAME}&action=raw`;
 
 const log = pino({
   transport: {
@@ -80,10 +84,7 @@ function getGitCommitHash(): string {
 
 /** Login to MediaWiki */
 async function login(): Promise<void> {
-  log.info(
-    { apiUrl: MEDIAWIKI_API_URL, username: MEDIAWIKI_USERNAME },
-    "Logging in to MediaWiki",
-  );
+  log.info({ apiUrl: MEDIAWIKI_API_URL, username: MEDIAWIKI_USERNAME }, "Logging in to MediaWiki");
 
   const tokenResponse = await axios.get(MEDIAWIKI_API_URL, {
     params: { action: "query", meta: "tokens", type: "login", format: "json" },
@@ -110,10 +111,7 @@ async function login(): Promise<void> {
   storeCookies(loginResponse);
 
   const result = loginResponse.data?.login?.result;
-  log.debug(
-    { result, loginResponse: loginResponse.data },
-    "Login response received",
-  );
+  log.debug({ result, loginResponse: loginResponse.data }, "Login response received");
 
   if (result === "NeedToken") {
     log.info("Login requires token, retrying with new token");
@@ -124,7 +122,7 @@ async function login(): Promise<void> {
   if (result !== "Success") {
     log.error({ response: loginResponse.data }, "Login failed");
     throw new Error(
-      `MediaWiki login failed: ${result} - ${loginResponse.data?.login?.reason || "Unknown error"}`,
+      `MediaWiki login failed: ${result} - ${loginResponse.data?.login?.reason || "Unknown error"}`
     );
   }
   log.info("Login successful");
@@ -146,15 +144,12 @@ async function getEditToken(): Promise<void> {
 
 /** Update the MediaWiki page with new content */
 async function updatePage(content: string): Promise<{ result: string }> {
-  log.info(
-    { page: TARGET_PAGE, contentLength: content.length },
-    "Updating page",
-  );
+  log.info({ page: TARGET_PAGE_NAME, contentLength: content.length }, "Updating page");
 
   const commitHash = getGitCommitHash();
   const editData = new URLSearchParams({
     action: "edit",
-    title: TARGET_PAGE,
+    title: TARGET_PAGE_NAME,
     text: content,
     token: editToken || "",
     summary: `Automated update from GitHub Actions (${commitHash.substring(0, 7)})`,
@@ -175,56 +170,60 @@ async function updatePage(content: string): Promise<{ result: string }> {
   throw new Error(`Edit failed: ${JSON.stringify(response.data)}`);
 }
 
+/** Create a preview snippet of a string, truncating if necessary */
+function snipPreview(s: string): string {
+  return s.substring(0, MAX_PREVIEW_LENGTH) + (s.length > MAX_PREVIEW_LENGTH ? "…" : "");
+}
+
+/** Check if the provided content equals the current page content */
+async function checkContent(content: string) {
+  log.info({ url: VERIFY_CONTENT_URL }, "Checking current page content");
+  const response = await axios.get(VERIFY_CONTENT_URL);
+  const currentContent = response.data;
+  const identical = currentContent.trim() === content.trim();
+  return { currentContent, identical };
+}
+
 /** Verify the page content matches what we uploaded */
 async function verifyContent(expectedContent: string): Promise<boolean> {
   log.info("Verifying uploaded content");
-
-  const verifyUrl = `https://wiki.dominionstrategy.com/index.php?title=${TARGET_PAGE}&action=raw`;
-  const response = await axios.get(verifyUrl);
-  const actualContent = response.data;
-
-  if (actualContent.trim() === expectedContent.trim()) {
-    log.info("Content verification successful");
-    return true;
+  const { identical, currentContent } = await checkContent(expectedContent);
+  if (!identical) {
+    log.error(
+      {
+        expectedLength: expectedContent.length,
+        actualLength: currentContent.length,
+        expectedPreview: snipPreview(expectedContent),
+        actualPreview: snipPreview(currentContent),
+      },
+      "Content verification failed"
+    );
+    return false;
   }
 
-  log.error(
-    {
-      expectedLength: expectedContent.length,
-      actualLength: actualContent.length,
-    },
-    "Content verification failed",
-  );
-
-  const maxPreviewLength = 500;
-  const expectedPreview =
-    expectedContent.substring(0, maxPreviewLength) +
-    (expectedContent.length > maxPreviewLength ? "..." : "");
-  const actualPreview =
-    actualContent.substring(0, maxPreviewLength) +
-    (actualContent.length > maxPreviewLength ? "..." : "");
-
-  log.debug({ expectedPreview, actualPreview }, "Content preview diff");
-
-  return false;
+  log.info("Content verification successful");
+  return true;
 }
 
 async function main(): Promise<void> {
   const jsContent = fs.readFileSync(COMPILED_JS_PATH, "utf8");
   log.info(
     { path: COMPILED_JS_PATH, contentLength: jsContent.length },
-    "Loaded JavaScript content",
+    "Loaded JavaScript content"
   );
+
+  const { identical } = await checkContent(jsContent);
+  if (identical) {
+    log.info("No changes detected, skipping deployment");
+    return;
+  }
 
   await login();
   await getEditToken();
   await updatePage(jsContent);
 
-  const isVerified = await verifyContent(jsContent);
-  if (!isVerified) {
-    process.exit(1);
-  }
-
+  const verified = await verifyContent(jsContent);
+  if (!verified) process.exit(1);
   log.info("Deployment completed successfully");
 }
 
