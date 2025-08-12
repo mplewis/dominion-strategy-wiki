@@ -4,7 +4,7 @@
   "description": "TypeScript-powered interactive functionality for the Dominion Strategy Wiki",
   "main": "common.js",
   "scripts": {
-    "build": "tsc -p tsconfig.common.json && tsc",
+    "build": "tsc -p tsconfig.common.json && tsc && node dist/scripts/add-header.js",
     "type-check": "tsc -p tsconfig.common.json --noEmit && tsc --noEmit",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",

@@ -98,6 +98,6 @@
   },
   "files": {
     "include": ["src/**/*.ts", "src/**/*.js", "*.js"],
-    "ignore": ["node_modules/**", "dist/**", "common.js"]
+    "ignore": ["node_modules/**", "dist/**", "common.js", "tmp/**"]
   }
 }

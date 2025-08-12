@@ -1,7 +1,6 @@
 import { EXPANSION_LINKS } from "../core/config";
 import { getCookie, setCookie } from "../core/cookies";
 
-
 /**
  * Event handler for the 'Show Expansions' checkbox. Toggles visibility of
  * Dominion expansion links in the sidebar navigation and saves preference to cookie.
@@ -50,7 +49,7 @@ export function addExpansionLink(link: string, title: string): void {
   const optionLi = document.createElement("li");
   optionLi.classList.add("showExpansionItem");
   // Access MediaWiki global safely
-  const mwGlobal = (window as any).mw;
+  const mwGlobal = (window as { mw?: { config: { values: { wgArticlePath: string } } } }).mw;
   const urlBase = mwGlobal?.config?.values?.wgArticlePath?.replace("$1", "") || "";
   optionLi.innerHTML = `<a href="${urlBase}${link}">${title}</a>`;
   pNavigationUl?.insertBefore(optionLi, null);
