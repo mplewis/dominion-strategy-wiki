@@ -1,23 +1,23 @@
 {
-  "permissions": {
-    "allow": [
-      "mcp__puppeteer__puppeteer_navigate",
-      "mcp__puppeteer__puppeteer_screenshot",
-      "mcp__puppeteer__puppeteer_click",
-      "mcp__puppeteer__puppeteer_evaluate",
-      "mcp__fetch__imageFetch",
-      "Bash(rm:*)",
-      "Bash(mkdir:*)",
-      "Bash(cp:*)",
-      "Bash(pnpm install:*)",
-      "Bash(pnpm config get:*)",
-      "Bash(pnpm cache:*)",
-      "Bash(pnpm store prune:*)",
-      "Bash(pnpm:*)",
-      "Bash(act:*)",
-      "Bash(mv:*)",
-      "Bash(grep:*)"
-    ],
-    "deny": []
-  }
+	"permissions": {
+		"allow": [
+			"mcp__puppeteer__puppeteer_navigate",
+			"mcp__puppeteer__puppeteer_screenshot",
+			"mcp__puppeteer__puppeteer_click",
+			"mcp__puppeteer__puppeteer_evaluate",
+			"mcp__fetch__imageFetch",
+			"Bash(rm:*)",
+			"Bash(mkdir:*)",
+			"Bash(cp:*)",
+			"Bash(pnpm install:*)",
+			"Bash(pnpm config get:*)",
+			"Bash(pnpm cache:*)",
+			"Bash(pnpm store prune:*)",
+			"Bash(pnpm:*)",
+			"Bash(act:*)",
+			"Bash(mv:*)",
+			"Bash(grep:*)"
+		],
+		"deny": []
+	}
 }

@@ -1,10 +1,10 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "amd",
-    "outFile": "./dist/common.js",
-    "moduleResolution": "classic",
-    "sourceMap": false
-  },
-  "include": ["src/wiki/**/*"]
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"module": "amd",
+		"outFile": "./dist/common.js",
+		"moduleResolution": "classic",
+		"sourceMap": false
+	},
+	"include": ["src/wiki/**/*"]
 }

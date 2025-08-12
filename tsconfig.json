@@ -1,42 +1,42 @@
 {
-  "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["DOM", "ES2017"],
-    "module": "none",
-    "moduleResolution": "classic",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": false,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": false,
-    "sourceMap": true,
-    "removeComments": false,
-    "noEmitOnError": true,
-    "pretty": true,
+	"compilerOptions": {
+		"target": "ES2017",
+		"lib": ["DOM", "ES2017"],
+		"module": "none",
+		"moduleResolution": "classic",
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"strict": true,
+		"esModuleInterop": false,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"declaration": false,
+		"sourceMap": true,
+		"removeComments": false,
+		"noEmitOnError": true,
+		"pretty": true,
 
-    // Browser compatibility settings
-    "downlevelIteration": false,
-    "importHelpers": false,
+		// Browser compatibility settings
+		"downlevelIteration": false,
+		"importHelpers": false,
 
-    // Strict type checking
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
+		// Strict type checking
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
 
-    // Additional checks
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "exactOptionalPropertyTypes": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true
-  },
-  "include": ["src/scripts/**/*"],
-  "exclude": ["node_modules", "dist"]
+		// Additional checks
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"exactOptionalPropertyTypes": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true
+	},
+	"include": ["src/scripts/**/*"],
+	"exclude": ["node_modules", "dist"]
 }

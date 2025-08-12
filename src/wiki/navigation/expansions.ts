@@ -7,15 +7,13 @@ import { getCookie, setCookie } from "../core/cookies";
  * @returns {void}
  */
 export function toggleSidebarExpansions(): void {
-  const optionInput = document.querySelector(
-    "#showExpansionsChanger",
-  ) as HTMLInputElement;
-  let curVal = 0;
-  if (optionInput?.checked) {
-    curVal = 1;
-  }
-  setSidebarExpansions(curVal);
-  setCookie("showexpansions", curVal);
+	const optionInput = document.querySelector("#showExpansionsChanger") as HTMLInputElement;
+	let curVal = 0;
+	if (optionInput?.checked) {
+		curVal = 1;
+	}
+	setSidebarExpansions(curVal);
+	setCookie("showexpansions", curVal);
 }
 
 /**
@@ -25,18 +23,18 @@ export function toggleSidebarExpansions(): void {
  * @returns {void}
  */
 export function setSidebarExpansions(curVal: string | number): void {
-  let actualVal: number;
-  if (curVal === "cookie") {
-    const cookieVal = getCookie("showexpansions");
-    actualVal = cookieVal === "" ? 1 : Number.parseInt(cookieVal);
-  } else {
-    actualVal = typeof curVal === "string" ? Number.parseInt(curVal) : curVal;
-  }
-  const visibility = actualVal === 1 ? "block" : "none";
-  const elems = document.querySelectorAll(".showExpansionItem");
-  for (let i = 0; i < elems.length; i++) {
-    (elems[i] as HTMLElement).style.display = visibility;
-  }
+	let actualVal: number;
+	if (curVal === "cookie") {
+		const cookieVal = getCookie("showexpansions");
+		actualVal = cookieVal === "" ? 1 : Number.parseInt(cookieVal);
+	} else {
+		actualVal = typeof curVal === "string" ? Number.parseInt(curVal) : curVal;
+	}
+	const visibility = actualVal === 1 ? "block" : "none";
+	const elems = document.querySelectorAll(".showExpansionItem");
+	for (let i = 0; i < elems.length; i++) {
+		(elems[i] as HTMLElement).style.display = visibility;
+	}
 }
 
 /**
@@ -47,17 +45,14 @@ export function setSidebarExpansions(curVal: string | number): void {
  * @returns {void}
  */
 export function addExpansionLink(link: string, title: string): void {
-  const pNavigationUl = document.querySelector("#p-navigation ul");
-  const optionLi = document.createElement("li");
-  optionLi.classList.add("showExpansionItem");
-  // Access MediaWiki global safely
-  const mwGlobal = (
-    window as { mw?: { config: { values: { wgArticlePath: string } } } }
-  ).mw;
-  const urlBase =
-    mwGlobal?.config?.values?.wgArticlePath?.replace("$1", "") || "";
-  optionLi.innerHTML = `<a href="${urlBase}${link}">${title}</a>`;
-  pNavigationUl?.insertBefore(optionLi, null);
+	const pNavigationUl = document.querySelector("#p-navigation ul");
+	const optionLi = document.createElement("li");
+	optionLi.classList.add("showExpansionItem");
+	// Access MediaWiki global safely
+	const mwGlobal = (window as { mw?: { config: { values: { wgArticlePath: string } } } }).mw;
+	const urlBase = mwGlobal?.config?.values?.wgArticlePath?.replace("$1", "") || "";
+	optionLi.innerHTML = `<a href="${urlBase}${link}">${title}</a>`;
+	pNavigationUl?.insertBefore(optionLi, null);
 }
 
 /**
@@ -67,13 +62,13 @@ export function addExpansionLink(link: string, title: string): void {
  * @returns {void}
  */
 export function addExpansionSidebarLinks(): void {
-  const pNavigationUl = document.querySelector("#p-navigation ul");
-  if (pNavigationUl && !document.querySelector("#expansionSidebarLinks")) {
-    const expansionSidebarLinks = document.createElement("span");
-    expansionSidebarLinks.id = "expansionSidebarLinks";
-    pNavigationUl.insertBefore(expansionSidebarLinks, null);
-    for (const [link, title] of EXPANSION_LINKS) {
-      addExpansionLink(link, title);
-    }
-  }
+	const pNavigationUl = document.querySelector("#p-navigation ul");
+	if (pNavigationUl && !document.querySelector("#expansionSidebarLinks")) {
+		const expansionSidebarLinks = document.createElement("span");
+		expansionSidebarLinks.id = "expansionSidebarLinks";
+		pNavigationUl.insertBefore(expansionSidebarLinks, null);
+		for (const [link, title] of EXPANSION_LINKS) {
+			addExpansionLink(link, title);
+		}
+	}
 }

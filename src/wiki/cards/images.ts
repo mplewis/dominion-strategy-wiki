@@ -7,13 +7,13 @@ import { getCookie, setCookie } from "../core/cookies";
  * @returns {void}
  */
 export function toggleNavboxImages(): void {
-  const optionInput = document.querySelector("#hoverInsideCollapsibles");
-  let curVal = 0;
-  if ((optionInput as HTMLInputElement)?.checked) {
-    curVal = 1;
-  }
-  setNavboxImages(curVal);
-  setCookie("hoverinsidecollapsibles", curVal);
+	const optionInput = document.querySelector("#hoverInsideCollapsibles");
+	let curVal = 0;
+	if ((optionInput as HTMLInputElement)?.checked) {
+		curVal = 1;
+	}
+	setNavboxImages(curVal);
+	setCookie("hoverinsidecollapsibles", curVal);
 }
 
 /**
@@ -23,18 +23,18 @@ export function toggleNavboxImages(): void {
  * @returns {void}
  */
 export function setNavboxImages(curVal: string | number): void {
-  let actualVal: number;
-  if (curVal === "cookie") {
-    const cookieVal = getCookie("hoverinsidecollapsibles");
-    actualVal = cookieVal === "" ? 0 : Number.parseInt(cookieVal);
-  } else {
-    actualVal = typeof curVal === "string" ? Number.parseInt(curVal) : curVal;
-  }
-  if (actualVal === 1) {
-    while (document.adoptedStyleSheets.pop()) {
-      // Intentionally empty - just removing stylesheets
-    }
-  } else {
-    document.adoptedStyleSheets.push(dominionStrategyStyleSheet);
-  }
+	let actualVal: number;
+	if (curVal === "cookie") {
+		const cookieVal = getCookie("hoverinsidecollapsibles");
+		actualVal = cookieVal === "" ? 0 : Number.parseInt(cookieVal);
+	} else {
+		actualVal = typeof curVal === "string" ? Number.parseInt(curVal) : curVal;
+	}
+	if (actualVal === 1) {
+		while (document.adoptedStyleSheets.pop()) {
+			// Intentionally empty - just removing stylesheets
+		}
+	} else {
+		document.adoptedStyleSheets.push(dominionStrategyStyleSheet);
+	}
 }

@@ -12,28 +12,28 @@ import { getCookie } from "../core/cookies";
  * @returns {void}
  */
 export function addSiteOption(
-  optionCookie: string,
-  optionId: string,
-  optionText: string,
-  optionDefault: number,
-  optionFunc: () => void,
-  optionSetFunc: (val: number | string) => void,
+	optionCookie: string,
+	optionId: string,
+	optionText: string,
+	optionDefault: number,
+	optionFunc: () => void,
+	optionSetFunc: (val: number | string) => void,
 ): void {
-  if (!document.querySelector(`#${optionId}`)) {
-    let curVal = getCookie(optionCookie);
-    let checked = "";
-    if (curVal === "") {
-      curVal = optionDefault.toString();
-    }
-    if (Number.parseInt(curVal) > 0) {
-      checked = "checked";
-      optionSetFunc(Number.parseInt(curVal));
-    }
-    const pNavigationUl = document.querySelector("#p-navigation ul");
-    const optionLi = document.createElement("li");
-    optionLi.innerHTML = `<label for="${optionId}" style="cursor:pointer; user-select:none">${optionText}&nbsp;</label><input style="height:8px" type="checkbox" id="${optionId}" ${checked}>`;
-    pNavigationUl?.insertBefore(optionLi, null);
-    const optionInput = document.querySelector(`#${optionId}`);
-    (optionInput as HTMLInputElement)?.addEventListener("change", optionFunc);
-  }
+	if (!document.querySelector(`#${optionId}`)) {
+		let curVal = getCookie(optionCookie);
+		let checked = "";
+		if (curVal === "") {
+			curVal = optionDefault.toString();
+		}
+		if (Number.parseInt(curVal) > 0) {
+			checked = "checked";
+			optionSetFunc(Number.parseInt(curVal));
+		}
+		const pNavigationUl = document.querySelector("#p-navigation ul");
+		const optionLi = document.createElement("li");
+		optionLi.innerHTML = `<label for="${optionId}" style="cursor:pointer; user-select:none">${optionText}&nbsp;</label><input style="height:8px" type="checkbox" id="${optionId}" ${checked}>`;
+		pNavigationUl?.insertBefore(optionLi, null);
+		const optionInput = document.querySelector(`#${optionId}`);
+		(optionInput as HTMLInputElement)?.addEventListener("change", optionFunc);
+	}
 }

@@ -1,27 +1,27 @@
 {
-  "name": "dominion-strategy-wiki",
-  "version": "1.0.0",
-  "description": "TypeScript-powered interactive functionality for the Dominion Strategy Wiki",
-  "main": "common.js",
-  "scripts": {
-    "build": "tsc -p tsconfig.common.json && tsc && node dist/scripts/add-header.js",
-    "type-check": "tsc -p tsconfig.common.json --noEmit && tsc --noEmit",
-    "tidy": "biome check --write . && prettier --write .",
-    "tidy:check": "biome check . && prettier --check .",
-    "deploy-mediawiki": "node --enable-source-maps dist/scripts/deploy-to-mediawiki.js"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.4.0",
-    "@types/jquery": "^3.5.29",
-    "@types/node": "^24.2.1",
-    "axios": "^1.11.0",
-    "dotenv": "^17.2.1",
-    "pino": "^9.8.0",
-    "pino-pretty": "^13.1.1",
-    "prettier": "^3.6.2",
-    "tsx": "^4.20.4",
-    "typescript": "^5.3.0"
-  },
-  "private": true,
-  "packageManager": "pnpm@10.14.0"
+	"name": "dominion-strategy-wiki",
+	"version": "1.0.0",
+	"description": "TypeScript-powered interactive functionality for the Dominion Strategy Wiki",
+	"main": "common.js",
+	"scripts": {
+		"build": "tsc -p tsconfig.common.json && tsc && node dist/scripts/add-header.js",
+		"type-check": "tsc -p tsconfig.common.json --noEmit && tsc --noEmit",
+		"tidy": "biome check --write . && prettier --write .",
+		"tidy:check": "biome check . && prettier --check .",
+		"deploy-mediawiki": "node --enable-source-maps dist/scripts/deploy-to-mediawiki.js"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.4.0",
+		"@types/jquery": "^3.5.29",
+		"@types/node": "^24.2.1",
+		"axios": "^1.11.0",
+		"dotenv": "^17.2.1",
+		"pino": "^9.8.0",
+		"pino-pretty": "^13.1.1",
+		"prettier": "^3.6.2",
+		"tsx": "^4.20.4",
+		"typescript": "^5.3.0"
+	},
+	"private": true,
+	"packageManager": "pnpm@10.14.0"
 }
