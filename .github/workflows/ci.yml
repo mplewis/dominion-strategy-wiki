@@ -31,8 +31,8 @@ jobs:
       - name: Type check
         run: pnpm type-check
 
-      - name: Lint
-        run: pnpm lint
+      - name: Check code formatting and linting
+        run: pnpm tidy:check
 
       - name: Build
         run: pnpm build

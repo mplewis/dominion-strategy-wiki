@@ -62,6 +62,22 @@ function getCookieHeader(): string {
   return cookies.join("; ");
 }
 
+/** Get the current git commit hash */
+function getGitCommitHash(): string {
+  // Use GitHub Actions environment variable if available
+  if (process.env.GITHUB_SHA) {
+    return process.env.GITHUB_SHA;
+  }
+
+  // Fall back to git command for local development
+  try {
+    return execSync("git rev-parse HEAD", { encoding: "utf8" }).trim();
+  } catch (error) {
+    log.warn("Failed to get git commit hash", error);
+    return "unknown";
+  }
+}
+
 /** Login to MediaWiki */
 async function login(): Promise<void> {
   log.info(
@@ -135,12 +151,13 @@ async function updatePage(content: string): Promise<{ result: string }> {
     "Updating page",
   );
 
+  const commitHash = getGitCommitHash();
   const editData = new URLSearchParams({
     action: "edit",
     title: TARGET_PAGE,
     text: content,
     token: editToken || "",
-    summary: "Automated update from GitHub Actions",
+    summary: `Automated update from GitHub Actions (${commitHash.substring(0, 7)})`,
     format: "json",
   });
 
