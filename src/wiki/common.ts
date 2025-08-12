@@ -26,6 +26,27 @@
     800: 21,
   };
 
+  // Map of expansion links with their display names
+  const EXPANSION_LINKS = new Map([
+    ["Dominion (Base Set)", "Dominion"],
+    ["Intrigue", "Intrigue"],
+    ["Seaside", "Seaside"],
+    ["Alchemy", "Alchemy"],
+    ["Prosperity", "Prosperity"],
+    ["Cornucopia & Guilds", "Cornucopia & Guilds"],
+    ["Hinterlands", "Hinterlands"],
+    ["Dark Ages", "Dark Ages"],
+    ["Adventures", "Adventures"],
+    ["Empires", "Empires"],
+    ["Nocturne", "Nocturne"],
+    ["Renaissance", "Renaissance"],
+    ["Menagerie (expansion)", "Menagerie"],
+    ["Allies", "Allies"],
+    ["Plunder (expansion)", "Plunder"],
+    ["Rising Sun", "Rising Sun"],
+    ["Promo", "Promos"],
+  ]);
+
   const dominionStrategyStyleSheet = new CSSStyleSheet();
   dominionStrategyStyleSheet.replaceSync(
     ".mw-collapsible span.card-popup a:hover+span,.mw-collapsible span.card-popup img{display:none;visibility:hidden;opacity:0}"
@@ -279,23 +300,9 @@
       const expansionSidebarLinks = document.createElement("span");
       expansionSidebarLinks.id = "expansionSidebarLinks";
       pNavigationUl.insertBefore(expansionSidebarLinks, null);
-      addExpansionLink("Dominion (Base Set)", "Dominion");
-      addExpansionLink("Intrigue", "Intrigue");
-      addExpansionLink("Seaside", "Seaside");
-      addExpansionLink("Alchemy", "Alchemy");
-      addExpansionLink("Prosperity", "Prosperity");
-      addExpansionLink("Cornucopia & Guilds", "Cornucopia & Guilds");
-      addExpansionLink("Hinterlands", "Hinterlands");
-      addExpansionLink("Dark Ages", "Dark Ages");
-      addExpansionLink("Adventures", "Adventures");
-      addExpansionLink("Empires", "Empires");
-      addExpansionLink("Nocturne", "Nocturne");
-      addExpansionLink("Renaissance", "Renaissance");
-      addExpansionLink("Menagerie (expansion)", "Menagerie");
-      addExpansionLink("Allies", "Allies");
-      addExpansionLink("Plunder (expansion)", "Plunder");
-      addExpansionLink("Rising Sun", "Rising Sun");
-      addExpansionLink("Promo", "Promos");
+      for (const [link, title] of EXPANSION_LINKS) {
+        addExpansionLink(link, title);
+      }
     }
   }
 
