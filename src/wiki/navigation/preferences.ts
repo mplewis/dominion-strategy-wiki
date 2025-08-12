@@ -17,7 +17,7 @@ export function addSiteOption(
   optionText: string,
   optionDefault: number,
   optionFunc: () => void,
-  optionSetFunc: (val: number | string) => void
+  optionSetFunc: (val: number | string) => void,
 ): void {
   if (!document.querySelector(`#${optionId}`)) {
     let curVal = getCookie(optionCookie);

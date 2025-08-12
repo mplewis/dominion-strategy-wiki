@@ -6,7 +6,5 @@
     "moduleResolution": "classic",
     "sourceMap": false
   },
-  "include": [
-    "src/wiki/**/*"
-  ]
+  "include": ["src/wiki/**/*"]
 }

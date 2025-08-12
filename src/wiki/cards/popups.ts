@@ -10,13 +10,16 @@ import { initBlackBorder } from "./borders";
 export function fixCardPopup(e: Event | HTMLElement): void {
   let elem: HTMLElement | null;
   if ("target" in e && e.target) {
-    elem = (e.target as Element).parentElement?.nextElementSibling as HTMLElement;
+    elem = (e.target as Element).parentElement
+      ?.nextElementSibling as HTMLElement;
   } else {
     elem = e as HTMLElement;
   }
   if (elem?.getBoundingClientRect().x > window.innerWidth / 2) {
     elem.style.left = `-${
-      elem.offsetWidth - (elem.previousElementSibling as HTMLElement).offsetWidth + 20
+      elem.offsetWidth -
+      (elem.previousElementSibling as HTMLElement).offsetWidth +
+      20
     }px`;
   } else {
     elem.style.left = "20px";

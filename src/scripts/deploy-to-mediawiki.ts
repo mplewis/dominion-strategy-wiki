@@ -5,6 +5,7 @@ const axios = require("axios");
 const fs = require("node:fs");
 const path = require("node:path");
 const pino = require("pino");
+const { execSync } = require("node:child_process");
 
 const MEDIAWIKI_API_URL = "https://wiki.dominionstrategy.com/api.php";
 const TARGET_PAGE = "MediaWiki:Common.js";
@@ -65,7 +66,7 @@ function getCookieHeader(): string {
 async function login(): Promise<void> {
   log.info(
     { apiUrl: MEDIAWIKI_API_URL, username: MEDIAWIKI_USERNAME },
-    "Logging in to MediaWiki"
+    "Logging in to MediaWiki",
   );
 
   const tokenResponse = await axios.get(MEDIAWIKI_API_URL, {
@@ -95,7 +96,7 @@ async function login(): Promise<void> {
   const result = loginResponse.data?.login?.result;
   log.debug(
     { result, loginResponse: loginResponse.data },
-    "Login response received"
+    "Login response received",
   );
 
   if (result === "NeedToken") {
@@ -107,9 +108,7 @@ async function login(): Promise<void> {
   if (result !== "Success") {
     log.error({ response: loginResponse.data }, "Login failed");
     throw new Error(
-      `MediaWiki login failed: ${result} - ${
-        loginResponse.data?.login?.reason || "Unknown error"
-      }`
+      `MediaWiki login failed: ${result} - ${loginResponse.data?.login?.reason || "Unknown error"}`,
     );
   }
   log.info("Login successful");
@@ -133,7 +132,7 @@ async function getEditToken(): Promise<void> {
 async function updatePage(content: string): Promise<{ result: string }> {
   log.info(
     { page: TARGET_PAGE, contentLength: content.length },
-    "Updating page"
+    "Updating page",
   );
 
   const editData = new URLSearchParams({
@@ -177,7 +176,7 @@ async function verifyContent(expectedContent: string): Promise<boolean> {
       expectedLength: expectedContent.length,
       actualLength: actualContent.length,
     },
-    "Content verification failed"
+    "Content verification failed",
   );
 
   const maxPreviewLength = 500;
@@ -197,7 +196,7 @@ async function main(): Promise<void> {
   const jsContent = fs.readFileSync(COMPILED_JS_PATH, "utf8");
   log.info(
     { path: COMPILED_JS_PATH, contentLength: jsContent.length },
-    "Loaded JavaScript content"
+    "Loaded JavaScript content",
   );
 
   await login();

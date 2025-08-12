@@ -7,7 +7,9 @@ import { getCookie, setCookie } from "../core/cookies";
  * @returns {void}
  */
 export function toggleSidebarExpansions(): void {
-  const optionInput = document.querySelector("#showExpansionsChanger") as HTMLInputElement;
+  const optionInput = document.querySelector(
+    "#showExpansionsChanger",
+  ) as HTMLInputElement;
   let curVal = 0;
   if (optionInput?.checked) {
     curVal = 1;
@@ -49,8 +51,11 @@ export function addExpansionLink(link: string, title: string): void {
   const optionLi = document.createElement("li");
   optionLi.classList.add("showExpansionItem");
   // Access MediaWiki global safely
-  const mwGlobal = (window as { mw?: { config: { values: { wgArticlePath: string } } } }).mw;
-  const urlBase = mwGlobal?.config?.values?.wgArticlePath?.replace("$1", "") || "";
+  const mwGlobal = (
+    window as { mw?: { config: { values: { wgArticlePath: string } } } }
+  ).mw;
+  const urlBase =
+    mwGlobal?.config?.values?.wgArticlePath?.replace("$1", "") || "";
   optionLi.innerHTML = `<a href="${urlBase}${link}">${title}</a>`;
   pNavigationUl?.insertBefore(optionLi, null);
 }

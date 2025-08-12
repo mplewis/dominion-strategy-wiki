@@ -33,7 +33,8 @@ export function changeBorder(): void {
  * @returns {void}
  */
 export function setBlackBorder(bSize: number | string): void {
-  const actualBSize = typeof bSize === "string" ? Number.parseInt(bSize) : bSize;
+  const actualBSize =
+    typeof bSize === "string" ? Number.parseInt(bSize) : bSize;
   const elems = document.querySelectorAll("img");
   for (let i = 0; i < elems.length; i++) {
     const elem = elems[i];
@@ -46,7 +47,8 @@ export function setBlackBorder(bSize: number | string): void {
         }px; background:black;">${elem.outerHTML}</span>`;
       } else if (elem.parentElement?.className === "cardborderchanger") {
         (elem.parentElement as HTMLElement).style.padding = `${actualSize}px`;
-        (elem.parentElement as HTMLElement).style.borderRadius = `${actualSize - 1}px`;
+        (elem.parentElement as HTMLElement).style.borderRadius =
+          `${actualSize - 1}px`;
       }
     }
   }
@@ -59,9 +61,9 @@ export function setBlackBorder(bSize: number | string): void {
  * @returns {void}
  */
 export function initBlackBorder(e: Event): void {
-  const elem = (e.target as Element)?.parentElement?.parentElement?.querySelector(
-    "img"
-  ) as HTMLImageElement;
+  const elem = (
+    e.target as Element
+  )?.parentElement?.parentElement?.querySelector("img") as HTMLImageElement;
   const curVal = getCookie("cardbordersize");
   if (Number.parseInt(curVal) > 0 && elem) {
     const newSize = getNewSize(elem.offsetWidth);
@@ -72,7 +74,8 @@ export function initBlackBorder(e: Event): void {
         }px; background:black;">${elem.outerHTML}</span>`;
       } else if (elem.parentElement?.className === "cardborderchanger") {
         (elem.parentElement as HTMLElement).style.padding = `${newSize}px`;
-        (elem.parentElement as HTMLElement).style.borderRadius = `${newSize - 1}px`;
+        (elem.parentElement as HTMLElement).style.borderRadius =
+          `${newSize - 1}px`;
       }
     }
   }

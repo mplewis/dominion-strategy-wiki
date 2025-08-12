@@ -40,5 +40,5 @@ export const EXPANSION_LINKS = new Map([
 
 export const dominionStrategyStyleSheet = new CSSStyleSheet();
 dominionStrategyStyleSheet.replaceSync(
-  ".mw-collapsible span.card-popup a:hover+span,.mw-collapsible span.card-popup img{display:none;visibility:hidden;opacity:0}"
+  ".mw-collapsible span.card-popup a:hover+span,.mw-collapsible span.card-popup img{display:none;visibility:hidden;opacity:0}",
 );

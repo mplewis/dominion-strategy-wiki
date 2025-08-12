@@ -9,7 +9,11 @@ import { getCookie, setCookie } from "../core/cookies";
  * @param {string} sortid - CSS class identifier for this sortable group
  * @returns {void}
  */
-export function sortSortables(startsort: Element, sortby: string, sortid: string): void {
+export function sortSortables(
+  startsort: Element,
+  sortby: string,
+  sortid: string,
+): void {
   const cards: [string, Element][] = [];
   let sameCost = true;
   let firstCost: string | undefined;
@@ -56,7 +60,9 @@ export function sortSortables(startsort: Element, sortby: string, sortid: string
   for (let i = 0; i < cards.length; i++) {
     startsort.insertBefore(cards[i][1] as Node, null);
   }
-  let switchElems = document.querySelectorAll(`.switchsort.sortbyname.${sortid}`);
+  let switchElems = document.querySelectorAll(
+    `.switchsort.sortbyname.${sortid}`,
+  );
   for (let i = 0; i < switchElems.length; i++) {
     if (sortby === "sortbyname" || sameCost) {
       (switchElems[i] as HTMLElement).style.display = "none";

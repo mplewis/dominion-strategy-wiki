@@ -26,7 +26,7 @@ export function initCommon(): void {
     "Sort by Cost:",
     0,
     changeCardSortBy,
-    setCardSortBy
+    setCardSortBy,
   );
   addSiteOption(
     "cardbordersize",
@@ -34,7 +34,7 @@ export function initCommon(): void {
     "Card Border:",
     0,
     changeBorder,
-    setBlackBorder
+    setBlackBorder,
   );
   fixCardPopups();
   addSiteOption(
@@ -43,7 +43,7 @@ export function initCommon(): void {
     "Navbox Images:",
     0,
     toggleNavboxImages,
-    setNavboxImages
+    setNavboxImages,
   );
   setNavboxImages("cookie");
   addSiteOption(
@@ -52,7 +52,7 @@ export function initCommon(): void {
     "Show Expansions:",
     1,
     toggleSidebarExpansions,
-    setSidebarExpansions
+    setSidebarExpansions,
   );
   addExpansionSidebarLinks();
   setSidebarExpansions("cookie");
