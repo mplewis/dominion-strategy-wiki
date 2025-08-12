@@ -15,7 +15,8 @@
       "Bash(pnpm store prune:*)",
       "Bash(pnpm:*)",
       "Bash(act:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }
