@@ -6,12 +6,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.common.json && tsc && node dist/scripts/add-header.js",
     "type-check": "tsc -p tsconfig.common.json --noEmit && tsc --noEmit",
-    "lint": "biome lint .",
-    "lint:fix": "biome lint --write .",
-    "format": "biome format --write . && prettier --write .",
-    "check": "biome check .",
-    "check:fix": "biome check --write .",
-    "tidy": "pnpm check:fix && pnpm lint:fix && pnpm format",
+    "tidy": "biome check --write . && prettier --write .",
+    "tidy:check": "biome check . && prettier --check .",
     "deploy-mediawiki": "node --enable-source-maps dist/scripts/deploy-to-mediawiki.js"
   },
   "devDependencies": {

@@ -75,12 +75,7 @@
     }
   },
   "formatter": {
-    "enabled": true,
-    "formatWithErrors": false,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 100,
-    "ignore": []
+    "enabled": false
   },
   "javascript": {
     "formatter": {
