@@ -73,6 +73,6 @@ jobs:
 
       - name: Deploy to MediaWiki
         env:
-          MEDIAWIKI_USERNAME: ${{ secrets.MEDIAWIKI_USERNAME }}
+          MEDIAWIKI_USERNAME: ${{ vars.MEDIAWIKI_USERNAME }}
           MEDIAWIKI_PASSWORD: ${{ secrets.MEDIAWIKI_PASSWORD }}
         run: pnpm deploy-mediawiki
