@@ -22,7 +22,9 @@ const getCookie = (name: string): string | null => {
 const setCookie = (name: string, value: string, days = 30): void => {
 	const expires = new Date();
 	expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-	document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+	const cookieString = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+	// biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API not widely supported yet
+	document.cookie = cookieString;
 };
 
 /** Main application container with column layout */

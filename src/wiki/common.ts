@@ -5,3 +5,4 @@ try {
 } catch {
 	document.addEventListener("DOMContentLoaded", initCommon);
 }
+//

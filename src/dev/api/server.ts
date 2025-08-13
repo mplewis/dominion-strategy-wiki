@@ -71,11 +71,22 @@ async function startServer() {
 
 		try {
 			console.log("Triggering rebuild due to source changes...");
+
+			// Notify clients that build is starting
+			webSocketService.broadcast({
+				type: "buildStarted",
+				payload: {
+					filePath: relativePath,
+					eventType: event.eventType,
+					timestamp: event.timestamp.toISOString(),
+				},
+			});
+
 			const startTime = Date.now();
-			
+
 			// Run the main build process
 			await execAsync("pnpm build", { cwd: path.join(__dirname, "../../..") });
-			
+
 			const duration = Date.now() - startTime;
 			console.log(`Build completed successfully in ${duration}ms`);
 
@@ -100,10 +111,9 @@ async function startServer() {
 					timestamp: event.timestamp.toISOString(),
 				},
 			});
-
 		} catch (error) {
 			console.error("Build failed:", error);
-			
+
 			// Broadcast build failure to WebSocket clients
 			webSocketService.broadcast({
 				type: "buildError",
