@@ -1,11 +1,7 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
-	"files": {
-		"includes": [
-			"src/**/*.ts",
-			"src/**/*.js",
-			"*.js"
-		]
+	"$schema": "https://biomejs.dev/schemas/1.4.0/schema.json",
+	"organizeImports": {
+		"enabled": true
 	},
 	"linter": {
 		"enabled": true,
@@ -18,9 +14,7 @@
 				"noUselessRename": "error",
 				"noUselessSwitchCase": "error",
 				"noUselessTernary": "error",
-				"noVoid": "error",
-				"noUselessUndefinedInitialization": "error",
-				"useDateNow": "error"
+				"noVoid": "error"
 			},
 			"correctness": {
 				"noConstAssign": "error",
@@ -29,6 +23,7 @@
 				"noEmptyPattern": "error",
 				"noGlobalObjectCalls": "error",
 				"noInvalidConstructorSuper": "error",
+				"noNewSymbol": "error",
 				"noNonoctalDecimalEscape": "error",
 				"noPrecisionLoss": "error",
 				"noSelfAssign": "error",
@@ -41,16 +36,14 @@
 				"noUnusedLabels": "error",
 				"noUnusedVariables": "error",
 				"useIsNan": "error",
-				"useValidForDirection": "error",
-				"noUnusedImports": "error",
-				"noUnusedPrivateClassMembers": "error",
-				"noConstantMathMinMaxClamp": "error"
+				"useValidForDirection": "error"
 			},
 			"style": {
+				"noArguments": "error",
+				"noVar": "error",
 				"useConst": "error",
 				"useExponentiationOperator": "error",
-				"useTemplate": "error",
-				"useArrayLiterals": "error"
+				"useTemplate": "error"
 			},
 			"suspicious": {
 				"noArrayIndexKey": "error",
@@ -60,6 +53,7 @@
 				"noClassAssign": "error",
 				"noCompareNegZero": "error",
 				"noConfusingLabels": "error",
+				"noConsoleLog": "warn",
 				"noControlCharactersInRegex": "error",
 				"noDebugger": "error",
 				"noDoubleEquals": "error",
@@ -75,16 +69,12 @@
 				"noPrototypeBuiltins": "error",
 				"noRedeclare": "error",
 				"noShadowRestrictedNames": "error",
-				"noUnsafeNegation": "error",
-				"noVar": "error"
+				"noUnsafeNegation": "error"
 			}
 		}
 	},
 	"formatter": {
 		"enabled": false
-	},
-	"assist": {
-		"enabled": true
 	},
 	"javascript": {
 		"formatter": {
@@ -98,26 +88,10 @@
 			"quoteStyle": "double",
 			"attributePosition": "auto"
 		},
-		"globals": [
-			"mw",
-			"$",
-			"JQueryStatic"
-		]
+		"globals": ["mw", "$", "JQueryStatic"]
 	},
-	"overrides": [
-		{
-			"includes": [
-				"node_modules/**",
-				"dist/**",
-				"common.js",
-				"tmp/**"
-			],
-			"linter": {
-				"enabled": false
-			},
-			"formatter": {
-				"enabled": false
-			}
-		}
-	]
+	"files": {
+		"include": ["src/**/*.ts", "src/**/*.js", "*.js"],
+		"ignore": ["node_modules/**", "dist/**", "common.js", "tmp/**"]
+	}
 }
