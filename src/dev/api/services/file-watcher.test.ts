@@ -36,7 +36,7 @@ describe("FileWatcher", () => {
 
 		expect(events).toHaveLength(1);
 		expect(events[0].filePath).toBe(testFile);
-		expect(events[0].eventType).toBe("rename"); // File creation is "rename" event
+		expect(["rename", "change"]).toContain(events[0].eventType); // File creation varies by OS
 	});
 
 	it("should ignore non-TypeScript files", async () => {
