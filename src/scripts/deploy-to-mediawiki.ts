@@ -5,11 +5,11 @@ const axios = require("axios");
 const fs = require("node:fs");
 const path = require("node:path");
 const pino = require("pino");
-const { execSync } = require("node:child_process");
 
 const MEDIAWIKI_BASE_URL = "https://wiki.dominionstrategy.com";
 const TARGET_PAGE_NAME = "MediaWiki:Common.js";
 const MAX_PREVIEW_LENGTH = 500;
+const GITHUB_REPO_URL = "https://github.com/mplewis/dominion-strategy-wiki";
 
 const MEDIAWIKI_API_URL = `${MEDIAWIKI_BASE_URL}/api.php`;
 const VERIFY_CONTENT_URL = `${MEDIAWIKI_BASE_URL}/index.php?title=${TARGET_PAGE_NAME}&action=raw`;
@@ -68,18 +68,17 @@ function getCookieHeader(): string {
 
 /** Get the current git commit hash */
 function getGitCommitHash(): string {
-	// Use GitHub Actions environment variable if available
-	if (process.env.GITHUB_SHA) {
-		return process.env.GITHUB_SHA;
-	}
+	return process.env.GITHUB_SHA || "unknown";
+}
 
-	// Fall back to git command for local development
-	try {
-		return execSync("git rev-parse HEAD", { encoding: "utf8" }).trim();
-	} catch (error) {
-		log.warn("Failed to get git commit hash", error);
-		return "unknown";
-	}
+/** Get the commit message */
+function getCommitMessage(): string {
+	return process.env.GITHUB_EVENT_HEAD_COMMIT_MESSAGE || "Unknown commit";
+}
+
+/** Get the actor/author */
+function getActor(): string {
+	return process.env.GITHUB_ACTOR || "unknown";
 }
 
 /** Login to MediaWiki */
@@ -146,12 +145,16 @@ async function updatePage(content: string): Promise<{ result: string }> {
 	log.info({ page: TARGET_PAGE_NAME, contentLength: content.length }, "Updating page");
 
 	const commitHash = getGitCommitHash();
+	const commitMessage = getCommitMessage();
+	const actor = getActor();
+	const summary = `${commitMessage} by @${actor} - ${GITHUB_REPO_URL}/commit/${commitHash}`;
+
 	const editData = new URLSearchParams({
 		action: "edit",
 		title: TARGET_PAGE_NAME,
 		text: content,
 		token: editToken || "",
-		summary: `Automated update from GitHub Actions (${commitHash.substring(0, 7)})`,
+		summary: summary,
 		format: "json",
 	});
 
