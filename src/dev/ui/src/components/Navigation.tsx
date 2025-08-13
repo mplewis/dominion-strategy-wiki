@@ -1,6 +1,7 @@
-import React from "react";
 import styled from "@emotion/styled";
+import type React from "react";
 import type { CardSet } from "../types";
+import { StatusIndicator } from "./StatusIndicator";
 
 /** Main navigation container with shadow */
 const Nav = styled.nav`
@@ -30,27 +31,6 @@ const Controls = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.75rem;
-`;
-
-/** WebSocket status indicator */
-const StatusIndicator = styled.div<{ connected: boolean }>`
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	padding: 0.5rem 0.75rem;
-	font-size: 0.75rem;
-	border-radius: 0.375rem;
-	background-color: ${(props) => (props.connected ? "#dcfce7" : "#fef3c7")};
-	color: ${(props) => (props.connected ? "#166534" : "#92400e")};
-	border: 1px solid ${(props) => (props.connected ? "#bbf7d0" : "#fde68a")};
-`;
-
-/** Status dot indicator */
-const StatusDot = styled.div<{ connected: boolean }>`
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background-color: ${(props) => (props.connected ? "#16a34a" : "#d97706")};
 `;
 
 /** Styled select dropdown with hover/focus states */
@@ -104,9 +84,9 @@ interface NavigationProps {
 	selectedSet: string;
 	cardSets: CardSet[];
 	loading: boolean;
-	wsStatus: string;
 	wsConnected: boolean;
-	showStatus: boolean;
+	connectionError: string | null;
+	wsMessage?: { type: string; payload?: unknown } | null;
 	onSetChange: (setId: string) => void;
 	onRefresh: () => void;
 }
@@ -116,23 +96,18 @@ export const Navigation: React.FC<NavigationProps> = ({
 	selectedSet,
 	cardSets,
 	loading,
-	wsStatus,
 	wsConnected,
-	showStatus,
+	connectionError,
+	wsMessage,
 	onSetChange,
 	onRefresh,
 }) => {
 	return (
 		<Nav>
 			<NavContainer>
-				<Title>Dominion Wiki Dev Sandbox</Title>
+				<Title>Card Sandbox</Title>
 				<Controls>
-					{showStatus && (
-						<StatusIndicator connected={wsConnected}>
-							<StatusDot connected={wsConnected} />
-							{wsStatus}
-						</StatusIndicator>
-					)}
+					<StatusIndicator isConnected={wsConnected} connectionError={connectionError} message={wsMessage} />
 					<Select value={selectedSet} onChange={(e) => onSetChange(e.target.value)} disabled={loading}>
 						<option value="">Select card set...</option>
 						{cardSets.map((set) => (

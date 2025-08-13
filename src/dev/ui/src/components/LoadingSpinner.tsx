@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "@emotion/styled";
+import type React from "react";
 
 /** Centered container for loading spinner */
 const LoadingContainer = styled.div`

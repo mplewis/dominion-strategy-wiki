@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "@emotion/styled";
+import type React from "react";
 import type { WikiPageData } from "../types";
 
 /** Main container with rounded corners and shadow */

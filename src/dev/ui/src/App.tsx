@@ -1,15 +1,12 @@
-import { useState, useEffect, useCallback } from "react";
 import styled from "@emotion/styled";
+import { useCallback, useEffect, useState } from "react";
 import api from "./api";
-import { Navigation, ErrorAlert, LoadingSpinner, ContentFrame } from "./components";
+import { ContentFrame, ErrorAlert, LoadingSpinner, Navigation } from "./components";
 import { useWebSocket } from "./hooks/useWebSocket";
-import { CardSet, WikiPageData } from "./types";
+import type { CardSet, WikiPageData } from "./types";
 
 /** Cookie name for storing the last selected card set */
 const SELECTED_SET_COOKIE = "dominion_selected_set";
-
-/** Time in milliseconds to hide the connection status when idle */
-const STATUS_HIDE_DELAY = 2000;
 
 /** Gets a cookie value by name */
 const getCookie = (name: string): string | null => {
@@ -54,69 +51,23 @@ const App = () => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string>("");
 	const [pageData, setPageData] = useState<WikiPageData | null>(null);
-	const [wsStatus, setWsStatus] = useState<string>("Connecting...");
-	const [showStatus, setShowStatus] = useState<boolean>(true);
+	const [wsMessage, setWsMessage] = useState<{ type: string; payload?: unknown } | null>(null);
 
 	// WebSocket connection for live updates
 	const wsUrl = `ws://${window.location.hostname}:${window.location.port || "3001"}`;
-	const { isConnected, connectionError } = useWebSocket({
-		url: wsUrl,
-		onMessage: (message) => {
-			if (message.type === "connected") {
-				setWsStatus("Connected");
-				setShowStatus(true);
-				// Hide status after delay
-				setTimeout(() => {
-					setShowStatus(false);
-				}, STATUS_HIDE_DELAY);
-			} else if (message.type === "fileChanged") {
-				const { filePath } = message.payload;
-				console.log(`📄 File changed: ${filePath}`);
-				setWsStatus(`File changed: ${filePath}`);
-				setShowStatus(true);
+	const handleWebSocketMessage = (message: { type: string; payload?: unknown }) => {
+		// Pass message to StatusIndicator
+		setWsMessage(message);
 
-				// Auto-refresh the current page when wiki files change
-				if (selectedSet) {
-					loadPageData(true);
-				}
-
-				// Reset status after a delay
-				setTimeout(() => {
-					setWsStatus(isConnected ? "Connected" : "Disconnected");
-					// Hide status after additional delay
-					setTimeout(() => {
-						setShowStatus(false);
-					}, STATUS_HIDE_DELAY);
-				}, 3000);
+		if (message.type === "fileChanged") {
+			// Auto-refresh the current page when wiki files change
+			if (selectedSet) {
+				loadPageData(true);
 			}
-		},
-	});
-
-	// Load card sets on mount
-	useEffect(() => {
-		loadCardSets();
-	}, []);
-
-	// Update WebSocket status based on connection state
-	useEffect(() => {
-		if (connectionError) {
-			setWsStatus(`Error: ${connectionError}`);
-			setShowStatus(true);
-		} else if (isConnected) {
-			setWsStatus("Connected");
-			setShowStatus(true);
-			// Hide status after delay when initially connected
-			const hideTimer = setTimeout(() => {
-				setShowStatus(false);
-			}, STATUS_HIDE_DELAY);
-			return () => clearTimeout(hideTimer);
-		} else {
-			setWsStatus("Connecting...");
-			setShowStatus(true);
 		}
-	}, [isConnected, connectionError]);
+	};
 
-	const loadCardSets = async () => {
+	const loadCardSets = useCallback(async () => {
 		try {
 			const sets = await api.getCardSets();
 			setCardSets(sets);
@@ -131,23 +82,36 @@ const App = () => {
 		} catch (err) {
 			setError(`Failed to load card sets: ${err instanceof Error ? err.message : String(err)}`);
 		}
-	};
+	}, []);
 
-	const loadPageData = async (forceRefresh = false) => {
-		if (!selectedSet) return;
+	const loadPageData = useCallback(
+		async (forceRefresh = false) => {
+			if (!selectedSet) return;
 
-		setLoading(true);
-		setError("");
+			setLoading(true);
+			setError("");
 
-		try {
-			const processed = await api.getWikiPage(selectedSet, forceRefresh);
-			setPageData(processed);
-		} catch (err) {
-			setError(`Failed to load page data: ${err instanceof Error ? err.message : String(err)}`);
-		} finally {
-			setLoading(false);
-		}
-	};
+			try {
+				const processed = await api.getWikiPage(selectedSet, forceRefresh);
+				setPageData(processed);
+			} catch (err) {
+				setError(`Failed to load page data: ${err instanceof Error ? err.message : String(err)}`);
+			} finally {
+				setLoading(false);
+			}
+		},
+		[selectedSet],
+	);
+
+	const { isConnected, connectionError } = useWebSocket({
+		url: wsUrl,
+		onMessage: handleWebSocketMessage,
+	});
+
+	// Load card sets on mount
+	useEffect(() => {
+		loadCardSets();
+	}, [loadCardSets]);
 
 	const handleSetChange = (setId: string) => {
 		setSelectedSet(setId);
@@ -163,7 +127,7 @@ const App = () => {
 		if (selectedSet) {
 			loadPageData();
 		}
-	}, [selectedSet]);
+	}, [selectedSet, loadPageData]);
 
 	const renderContent = () => {
 		if (loading) {
@@ -183,9 +147,9 @@ const App = () => {
 				selectedSet={selectedSet}
 				cardSets={cardSets}
 				loading={loading}
-				wsStatus={wsStatus}
 				wsConnected={isConnected}
-				showStatus={showStatus}
+				connectionError={connectionError}
+				wsMessage={wsMessage}
 				onSetChange={handleSetChange}
 				onRefresh={handleRefresh}
 			/>

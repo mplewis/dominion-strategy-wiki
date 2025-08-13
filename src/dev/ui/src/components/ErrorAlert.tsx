@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "@emotion/styled";
+import type React from "react";
 
 /** Error alert container with red styling and border */
 const AlertContainer = styled.div`
