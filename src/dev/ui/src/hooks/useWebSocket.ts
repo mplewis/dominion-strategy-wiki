@@ -19,6 +19,113 @@ interface UseWebSocketReturn {
 	close: () => void;
 }
 
+// Global singleton to prevent multiple connections in StrictMode
+const globalWebSocketManager = {
+	instance: null as WebSocket | null,
+	url: null as string | null,
+	listeners: new Set<(message: WebSocketMessage) => void>(),
+	isConnected: false,
+	connectionError: null as string | null,
+	reconnectAttempt: 0,
+	maxReconnectAttempts: 5,
+	reconnectInterval: 3000,
+	reconnectTimeout: null as NodeJS.Timeout | null,
+	shouldReconnect: true,
+
+	connect(url: string) {
+		if (
+			this.instance &&
+			this.url === url &&
+			(this.instance.readyState === WebSocket.CONNECTING || this.instance.readyState === WebSocket.OPEN)
+		) {
+			console.log("🔌 WebSocket already connecting/connected to", url);
+			return;
+		}
+
+		this.cleanup();
+		this.url = url;
+
+		try {
+			const ws = new WebSocket(url);
+			this.instance = ws;
+
+			ws.onopen = () => {
+				console.log("🔌 WebSocket connected");
+				this.isConnected = true;
+				this.connectionError = null;
+				this.reconnectAttempt = 0;
+			};
+
+			ws.onmessage = (event) => {
+				try {
+					const message: WebSocketMessage = JSON.parse(event.data);
+					this.listeners.forEach((listener) => listener(message));
+				} catch (error) {
+					console.error("Failed to parse WebSocket message:", error);
+				}
+			};
+
+			ws.onclose = (event) => {
+				console.log("🔌 WebSocket disconnected", event.code, event.reason);
+				this.isConnected = false;
+				this.instance = null;
+
+				if (this.shouldReconnect && this.reconnectAttempt < this.maxReconnectAttempts) {
+					this.reconnectAttempt++;
+					console.log(`🔄 Attempting WebSocket reconnection ${this.reconnectAttempt}/${this.maxReconnectAttempts}...`);
+
+					this.reconnectTimeout = setTimeout(() => {
+						this.connect(url);
+					}, this.reconnectInterval);
+				} else if (this.reconnectAttempt >= this.maxReconnectAttempts) {
+					this.connectionError = "Failed to establish WebSocket connection after multiple attempts";
+				}
+			};
+
+			ws.onerror = (error) => {
+				console.error("WebSocket error:", error);
+				this.connectionError = "WebSocket connection error";
+			};
+		} catch (error) {
+			console.error("Failed to create WebSocket:", error);
+			this.connectionError = "Failed to create WebSocket connection";
+		}
+	},
+
+	cleanup() {
+		if (this.reconnectTimeout) {
+			clearTimeout(this.reconnectTimeout);
+			this.reconnectTimeout = null;
+		}
+		if (this.instance) {
+			this.instance.close();
+			this.instance = null;
+		}
+	},
+
+	addListener(callback: (message: WebSocketMessage) => void) {
+		this.listeners.add(callback);
+	},
+
+	removeListener(callback: (message: WebSocketMessage) => void) {
+		this.listeners.delete(callback);
+	},
+
+	send(message: WebSocketMessage) {
+		if (this.instance && this.instance.readyState === WebSocket.OPEN) {
+			this.instance.send(JSON.stringify(message));
+		} else {
+			console.warn("WebSocket is not connected, cannot send message");
+		}
+	},
+
+	close() {
+		this.shouldReconnect = false;
+		this.cleanup();
+		this.isConnected = false;
+	},
+};
+
 /**
  * Custom hook for managing WebSocket connections with automatic reconnection.
  * Provides connection state management, message handling, and cleanup.
@@ -29,12 +136,8 @@ export const useWebSocket = ({
 	reconnectInterval = 3000,
 	maxReconnectAttempts = 5,
 }: UseWebSocketOptions): UseWebSocketReturn => {
-	const [isConnected, setIsConnected] = useState(false);
-	const [connectionError, setConnectionError] = useState<string | null>(null);
-	const wsRef = useRef<WebSocket | null>(null);
-	const reconnectAttemptRef = useRef(0);
-	const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const shouldReconnectRef = useRef(true);
+	const [isConnected, setIsConnected] = useState(globalWebSocketManager.isConnected);
+	const [connectionError, setConnectionError] = useState<string | null>(globalWebSocketManager.connectionError);
 	const onMessageRef = useRef(onMessage);
 
 	// Update the callback ref when onMessage changes
@@ -43,98 +146,36 @@ export const useWebSocket = ({
 	}, [onMessage]);
 
 	useEffect(() => {
-		const cleanup = () => {
-			if (reconnectTimeoutRef.current) {
-				clearTimeout(reconnectTimeoutRef.current);
-				reconnectTimeoutRef.current = null;
-			}
-			if (wsRef.current) {
-				wsRef.current.close();
-				wsRef.current = null;
-			}
+		globalWebSocketManager.reconnectInterval = reconnectInterval;
+		globalWebSocketManager.maxReconnectAttempts = maxReconnectAttempts;
+
+		globalWebSocketManager.connect(url);
+
+		const messageListener = (message: WebSocketMessage) => {
+			onMessageRef.current?.(message);
 		};
+		globalWebSocketManager.addListener(messageListener);
 
-		const connect = () => {
-			cleanup();
-
-			try {
-				const ws = new WebSocket(url);
-				wsRef.current = ws;
-
-				ws.onopen = () => {
-					console.log("🔌 WebSocket connected");
-					setIsConnected(true);
-					setConnectionError(null);
-					reconnectAttemptRef.current = 0;
-				};
-
-				ws.onmessage = (event) => {
-					try {
-						const message: WebSocketMessage = JSON.parse(event.data);
-						onMessageRef.current?.(message);
-					} catch (error) {
-						console.error("Failed to parse WebSocket message:", error);
-					}
-				};
-
-				ws.onclose = (event) => {
-					console.log("🔌 WebSocket disconnected", event.code, event.reason);
-					setIsConnected(false);
-					wsRef.current = null;
-
-					// Attempt reconnection if it wasn't a manual close and we haven't exceeded max attempts
-					if (shouldReconnectRef.current && reconnectAttemptRef.current < maxReconnectAttempts) {
-						reconnectAttemptRef.current++;
-						console.log(
-							`🔄 Attempting WebSocket reconnection ${reconnectAttemptRef.current}/${maxReconnectAttempts}...`,
-						);
-
-						reconnectTimeoutRef.current = setTimeout(() => {
-							connect();
-						}, reconnectInterval);
-					} else if (reconnectAttemptRef.current >= maxReconnectAttempts) {
-						setConnectionError("Failed to establish WebSocket connection after multiple attempts");
-					}
-				};
-
-				ws.onerror = (error) => {
-					console.error("WebSocket error:", error);
-					setConnectionError("WebSocket connection error");
-				};
-			} catch (error) {
-				console.error("Failed to create WebSocket:", error);
-				setConnectionError("Failed to create WebSocket connection");
-			}
+		const syncState = () => {
+			setIsConnected(globalWebSocketManager.isConnected);
+			setConnectionError(globalWebSocketManager.connectionError);
 		};
-
-		shouldReconnectRef.current = true;
-		connect();
+		syncState();
+		// Poll for state changes (simple approach for now)
+		const stateSync = setInterval(syncState, 100);
 
 		return () => {
-			shouldReconnectRef.current = false;
-			cleanup();
+			globalWebSocketManager.removeListener(messageListener);
+			clearInterval(stateSync);
 		};
 	}, [url, maxReconnectAttempts, reconnectInterval]);
 
 	const send = (message: WebSocketMessage) => {
-		if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-			wsRef.current.send(JSON.stringify(message));
-		} else {
-			console.warn("WebSocket is not connected, cannot send message");
-		}
+		globalWebSocketManager.send(message);
 	};
 
 	const close = () => {
-		shouldReconnectRef.current = false;
-		if (reconnectTimeoutRef.current) {
-			clearTimeout(reconnectTimeoutRef.current);
-			reconnectTimeoutRef.current = null;
-		}
-		if (wsRef.current) {
-			wsRef.current.close();
-			wsRef.current = null;
-		}
-		setIsConnected(false);
+		globalWebSocketManager.close();
 	};
 
 	return {
