@@ -15,11 +15,13 @@ export interface WebSocketMessage {
 export class WebSocketService {
 	private wss: WebSocketServer | null = null;
 	private connections: Set<WSWebSocket> = new Set();
+	private execId: string | null = null;
 
 	/**
 	 * Initializes the WebSocket server on the given HTTP server
 	 */
-	public init(server: Server): void {
+	public init(server: Server, execId?: string): void {
+		this.execId = execId || null;
 		this.wss = new WSServer({ server });
 
 		this.wss.on("connection", (ws: WSWebSocket, request: IncomingMessage) => {
@@ -36,10 +38,12 @@ export class WebSocketService {
 				this.connections.delete(ws);
 			});
 
-			// Send welcome message
 			this.sendToClient(ws, {
 				type: "connected",
-				payload: { message: "WebSocket connection established" },
+				payload: {
+					message: "WebSocket connection established",
+					execId: this.execId,
+				},
 			});
 		});
 	}

@@ -54,15 +54,25 @@ const App = () => {
 	const [error, setError] = useState<string>("");
 	const [pageData, setPageData] = useState<WikiPageData | null>(null);
 	const [wsMessage, setWsMessage] = useState<{ type: string; payload?: unknown } | null>(null);
+	const [execId, setExecId] = useState<string | null>(null);
 
 	// WebSocket connection for live updates
 	const wsUrl = `ws://${window.location.hostname}:${window.location.port || "3001"}`;
 	const handleWebSocketMessage = (message: { type: string; payload?: unknown }) => {
-		// Pass message to StatusIndicator
 		setWsMessage(message);
 
+		if (message.type === "connected") {
+			const payload = message.payload as { execId?: string };
+			if (payload?.execId) {
+				if (execId && execId !== payload.execId) {
+					window.location.reload();
+					return;
+				}
+				setExecId(payload.execId);
+			}
+		}
+
 		if (message.type === "fileChanged") {
-			// Auto-refresh the current page when wiki files change
 			if (selectedSet) {
 				loadPageData(true);
 			}

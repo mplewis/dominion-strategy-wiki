@@ -9,7 +9,7 @@
 		"tidy": "biome check --write . && prettier --write .",
 		"tidy:check": "biome check . && prettier --check .",
 		"deploy-mediawiki": "node --enable-source-maps dist/scripts/deploy-to-mediawiki.js",
-		"dev": "nodemon --watch src/dev/ui/src --ext ts,tsx,css,html --exec \"cd src/dev/api && tsx server.ts\"",
+		"dev": "nodemon --watch src/dev --ignore src/dev/ui/dist --ext ts,tsx,css,html --exec \"cd src/dev/api && tsx server.ts\"",
 		"test": "vitest",
 		"test:run": "vitest run"
 	},

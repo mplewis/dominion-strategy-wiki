@@ -1,4 +1,5 @@
 import { exec } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -33,6 +34,9 @@ const UI_DIR = path.join(__dirname, "../ui");
 
 /** Path to the UI build output directory */
 const UI_DIST_DIR = path.join(UI_DIR, "dist");
+
+/** Unique execution ID for detecting server restarts */
+const EXEC_ID = randomUUID();
 
 // Middleware
 app.use(cors());
@@ -196,7 +200,7 @@ async function startServer() {
 
 	// Create HTTP server and initialize WebSocket
 	const server = createServer(app);
-	webSocketService.init(server);
+	webSocketService.init(server, EXEC_ID);
 
 	server.listen(PORT, () => {
 		log.info({ url: `http://localhost:${PORT}` }, "Card Sandbox started");
