@@ -60,18 +60,26 @@ export function sortSortables(startsort: Element, sortby: string, sortid: string
 	}
 	let switchElems = document.querySelectorAll(`.switchsort.sortbyname.${sortid}`);
 	for (let i = 0; i < switchElems.length; i++) {
-		if (sortby === "sortbyname" || sameCost) {
+		if (sameCost) {
 			(switchElems[i] as HTMLElement).style.display = "none";
+		} else if (sortby === "sortbyname") {
+			(switchElems[i] as HTMLElement).classList.add("switchsort-active");
+			(switchElems[i] as HTMLElement).style.cursor = "default";
 		} else {
-			(switchElems[i] as HTMLElement).style.display = "";
+			(switchElems[i] as HTMLElement).classList.remove("switchsort-active");
+			(switchElems[i] as HTMLElement).style.cursor = "pointer";
 		}
 	}
 	switchElems = document.querySelectorAll(`.switchsort.sortbycost.${sortid}`);
 	for (let i = 0; i < switchElems.length; i++) {
-		if (sortby === "sortbycost" || sameCost) {
+		if (sameCost) {
 			(switchElems[i] as HTMLElement).style.display = "none";
+		} else if (sortby === "sortbycost") {
+			(switchElems[i] as HTMLElement).classList.add("switchsort-active");
+			(switchElems[i] as HTMLElement).style.cursor = "default";
 		} else {
-			(switchElems[i] as HTMLElement).style.display = "";
+			(switchElems[i] as HTMLElement).classList.remove("switchsort-active");
+			(switchElems[i] as HTMLElement).style.cursor = "pointer";
 		}
 	}
 }
