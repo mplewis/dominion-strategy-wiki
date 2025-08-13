@@ -1,6 +1,7 @@
 import { EventEmitter } from "node:events";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { log } from "../../logging.js";
 
 export interface FileChangeEvent {
 	filePath: string;
@@ -23,11 +24,11 @@ export class FileWatcher extends EventEmitter {
 
 	public start(): void {
 		if (this.isWatching) {
-			console.warn("FileWatcher is already watching");
+			log.warn("FileWatcher is already watching");
 			return;
 		}
 
-		console.log(`Starting file watcher for ${this.watchedDirectory}`);
+		log.info({ watchedDirectory: this.watchedDirectory }, "Starting file watcher");
 		this.isWatching = true;
 		this.watchDirectoryRecursive(this.watchedDirectory);
 	}
@@ -37,7 +38,7 @@ export class FileWatcher extends EventEmitter {
 			return;
 		}
 
-		console.log("Stopping file watcher");
+		log.info("Stopping file watcher");
 		this.isWatching = false;
 
 		for (const timer of this.debounceTimers.values()) {
@@ -75,7 +76,7 @@ export class FileWatcher extends EventEmitter {
 				}
 			}
 		} catch (error) {
-			console.error(`Error watching directory ${directory}:`, error);
+			log.error({ directory, error: error.message }, "Error watching directory");
 		}
 	}
 
@@ -98,7 +99,13 @@ export class FileWatcher extends EventEmitter {
 				timestamp: new Date(),
 			};
 
-			console.log(`File changed: ${path.relative(this.watchedDirectory, filePath)} (${eventType})`);
+			log.info(
+				{
+					filePath: path.relative(this.watchedDirectory, filePath),
+					eventType,
+				},
+				"File changed",
+			);
 			this.emit("fileChanged", event);
 		}, this.debounceDelay);
 
