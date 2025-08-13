@@ -78,4 +78,8 @@ jobs:
         env:
           MEDIAWIKI_USERNAME: ${{ vars.MEDIAWIKI_USERNAME }}
           MEDIAWIKI_PASSWORD: ${{ secrets.MEDIAWIKI_PASSWORD }}
+          GITHUB_EVENT_HEAD_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: pnpm deploy-mediawiki
