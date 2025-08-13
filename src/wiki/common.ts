@@ -1,3 +1,7 @@
 import { initCommon } from "./core/initialization";
 
-document.addEventListener("DOMContentLoaded", initCommon);
+try {
+	initCommon();
+} catch {
+	document.addEventListener("DOMContentLoaded", initCommon);
+}
