@@ -3,10 +3,13 @@ import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /** Time in milliseconds to hide the status when idle */
-const STATUS_HIDE_DELAY = 2000;
+const STATUS_HIDE_DELAY = 1500;
 
-/** Status indicator container with color states */
-const StatusContainer = styled.div<{ connected: boolean }>`
+/** Time in milliseconds for fade-out transition */
+const FADE_OUT_DURATION = 500;
+
+/** Status indicator container with color states and fade transition */
+const StatusContainer = styled.div<{ connected: boolean; isVisible: boolean }>`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -16,6 +19,8 @@ const StatusContainer = styled.div<{ connected: boolean }>`
 	background-color: ${(props) => (props.connected ? "#dcfce7" : "#fef3c7")};
 	color: ${(props) => (props.connected ? "#166534" : "#92400e")};
 	border: 1px solid ${(props) => (props.connected ? "#bbf7d0" : "#fde68a")};
+	opacity: ${(props) => (props.isVisible ? 1 : 0)};
+	transition: opacity 800ms ease-out;
 `;
 
 /** Status dot indicator */
@@ -40,22 +45,36 @@ interface StatusIndicatorProps {
 export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, connectionError, message }) => {
 	const [wsStatus, setWsStatus] = useState<string>("Connecting...");
 	const [showStatus, setShowStatus] = useState<boolean>(true);
+	const [isVisible, setIsVisible] = useState<boolean>(true);
 	const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
+	const fadeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-	// Helper function to set status with auto-hide
+	// Helper function to set status with auto-hide and fade
 	const setStatusWithHide = useCallback((status: string) => {
 		setWsStatus(status);
 		setShowStatus(true);
+		setIsVisible(true);
 
-		// Clear existing timer
+		// Clear existing timers
 		if (hideTimerRef.current) {
 			clearTimeout(hideTimerRef.current);
+			hideTimerRef.current = null;
+		}
+		if (fadeTimerRef.current) {
+			clearTimeout(fadeTimerRef.current);
+			fadeTimerRef.current = null;
 		}
 
-		// Set new timer
+		// Start fade out after delay
 		hideTimerRef.current = setTimeout(() => {
-			setShowStatus(false);
+			setIsVisible(false);
 			hideTimerRef.current = null;
+
+			// Actually hide the element after fade completes
+			fadeTimerRef.current = setTimeout(() => {
+				setShowStatus(false);
+				fadeTimerRef.current = null;
+			}, FADE_OUT_DURATION);
 		}, STATUS_HIDE_DELAY);
 	}, []);
 
@@ -76,29 +95,42 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 		if (connectionError) {
 			setWsStatus(`Error: ${connectionError}`);
 			setShowStatus(true);
-			// Clear hide timer for persistent error display
+			setIsVisible(true);
+			// Clear timers for persistent error display
 			if (hideTimerRef.current) {
 				clearTimeout(hideTimerRef.current);
 				hideTimerRef.current = null;
+			}
+			if (fadeTimerRef.current) {
+				clearTimeout(fadeTimerRef.current);
+				fadeTimerRef.current = null;
 			}
 		} else if (isConnected) {
 			setStatusWithHide("Connected");
 		} else {
 			setWsStatus("Connecting...");
 			setShowStatus(true);
-			// Clear hide timer for persistent connecting display
+			setIsVisible(true);
+			// Clear timers for persistent connecting display
 			if (hideTimerRef.current) {
 				clearTimeout(hideTimerRef.current);
 				hideTimerRef.current = null;
 			}
+			if (fadeTimerRef.current) {
+				clearTimeout(fadeTimerRef.current);
+				fadeTimerRef.current = null;
+			}
 		}
 	}, [isConnected, connectionError, setStatusWithHide]);
 
-	// Cleanup timer on unmount
+	// Cleanup timers on unmount
 	useEffect(() => {
 		return () => {
 			if (hideTimerRef.current) {
 				clearTimeout(hideTimerRef.current);
+			}
+			if (fadeTimerRef.current) {
+				clearTimeout(fadeTimerRef.current);
 			}
 		};
 	}, []);
@@ -108,7 +140,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 	}
 
 	return (
-		<StatusContainer connected={isConnected}>
+		<StatusContainer connected={isConnected} isVisible={isVisible}>
 			<StatusDot connected={isConnected} />
 			{wsStatus}
 		</StatusContainer>
