@@ -106,6 +106,7 @@ interface NavigationProps {
 	loading: boolean;
 	wsStatus: string;
 	wsConnected: boolean;
+	showStatus: boolean;
 	onSetChange: (setId: string) => void;
 	onRefresh: () => void;
 }
@@ -117,6 +118,7 @@ export const Navigation: React.FC<NavigationProps> = ({
 	loading,
 	wsStatus,
 	wsConnected,
+	showStatus,
 	onSetChange,
 	onRefresh,
 }) => {
@@ -125,10 +127,12 @@ export const Navigation: React.FC<NavigationProps> = ({
 			<NavContainer>
 				<Title>Dominion Wiki Dev Sandbox</Title>
 				<Controls>
-					<StatusIndicator connected={wsConnected}>
-						<StatusDot connected={wsConnected} />
-						{wsStatus}
-					</StatusIndicator>
+					{showStatus && (
+						<StatusIndicator connected={wsConnected}>
+							<StatusDot connected={wsConnected} />
+							{wsStatus}
+						</StatusIndicator>
+					)}
 					<Select value={selectedSet} onChange={(e) => onSetChange(e.target.value)} disabled={loading}>
 						<option value="">Select card set...</option>
 						{cardSets.map((set) => (

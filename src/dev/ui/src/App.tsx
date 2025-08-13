@@ -8,6 +8,9 @@ import { CardSet, WikiPageData } from "./types";
 /** Cookie name for storing the last selected card set */
 const SELECTED_SET_COOKIE = "dominion_selected_set";
 
+/** Time in milliseconds to hide the connection status when idle */
+const STATUS_HIDE_DELAY = 2000;
+
 /** Gets a cookie value by name */
 const getCookie = (name: string): string | null => {
 	const value = `; ${document.cookie}`;
@@ -52,6 +55,7 @@ const App = () => {
 	const [error, setError] = useState<string>("");
 	const [pageData, setPageData] = useState<WikiPageData | null>(null);
 	const [wsStatus, setWsStatus] = useState<string>("Connecting...");
+	const [showStatus, setShowStatus] = useState<boolean>(true);
 
 	// WebSocket connection for live updates
 	const wsUrl = `ws://${window.location.hostname}:${window.location.port || "3001"}`;
@@ -60,10 +64,16 @@ const App = () => {
 		onMessage: (message) => {
 			if (message.type === "connected") {
 				setWsStatus("Connected");
+				setShowStatus(true);
+				// Hide status after delay
+				setTimeout(() => {
+					setShowStatus(false);
+				}, STATUS_HIDE_DELAY);
 			} else if (message.type === "fileChanged") {
 				const { filePath } = message.payload;
 				console.log(`📄 File changed: ${filePath}`);
 				setWsStatus(`File changed: ${filePath}`);
+				setShowStatus(true);
 
 				// Auto-refresh the current page when wiki files change
 				if (selectedSet) {
@@ -73,6 +83,10 @@ const App = () => {
 				// Reset status after a delay
 				setTimeout(() => {
 					setWsStatus(isConnected ? "Connected" : "Disconnected");
+					// Hide status after additional delay
+					setTimeout(() => {
+						setShowStatus(false);
+					}, STATUS_HIDE_DELAY);
 				}, 3000);
 			}
 		},
@@ -87,10 +101,18 @@ const App = () => {
 	useEffect(() => {
 		if (connectionError) {
 			setWsStatus(`Error: ${connectionError}`);
+			setShowStatus(true);
 		} else if (isConnected) {
 			setWsStatus("Connected");
+			setShowStatus(true);
+			// Hide status after delay when initially connected
+			const hideTimer = setTimeout(() => {
+				setShowStatus(false);
+			}, STATUS_HIDE_DELAY);
+			return () => clearTimeout(hideTimer);
 		} else {
 			setWsStatus("Connecting...");
+			setShowStatus(true);
 		}
 	}, [isConnected, connectionError]);
 
@@ -163,6 +185,7 @@ const App = () => {
 				loading={loading}
 				wsStatus={wsStatus}
 				wsConnected={isConnected}
+				showStatus={showStatus}
 				onSetChange={handleSetChange}
 				onRefresh={handleRefresh}
 			/>
