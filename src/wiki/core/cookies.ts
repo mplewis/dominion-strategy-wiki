@@ -30,5 +30,7 @@ export function getCookie(cname: string): string {
 export function setCookie(name: string, value: string | number): void {
 	const cookieDate = new Date();
 	cookieDate.setFullYear(cookieDate.getFullYear() + COOKIE_EXPIRATION_YEARS);
+	// FIXME: fix this in the future
+	// biome-ignore lint/suspicious/noDocumentCookie: fix this in the future
 	document.cookie = `${name}=${value}; expires=${cookieDate.toUTCString()};`;
 }

@@ -18,6 +18,18 @@
 			}
 		}
 	},
+	"overrides": [
+		{
+			"includes": ["src/scripts/**"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noConsole": "off"
+					}
+				}
+			}
+		}
+	],
 	"formatter": {
 		"enabled": false
 	},
