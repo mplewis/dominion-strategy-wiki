@@ -22,11 +22,11 @@ export class WebSocketService {
 		this.wss = new WSServer({ server });
 
 		this.wss.on("connection", (ws: WSWebSocket, request: IncomingMessage) => {
-			console.log(`🔌 WebSocket client connected from ${request.socket.remoteAddress}`);
+			console.log(`WebSocket client connected from ${request.socket.remoteAddress}`);
 			this.connections.add(ws);
 
 			ws.on("close", () => {
-				console.log("🔌 WebSocket client disconnected");
+				console.log("WebSocket client disconnected");
 				this.connections.delete(ws);
 			});
 
@@ -41,8 +41,6 @@ export class WebSocketService {
 				payload: { message: "WebSocket connection established" },
 			});
 		});
-
-		console.log("🔌 WebSocket server initialized");
 	}
 
 	/**
@@ -67,7 +65,7 @@ export class WebSocketService {
 			}
 		}
 
-		console.log(`📡 Broadcasted message to ${sentCount} clients: ${message.type}`);
+		console.log(`Broadcasted message to ${sentCount} client${sentCount === 1 ? "" : "s"}: ${message.type}`);
 	}
 
 	/**
@@ -110,7 +108,6 @@ export class WebSocketService {
 			this.wss.close();
 			this.wss = null;
 		}
-		console.log("🔌 WebSocket server closed");
 	}
 }
 

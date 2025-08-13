@@ -38,7 +38,6 @@ const globalWebSocketManager = {
 			this.url === url &&
 			(this.instance.readyState === WebSocket.CONNECTING || this.instance.readyState === WebSocket.OPEN)
 		) {
-			console.log("🔌 WebSocket already connecting/connected to", url);
 			return;
 		}
 
@@ -50,7 +49,7 @@ const globalWebSocketManager = {
 			this.instance = ws;
 
 			ws.onopen = () => {
-				console.log("🔌 WebSocket connected");
+				console.log("WebSocket connected");
 				this.isConnected = true;
 				this.connectionError = null;
 				this.reconnectAttempt = 0;
@@ -66,13 +65,13 @@ const globalWebSocketManager = {
 			};
 
 			ws.onclose = (event) => {
-				console.log("🔌 WebSocket disconnected", event.code, event.reason);
+				console.log("WebSocket disconnected", event.code, event.reason);
 				this.isConnected = false;
 				this.instance = null;
 
 				if (this.shouldReconnect && this.reconnectAttempt < this.maxReconnectAttempts) {
 					this.reconnectAttempt++;
-					console.log(`🔄 Attempting WebSocket reconnection ${this.reconnectAttempt}/${this.maxReconnectAttempts}...`);
+					console.log(`Attempting WebSocket reconnection ${this.reconnectAttempt}/${this.maxReconnectAttempts}...`);
 
 					this.reconnectTimeout = setTimeout(() => {
 						this.connect(url);

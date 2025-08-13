@@ -113,13 +113,15 @@ async function startServer() {
 			});
 		} catch (error) {
 			console.error("Build failed:", error);
+			error.stderr && console.error(error.stderr);
+			error.stdout && console.error(error.stdout);
 
 			// Broadcast build failure to WebSocket clients
 			webSocketService.broadcast({
 				type: "buildError",
 				payload: {
 					success: false,
-					error: error.message,
+					error: "see console for details",
 					filePath: relativePath,
 					eventType: event.eventType,
 					timestamp: event.timestamp.toISOString(),
@@ -191,12 +193,7 @@ async function startServer() {
 	webSocketService.init(server);
 
 	server.listen(PORT, () => {
-		console.log(`🚀 Dominion Wiki Dev Server running on port ${PORT}`);
-		console.log(`📱 Web UI: http://localhost:${PORT}`);
-		console.log(`🔌 WebSocket: ws://localhost:${PORT}`);
-		console.log("🔌 API endpoints:");
-		console.log("  GET  /api/card-sets - List available card sets");
-		console.log("  GET  /api/wiki/:setId - Get processed wiki page");
+		console.log(`Card Sandbox started on http://localhost:${PORT}`);
 	});
 }
 

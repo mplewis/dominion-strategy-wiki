@@ -27,7 +27,7 @@ export class FileWatcher extends EventEmitter {
 			return;
 		}
 
-		console.log(`Starting file watcher for: ${this.watchedDirectory}`);
+		console.log(`Starting file watcher for ${this.watchedDirectory}`);
 		this.isWatching = true;
 		this.watchDirectoryRecursive(this.watchedDirectory);
 	}

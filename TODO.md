@@ -1,0 +1,3 @@
+- Use pino for all logging
+- Push full refresh when server code changes via ws/version nonce
+- Add sidebar to sandbox layout

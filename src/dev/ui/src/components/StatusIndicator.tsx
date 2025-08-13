@@ -6,60 +6,72 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const STATUS_HIDE_DELAY = 2000;
 
 /** Time in milliseconds for fade-out transition */
-const FADE_OUT_DURATION = 800;
+const FADE_OUT_DURATION = 300;
+
+/** Extra time after fade completes to cleanly hide the element */
+const FADE_OUT_TAIL = 500;
 
 /** Color palette for status indicator states */
 const COLORS = {
 	// Success/Connected state (green)
-	SUCCESS_BACKGROUND: "#dcfce7",
-	SUCCESS_TEXT: "#166534",
-	SUCCESS_BORDER: "#bbf7d0",
-	SUCCESS_DOT: "#16a34a",
+	SUCCESS: {
+		BACKGROUND: "#dcfce7",
+		TEXT: "#166534",
+		BORDER: "#bbf7d0",
+		DOT: "#16a34a",
+	},
 
 	// Warning/Building/Connecting state (yellow)
-	WARNING_BACKGROUND: "#fef3c7",
-	WARNING_TEXT: "#92400e",
-	WARNING_BORDER: "#fde68a",
-	WARNING_DOT: "#d97706",
+	WARNING: {
+		BACKGROUND: "#fef3c7",
+		TEXT: "#92400e",
+		BORDER: "#fde68a",
+		DOT: "#d97706",
+	},
+
+	// Error/Disconnected state (red)
+	ERROR: {
+		BACKGROUND: "#fee2e2",
+		TEXT: "#b91c1c",
+		BORDER: "#fca5a5",
+		DOT: "#dc2626",
+	},
 } as const;
 
-// TODO: Unify colors into getColors(props) -> ...
-// TODO: Red color and handling for build errors
+function getColors(props: { connected: boolean; isBuilding: boolean; isError?: boolean }) {
+	if (props.isError) {
+		return COLORS.ERROR;
+	}
+	if (props.isBuilding) {
+		return COLORS.WARNING;
+	}
+	if (props.connected) {
+		return COLORS.SUCCESS;
+	}
+	return COLORS.WARNING;
+}
 
 /** Status indicator container with color states and fade transition */
-const StatusContainer = styled.div<{ connected: boolean; isVisible: boolean; isBuilding: boolean }>`
+const StatusContainer = styled.div<{ connected: boolean; isVisible: boolean; isBuilding: boolean; isError: boolean }>`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
 	padding: 0.5rem 0.75rem;
 	font-size: 0.75rem;
 	border-radius: 0.375rem;
-	background-color: ${(props) => {
-		if (props.isBuilding) return COLORS.WARNING_BACKGROUND;
-		return props.connected ? COLORS.SUCCESS_BACKGROUND : COLORS.WARNING_BACKGROUND;
-	}};
-	color: ${(props) => {
-		if (props.isBuilding) return COLORS.WARNING_TEXT;
-		return props.connected ? COLORS.SUCCESS_TEXT : COLORS.WARNING_TEXT;
-	}};
-	border: 1px solid
-		${(props) => {
-			if (props.isBuilding) return COLORS.WARNING_BORDER;
-			return props.connected ? COLORS.SUCCESS_BORDER : COLORS.WARNING_BORDER;
-		}};
+	background-color: ${(props) => getColors(props).BACKGROUND};
+	color: ${(props) => getColors(props).TEXT};
+	border: 1px solid ${(props) => getColors(props).BORDER};
 	opacity: ${(props) => (props.isVisible ? 1 : 0)};
 	transition: opacity 800ms ease-out;
 `;
 
 /** Status dot indicator */
-const StatusDot = styled.div<{ connected: boolean; isBuilding: boolean }>`
+const StatusDot = styled.div<{ connected: boolean; isBuilding: boolean; isError: boolean }>`
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
-	background-color: ${(props) => {
-		if (props.isBuilding) return COLORS.WARNING_DOT;
-		return props.connected ? COLORS.SUCCESS_DOT : COLORS.WARNING_DOT;
-	}};
+	background-color: ${(props) => getColors(props).DOT};
 `;
 
 /** Props for the StatusIndicator component */
@@ -78,15 +90,17 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 	const [showStatus, setShowStatus] = useState<boolean>(true);
 	const [isVisible, setIsVisible] = useState<boolean>(true);
 	const [isBuilding, setIsBuilding] = useState<boolean>(false);
+	const [isError, setIsError] = useState<boolean>(false);
 	const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
 	const fadeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
 	// Helper function to set status with auto-hide and fade
-	const setStatusWithHide = useCallback((status: string, building = false) => {
+	const setStatusWithHide = useCallback((status: string, building = false, error = false) => {
 		setWsStatus(status);
 		setShowStatus(true);
 		setIsVisible(true);
 		setIsBuilding(building);
+		setIsError(error);
 
 		// Clear existing timers
 		if (hideTimerRef.current) {
@@ -107,7 +121,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 			fadeTimerRef.current = setTimeout(() => {
 				setShowStatus(false);
 				fadeTimerRef.current = null;
-			}, FADE_OUT_DURATION);
+			}, FADE_OUT_DURATION + FADE_OUT_TAIL);
 		}, STATUS_HIDE_DELAY);
 	}, []);
 
@@ -127,7 +141,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 			setStatusWithHide(`Build completed in ${payload.buildDuration}ms`);
 		} else if (message.type === "buildError") {
 			const payload = message.payload as { success: boolean; error: string; filePath: string };
-			setStatusWithHide(`Build failed: ${payload.error}`);
+			setStatusWithHide(`Build failed: ${payload.error}`, false, true);
 		}
 	}, [message, setStatusWithHide]);
 
@@ -137,6 +151,8 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 			setWsStatus(`Error: ${connectionError}`);
 			setShowStatus(true);
 			setIsVisible(true);
+			setIsError(true);
+			setIsBuilding(false);
 			// Clear timers for persistent error display
 			if (hideTimerRef.current) {
 				clearTimeout(hideTimerRef.current);
@@ -153,6 +169,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 			setShowStatus(true);
 			setIsVisible(true);
 			setIsBuilding(true); // Use yellow styling for connecting
+			setIsError(false);
 			// Clear timers for persistent connecting display
 			if (hideTimerRef.current) {
 				clearTimeout(hideTimerRef.current);
@@ -182,8 +199,8 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 	}
 
 	return (
-		<StatusContainer connected={isConnected} isVisible={isVisible} isBuilding={isBuilding}>
-			<StatusDot connected={isConnected} isBuilding={isBuilding} />
+		<StatusContainer connected={isConnected} isVisible={isVisible} isBuilding={isBuilding} isError={isError}>
+			<StatusDot connected={isConnected} isBuilding={isBuilding} isError={isError} />
 			{wsStatus}
 		</StatusContainer>
 	);
