@@ -3,10 +3,10 @@ import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /** Time in milliseconds to hide the status when idle */
-const STATUS_HIDE_DELAY = 1500;
+const STATUS_HIDE_DELAY = 2000;
 
 /** Time in milliseconds for fade-out transition */
-const FADE_OUT_DURATION = 500;
+const FADE_OUT_DURATION = 800;
 
 /** Status indicator container with color states and fade transition */
 const StatusContainer = styled.div<{ connected: boolean; isVisible: boolean }>`
@@ -87,6 +87,12 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isConnected, c
 		} else if (message.type === "fileChanged") {
 			const { filePath } = message.payload as { filePath: string };
 			setStatusWithHide(`File changed: ${filePath}`);
+		} else if (message.type === "buildComplete") {
+			const payload = message.payload as { success: boolean; filePath: string; buildDuration: number };
+			setStatusWithHide(`Build completed in ${payload.buildDuration}ms`);
+		} else if (message.type === "buildError") {
+			const payload = message.payload as { success: boolean; error: string; filePath: string };
+			setStatusWithHide(`Build failed: ${payload.error}`);
 		}
 	}, [message, setStatusWithHide]);
 

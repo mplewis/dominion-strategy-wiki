@@ -56,19 +56,68 @@ async function startServer() {
 	const wikiDir = path.join(__dirname, "../../../src/wiki");
 	const fileWatcher = createFileWatcher(wikiDir);
 
-	fileWatcher.on("fileChanged", (event) => {
+	let buildInProgress = false;
+
+	fileWatcher.on("fileChanged", async (event) => {
 		const relativePath = path.relative(path.join(__dirname, "../../.."), event.filePath);
 		console.log(`🔄 Wiki file changed: ${relativePath}`);
 
-		// Broadcast file change to WebSocket clients
-		webSocketService.broadcast({
-			type: "fileChanged",
-			payload: {
-				filePath: relativePath,
-				eventType: event.eventType,
-				timestamp: event.timestamp.toISOString(),
-			},
-		});
+		if (buildInProgress) {
+			console.log("Build already in progress, waiting...");
+			return;
+		}
+
+		buildInProgress = true;
+
+		try {
+			console.log("Triggering rebuild due to source changes...");
+			const startTime = Date.now();
+			
+			// Run the main build process
+			await execAsync("pnpm build", { cwd: path.join(__dirname, "../../..") });
+			
+			const duration = Date.now() - startTime;
+			console.log(`Build completed successfully in ${duration}ms`);
+
+			// Broadcast successful build completion to WebSocket clients
+			webSocketService.broadcast({
+				type: "buildComplete",
+				payload: {
+					success: true,
+					filePath: relativePath,
+					eventType: event.eventType,
+					timestamp: event.timestamp.toISOString(),
+					buildDuration: duration,
+				},
+			});
+
+			// Also send fileChanged event for backward compatibility
+			webSocketService.broadcast({
+				type: "fileChanged",
+				payload: {
+					filePath: relativePath,
+					eventType: event.eventType,
+					timestamp: event.timestamp.toISOString(),
+				},
+			});
+
+		} catch (error) {
+			console.error("Build failed:", error);
+			
+			// Broadcast build failure to WebSocket clients
+			webSocketService.broadcast({
+				type: "buildError",
+				payload: {
+					success: false,
+					error: error.message,
+					filePath: relativePath,
+					eventType: event.eventType,
+					timestamp: event.timestamp.toISOString(),
+				},
+			});
+		} finally {
+			buildInProgress = false;
+		}
 	});
 
 	fileWatcher.start();
