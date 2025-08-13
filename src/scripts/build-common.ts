@@ -1,6 +1,7 @@
 import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import { build } from "esbuild";
+import { log } from "./logging.js";
 
 const TSCONFIG_PATH = "tsconfig.common.json";
 const ENTRY_POINT = "dist/cjs/wiki/common.js";
@@ -8,10 +9,10 @@ const OUTPUT_FILE = "dist/common.js";
 const HEADER_PATH = "src/wiki/header.txt";
 
 async function buildCommon(): Promise<void> {
-	console.info("Building TypeScript to CommonJS");
+	log.info("Building TypeScript to CommonJS");
 	execSync(`tsc -p ${TSCONFIG_PATH}`, { stdio: "inherit" });
 
-	console.info("Bundling with esbuild");
+	log.info("Bundling with esbuild");
 	await build({
 		entryPoints: [ENTRY_POINT],
 		bundle: true,
@@ -24,13 +25,13 @@ async function buildCommon(): Promise<void> {
 	});
 
 	if (fs.existsSync(HEADER_PATH)) {
-		console.info(`Adding header to the bundled file: ${HEADER_PATH}`);
+		log.info({ headerPath: HEADER_PATH }, "Adding header to the bundled file");
 		const header = fs.readFileSync(HEADER_PATH, "utf8");
 		const bundled = fs.readFileSync(OUTPUT_FILE, "utf8");
 		fs.writeFileSync(OUTPUT_FILE, header + bundled);
 	}
 
-	console.info(`Build completed successfully: ${OUTPUT_FILE}`);
+	log.info({ outputFile: OUTPUT_FILE }, "Build completed successfully");
 }
 
 buildCommon();

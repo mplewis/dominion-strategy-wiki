@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { glob } from "glob";
+import { log } from "../../logging.js";
 
 /** Current file path for ES modules */
 const __filename = fileURLToPath(import.meta.url);
@@ -58,14 +59,14 @@ class BuildService {
 		try {
 			await fs.access(distPath);
 		} catch {
-			console.log("dist/common.js not found, triggering initial build");
+			log.info({ distPath }, "dist/common.js not found, triggering initial build");
 			return true;
 		}
 
 		const sourceFiles = await this.getSourceFiles();
 
 		if (!this.buildCache) {
-			console.log("No build cache found, checking source files");
+			log.info("No build cache found, checking source files");
 			return true;
 		}
 
@@ -74,7 +75,7 @@ class BuildService {
 			const cachedModTime = this.buildCache.sourceFiles.get(file) || 0;
 
 			if (currentModTime > cachedModTime) {
-				console.log(`Source file changed: ${path.basename(file)}`);
+				log.info({ file: path.basename(file) }, "Source file changed");
 				return true;
 			}
 		}
@@ -97,7 +98,7 @@ class BuildService {
 	/** Triggers pnpm build and waits for completion */
 	private async triggerBuild(): Promise<void> {
 		if (this.buildCache?.buildInProgress) {
-			console.log("Build already in progress, waiting...");
+			log.info("Build already in progress, waiting...");
 			return;
 		}
 
@@ -108,14 +109,14 @@ class BuildService {
 		}
 
 		try {
-			console.log("Triggering rebuild due to source changes...");
+			log.info("Triggering rebuild due to source changes...");
 			const startTime = Date.now();
 			await execAsync("pnpm build", { cwd: PROJECT_ROOT, timeout: BUILD_TIMEOUT });
 			const duration = Date.now() - startTime;
-			console.log(`Build completed successfully in ${duration}ms`);
+			log.info({ duration }, "Build completed successfully");
 			await this.updateBuildCache();
 		} catch (error) {
-			console.error("Build failed:", error);
+			log.error({ error: error.message }, "Build failed");
 			this.buildCache.buildInProgress = false;
 			throw new Error(`Build failed: ${error.message}`);
 		}
@@ -150,7 +151,7 @@ class BuildService {
 			try {
 				if (await this.shouldRebuild()) await this.triggerBuild();
 			} catch (error) {
-				console.error("Scheduled rebuild failed:", error);
+				log.error({ error: error.message }, "Scheduled rebuild failed");
 			}
 		}, 100);
 	}

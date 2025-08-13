@@ -29,6 +29,12 @@ importers:
       glob:
         specifier: ^11.0.3
         version: 11.0.3
+      pino:
+        specifier: ^9.8.0
+        version: 9.8.0
+      pino-pretty:
+        specifier: ^13.1.1
+        version: 13.1.1
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -69,12 +75,6 @@ importers:
       nodemon:
         specifier: ^3.1.10
         version: 3.1.10
-      pino:
-        specifier: ^9.8.0
-        version: 9.8.0
-      pino-pretty:
-        specifier: ^13.1.1
-        version: 13.1.1
       postcss:
         specifier: ^8.5.6
         version: 8.5.6

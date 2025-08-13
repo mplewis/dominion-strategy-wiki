@@ -6,6 +6,7 @@ import { promisify } from "node:util";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 
+import { log } from "../logging.js";
 import cacheService from "./services/cache.js";
 import { createFileWatcher } from "./services/file-watcher.js";
 import injectorService from "./services/injector.js";
@@ -43,7 +44,7 @@ async function buildUI(): Promise<void> {
 		// Build in development mode for better debugging and React DevTools
 		await execAsync("npx vite build --mode development", { cwd: UI_DIR });
 	} catch (error) {
-		console.error("UI build failed:", error);
+		log.error({ error: error.message }, "UI build failed");
 		throw error;
 	}
 }
@@ -60,17 +61,17 @@ async function startServer() {
 
 	fileWatcher.on("fileChanged", async (event) => {
 		const relativePath = path.relative(path.join(__dirname, "../../.."), event.filePath);
-		console.log(`🔄 Wiki file changed: ${relativePath}`);
+		log.info({ relativePath }, "Wiki file changed");
 
 		if (buildInProgress) {
-			console.log("Build already in progress, waiting...");
+			log.info("Build already in progress, waiting...");
 			return;
 		}
 
 		buildInProgress = true;
 
 		try {
-			console.log("Triggering rebuild due to source changes...");
+			log.info("Triggering rebuild due to source changes...");
 
 			// Notify clients that build is starting
 			webSocketService.broadcast({
@@ -88,7 +89,7 @@ async function startServer() {
 			await execAsync("pnpm build", { cwd: path.join(__dirname, "../../..") });
 
 			const duration = Date.now() - startTime;
-			console.log(`Build completed successfully in ${duration}ms`);
+			log.info({ duration }, "Build completed successfully");
 
 			// Broadcast successful build completion to WebSocket clients
 			webSocketService.broadcast({
@@ -112,9 +113,14 @@ async function startServer() {
 				},
 			});
 		} catch (error) {
-			console.error("Build failed:", error);
-			error.stderr && console.error(error.stderr);
-			error.stdout && console.error(error.stdout);
+			log.error(
+				{
+					error: error.message,
+					stderr: error.stderr,
+					stdout: error.stdout,
+				},
+				"Build failed",
+			);
 
 			// Broadcast build failure to WebSocket clients
 			webSocketService.broadcast({
@@ -163,7 +169,7 @@ async function startServer() {
 				},
 			});
 		} catch (error) {
-			console.error("Error processing wiki page:", error);
+			log.error({ error: error.message }, "Error processing wiki page");
 			res.status(500).json({
 				success: false,
 				error: error.message,
@@ -176,7 +182,7 @@ async function startServer() {
 
 	// Error handling middleware
 	app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
-		console.error("Unhandled error:", error);
+		log.error({ error: error.message }, "Unhandled error");
 		res.status(500).json({
 			success: false,
 			error: "Internal server error",
@@ -193,8 +199,8 @@ async function startServer() {
 	webSocketService.init(server);
 
 	server.listen(PORT, () => {
-		console.log(`Card Sandbox started on http://localhost:${PORT}`);
+		log.info({ url: `http://localhost:${PORT}` }, "Card Sandbox started");
 	});
 }
 
-startServer().catch(console.error);
+startServer().catch((error) => log.error({ error: error.message }, "Failed to start server"));

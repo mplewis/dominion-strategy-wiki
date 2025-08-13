@@ -1,6 +1,7 @@
 import type { IncomingMessage, Server } from "node:http";
 import type { WebSocketServer, WebSocket as WSWebSocket } from "ws";
 import { WebSocketServer as WSServer } from "ws";
+import { log } from "../../logging.js";
 
 export interface WebSocketMessage {
 	type: string;
@@ -22,16 +23,16 @@ export class WebSocketService {
 		this.wss = new WSServer({ server });
 
 		this.wss.on("connection", (ws: WSWebSocket, request: IncomingMessage) => {
-			console.log(`WebSocket client connected from ${request.socket.remoteAddress}`);
+			log.info({ remoteAddress: request.socket.remoteAddress }, "WebSocket client connected");
 			this.connections.add(ws);
 
 			ws.on("close", () => {
-				console.log("WebSocket client disconnected");
+				log.info("WebSocket client disconnected");
 				this.connections.delete(ws);
 			});
 
 			ws.on("error", (error) => {
-				console.error("WebSocket error:", error);
+				log.error({ error: error.message }, "WebSocket error");
 				this.connections.delete(ws);
 			});
 
@@ -56,7 +57,7 @@ export class WebSocketService {
 					ws.send(messageStr);
 					sentCount++;
 				} catch (error) {
-					console.error("Error sending WebSocket message:", error);
+					log.error({ error: error.message }, "Error sending WebSocket message");
 					this.connections.delete(ws);
 				}
 			} else {
@@ -65,7 +66,13 @@ export class WebSocketService {
 			}
 		}
 
-		console.log(`Broadcasted message to ${sentCount} client${sentCount === 1 ? "" : "s"}: ${message.type}`);
+		log.info(
+			{
+				sentCount,
+				messageType: message.type,
+			},
+			"Broadcasted message to clients",
+		);
 	}
 
 	/**
@@ -76,7 +83,7 @@ export class WebSocketService {
 			try {
 				ws.send(JSON.stringify(message));
 			} catch (error) {
-				console.error("Error sending WebSocket message to client:", error);
+				log.error({ error: error.message }, "Error sending WebSocket message to client");
 				this.connections.delete(ws);
 			}
 		}

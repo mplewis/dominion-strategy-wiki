@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import { log } from "../../logging.js";
 import buildService from "./builder.js";
 import cacheService from "./cache.js";
 
@@ -12,7 +13,7 @@ class InjectorService {
 		try {
 			return await buildService.getBuiltContent();
 		} catch (error) {
-			console.error("Failed to get built common.js:", error);
+			log.error({ error: error.message }, "Failed to get built common.js");
 			throw new Error(`Cannot load common.js for injection: ${error.message}`);
 		}
 	}
