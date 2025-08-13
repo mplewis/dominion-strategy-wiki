@@ -32,6 +32,27 @@ const Controls = styled.div`
 	gap: 0.75rem;
 `;
 
+/** WebSocket status indicator */
+const StatusIndicator = styled.div<{ connected: boolean }>`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.75rem;
+	font-size: 0.75rem;
+	border-radius: 0.375rem;
+	background-color: ${(props) => (props.connected ? "#dcfce7" : "#fef3c7")};
+	color: ${(props) => (props.connected ? "#166534" : "#92400e")};
+	border: 1px solid ${(props) => (props.connected ? "#bbf7d0" : "#fde68a")};
+`;
+
+/** Status dot indicator */
+const StatusDot = styled.div<{ connected: boolean }>`
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: ${(props) => (props.connected ? "#16a34a" : "#d97706")};
+`;
+
 /** Styled select dropdown with hover/focus states */
 const Select = styled.select<{ disabled?: boolean }>`
 	padding: 0.625rem 1rem;
@@ -83,17 +104,31 @@ interface NavigationProps {
 	selectedSet: string;
 	cardSets: CardSet[];
 	loading: boolean;
+	wsStatus: string;
+	wsConnected: boolean;
 	onSetChange: (setId: string) => void;
 	onRefresh: () => void;
 }
 
 /** Navigation bar with card set selector and refresh functionality */
-export const Navigation: React.FC<NavigationProps> = ({ selectedSet, cardSets, loading, onSetChange, onRefresh }) => {
+export const Navigation: React.FC<NavigationProps> = ({
+	selectedSet,
+	cardSets,
+	loading,
+	wsStatus,
+	wsConnected,
+	onSetChange,
+	onRefresh,
+}) => {
 	return (
 		<Nav>
 			<NavContainer>
 				<Title>Dominion Wiki Dev Sandbox</Title>
 				<Controls>
+					<StatusIndicator connected={wsConnected}>
+						<StatusDot connected={wsConnected} />
+						{wsStatus}
+					</StatusIndicator>
 					<Select value={selectedSet} onChange={(e) => onSetChange(e.target.value)} disabled={loading}>
 						<option value="">Select card set...</option>
 						{cardSets.map((set) => (

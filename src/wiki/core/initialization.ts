@@ -16,7 +16,6 @@ import { clickThings } from "../navigation/sidebar";
  * @returns {void}
  */
 export function initCommon(): void {
-	console.log("File watcher test - initialization.ts initCommon() called");
 	addSiteOption("cardsortby", "cardGallerySorter", "Sort by Cost:", 0, changeCardSortBy, setCardSortBy);
 	addSiteOption("cardbordersize", "cardBorderChanger", "Card Border:", 0, changeBorder, setBlackBorder);
 	fixCardPopups();

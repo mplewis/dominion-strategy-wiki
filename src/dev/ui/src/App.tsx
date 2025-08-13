@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styled from "@emotion/styled";
 import api from "./api";
 import { Navigation, ErrorAlert, LoadingSpinner, ContentFrame } from "./components";
+import { useWebSocket } from "./hooks/useWebSocket";
 import { CardSet, WikiPageData } from "./types";
 
 /** Cookie name for storing the last selected card set */
@@ -50,11 +51,48 @@ const App = () => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string>("");
 	const [pageData, setPageData] = useState<WikiPageData | null>(null);
+	const [wsStatus, setWsStatus] = useState<string>("Connecting...");
+
+	// WebSocket connection for live updates
+	const wsUrl = `ws://${window.location.hostname}:${window.location.port || "3001"}`;
+	const { isConnected, connectionError } = useWebSocket({
+		url: wsUrl,
+		onMessage: (message) => {
+			if (message.type === "connected") {
+				setWsStatus("Connected");
+			} else if (message.type === "fileChanged") {
+				const { filePath } = message.payload;
+				console.log(`📄 File changed: ${filePath}`);
+				setWsStatus(`File changed: ${filePath}`);
+
+				// Auto-refresh the current page when wiki files change
+				if (selectedSet) {
+					loadPageData(true);
+				}
+
+				// Reset status after a delay
+				setTimeout(() => {
+					setWsStatus(isConnected ? "Connected" : "Disconnected");
+				}, 3000);
+			}
+		},
+	});
 
 	// Load card sets on mount
 	useEffect(() => {
 		loadCardSets();
 	}, []);
+
+	// Update WebSocket status based on connection state
+	useEffect(() => {
+		if (connectionError) {
+			setWsStatus(`Error: ${connectionError}`);
+		} else if (isConnected) {
+			setWsStatus("Connected");
+		} else {
+			setWsStatus("Connecting...");
+		}
+	}, [isConnected, connectionError]);
 
 	const loadCardSets = async () => {
 		try {
@@ -123,6 +161,8 @@ const App = () => {
 				selectedSet={selectedSet}
 				cardSets={cardSets}
 				loading={loading}
+				wsStatus={wsStatus}
+				wsConnected={isConnected}
 				onSetChange={handleSetChange}
 				onRefresh={handleRefresh}
 			/>

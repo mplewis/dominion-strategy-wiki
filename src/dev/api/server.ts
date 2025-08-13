@@ -1,4 +1,5 @@
 import { exec } from "node:child_process";
+import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
@@ -9,6 +10,7 @@ import cacheService from "./services/cache.js";
 import { createFileWatcher } from "./services/file-watcher.js";
 import injectorService from "./services/injector.js";
 import { getAvailableCardSets, getWikiPageBySetId } from "./services/scraper.js";
+import { webSocketService } from "./services/websocket.js";
 
 /** Current file path for ES modules */
 const __filename = fileURLToPath(import.meta.url);
@@ -57,6 +59,16 @@ async function startServer() {
 	fileWatcher.on("fileChanged", (event) => {
 		const relativePath = path.relative(path.join(__dirname, "../../.."), event.filePath);
 		console.log(`🔄 Wiki file changed: ${relativePath}`);
+
+		// Broadcast file change to WebSocket clients
+		webSocketService.broadcast({
+			type: "fileChanged",
+			payload: {
+				filePath: relativePath,
+				eventType: event.eventType,
+				timestamp: event.timestamp.toISOString(),
+			},
+		});
 	});
 
 	fileWatcher.start();
@@ -115,9 +127,14 @@ async function startServer() {
 		res.sendFile(path.join(UI_DIST_DIR, "index.html"));
 	});
 
-	app.listen(PORT, () => {
+	// Create HTTP server and initialize WebSocket
+	const server = createServer(app);
+	webSocketService.init(server);
+
+	server.listen(PORT, () => {
 		console.log(`🚀 Dominion Wiki Dev Server running on port ${PORT}`);
 		console.log(`📱 Web UI: http://localhost:${PORT}`);
+		console.log(`🔌 WebSocket: ws://localhost:${PORT}`);
 		console.log("🔌 API endpoints:");
 		console.log("  GET  /api/card-sets - List available card sets");
 		console.log("  GET  /api/wiki/:setId - Get processed wiki page");

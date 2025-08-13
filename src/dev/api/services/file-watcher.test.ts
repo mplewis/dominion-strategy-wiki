@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { type FileChangeEvent, FileWatcher } from "./file-watcher.js";
 
 describe("FileWatcher", () => {

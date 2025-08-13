@@ -17,7 +17,9 @@
 			"mcp__puppeteer__puppeteer_select",
 			"Bash(pnpx tailwindcss:*)",
 			"Bash(tsx:*)",
-			"Bash(pnpx tsx:*)"
+			"Bash(pnpx tsx:*)",
+			"Bash(node:*)",
+			"Bash(touch:*)"
 		],
 		"deny": []
 	}
