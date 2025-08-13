@@ -11,7 +11,7 @@
 		"deploy-mediawiki": "node --enable-source-maps dist/scripts/deploy-to-mediawiki.js"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.4.0",
+		"@biomejs/biome": "^2.1.4",
 		"@types/jquery": "^3.5.29",
 		"@types/node": "^24.2.1",
 		"axios": "^1.11.0",

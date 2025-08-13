@@ -1,75 +1,20 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"organizeImports": {
-		"enabled": true
+	"$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": ["src/**/*.ts", "src/**/*.js", "*.js", "*.ts"],
+		"ignoreUnknown": true
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"complexity": {
-				"noBannedTypes": "error",
-				"noUselessConstructor": "error",
-				"noUselessFragments": "error",
-				"noUselessRename": "error",
-				"noUselessSwitchCase": "error",
-				"noUselessTernary": "error",
-				"noVoid": "error"
-			},
-			"correctness": {
-				"noConstAssign": "error",
-				"noConstructorReturn": "error",
-				"noEmptyCharacterClassInRegex": "error",
-				"noEmptyPattern": "error",
-				"noGlobalObjectCalls": "error",
-				"noInvalidConstructorSuper": "error",
-				"noNewSymbol": "error",
-				"noNonoctalDecimalEscape": "error",
-				"noPrecisionLoss": "error",
-				"noSelfAssign": "error",
-				"noSetterReturn": "error",
-				"noSwitchDeclarations": "error",
-				"noUndeclaredVariables": "error",
-				"noUnreachable": "error",
-				"noUnreachableSuper": "error",
-				"noUnsafeFinally": "error",
-				"noUnusedLabels": "error",
-				"noUnusedVariables": "error",
-				"useIsNan": "error",
-				"useValidForDirection": "error"
-			},
-			"style": {
-				"noArguments": "error",
-				"noVar": "error",
-				"useConst": "error",
-				"useExponentiationOperator": "error",
-				"useTemplate": "error"
-			},
 			"suspicious": {
-				"noArrayIndexKey": "error",
-				"noAssignInExpressions": "error",
-				"noAsyncPromiseExecutor": "error",
-				"noCatchAssign": "error",
-				"noClassAssign": "error",
-				"noCompareNegZero": "error",
-				"noConfusingLabels": "error",
-				"noConsoleLog": "warn",
-				"noControlCharactersInRegex": "error",
-				"noDebugger": "error",
-				"noDoubleEquals": "error",
-				"noDuplicateCase": "error",
-				"noDuplicateClassMembers": "error",
-				"noDuplicateParameters": "error",
-				"noEmptyBlockStatements": "error",
-				"noFallthroughSwitchClause": "error",
-				"noFunctionAssign": "error",
-				"noGlobalAssign": "error",
-				"noImportAssign": "error",
-				"noMisleadingCharacterClass": "error",
-				"noPrototypeBuiltins": "error",
-				"noRedeclare": "error",
-				"noShadowRestrictedNames": "error",
-				"noUnsafeNegation": "error"
+				"noConsole": "warn"
 			}
 		}
 	},
@@ -77,21 +22,6 @@
 		"enabled": false
 	},
 	"javascript": {
-		"formatter": {
-			"jsxQuoteStyle": "double",
-			"quoteProperties": "asNeeded",
-			"trailingCommas": "es5",
-			"semicolons": "always",
-			"arrowParentheses": "always",
-			"bracketSpacing": true,
-			"bracketSameLine": false,
-			"quoteStyle": "double",
-			"attributePosition": "auto"
-		},
 		"globals": ["mw", "$", "JQueryStatic"]
-	},
-	"files": {
-		"include": ["src/**/*.ts", "src/**/*.js", "*.js"],
-		"ignore": ["node_modules/**", "dist/**", "common.js", "tmp/**"]
 	}
 }
