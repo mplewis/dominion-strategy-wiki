@@ -21,7 +21,7 @@ export function sortSortables(startsort: Element, sortby: string, sortid: string
 		}
 		for (let j = 0; j < elems[i].classList.length; j++) {
 			const cost = elems[i].classList[j];
-			const re = /^cost(\$)?(\d\d)?([\*\+])?((\d\d)[Dd])?([Pp])?$/i;
+			const re = /^cost(\$)?(\d\d)?([*+])?((\d\d)[Dd])?([Pp])?$/i;
 			const found = cost.match(re);
 			if (found) {
 				if (i === 0) {

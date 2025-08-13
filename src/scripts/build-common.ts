@@ -8,10 +8,10 @@ const OUTPUT_FILE = "dist/common.js";
 const HEADER_PATH = "src/wiki/header.txt";
 
 async function buildCommon(): Promise<void> {
-	console.log("Building TypeScript to CommonJS");
+	console.info("Building TypeScript to CommonJS");
 	execSync(`tsc -p ${TSCONFIG_PATH}`, { stdio: "inherit" });
 
-	console.log("Bundling with esbuild");
+	console.info("Bundling with esbuild");
 	await build({
 		entryPoints: [ENTRY_POINT],
 		bundle: true,
@@ -24,13 +24,13 @@ async function buildCommon(): Promise<void> {
 	});
 
 	if (fs.existsSync(HEADER_PATH)) {
-		console.log(`Adding header to the bundled file: ${HEADER_PATH}`);
+		console.info(`Adding header to the bundled file: ${HEADER_PATH}`);
 		const header = fs.readFileSync(HEADER_PATH, "utf8");
 		const bundled = fs.readFileSync(OUTPUT_FILE, "utf8");
 		fs.writeFileSync(OUTPUT_FILE, header + bundled);
 	}
 
-	console.log(`Build completed successfully: ${OUTPUT_FILE}`);
+	console.info(`Build completed successfully: ${OUTPUT_FILE}`);
 }
 
 buildCommon();

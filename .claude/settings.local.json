@@ -16,7 +16,8 @@
 			"Bash(pnpm:*)",
 			"Bash(act:*)",
 			"Bash(mv:*)",
-			"Bash(grep:*)"
+			"Bash(grep:*)",
+			"Bash(biome migrate:*)"
 		],
 		"deny": []
 	}
