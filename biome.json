@@ -6,7 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["src/**/*.ts", "src/**/*.js", "*.js", "*.ts"],
+		"includes": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx", "*.js", "*.ts"],
 		"ignoreUnknown": true
 	},
 	"linter": {
@@ -15,12 +15,15 @@
 			"recommended": true,
 			"suspicious": {
 				"noConsole": "warn"
+			},
+			"correctness": {
+				"noUnusedVariables": "error"
 			}
 		}
 	},
 	"overrides": [
 		{
-			"includes": ["src/scripts/**"],
+			"includes": ["src/dev/**", "src/scripts/**"],
 			"linter": {
 				"rules": {
 					"suspicious": {

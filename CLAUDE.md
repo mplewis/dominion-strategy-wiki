@@ -1,0 +1,2 @@
+- always use pnpm and pnpx, not npm or npx
+- when finishing a task, run pnpm tidy to autoformat all files
