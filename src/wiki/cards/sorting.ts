@@ -15,21 +15,23 @@ export function sortSortables(startsort: Element, sortby: string, sortid: string
 	let firstCost: string | undefined;
 	const elems = startsort.querySelectorAll(".cardcost");
 	for (let i = 0; i < elems.length; i++) {
-		const cardname = elems[i].querySelector("a")?.title || "";
-		if (sortby === "sortbyname") {
-			cards.push([cardname, elems[i]]);
-		}
+		let sortstr = elems[i].querySelector("a")?.title || "";
+		let isLandscape = false;
 		for (let j = 0; j < elems[i].classList.length; j++) {
-			const cost = elems[i].classList[j];
+			const cl = elems[i].classList[j];
+			if (cl === "landscape") {
+				isLandscape = true;
+				continue;
+			}
 			const re = /^cost(\$)?(\d\d)?([*+])?((\d\d)[Dd])?([Pp])?$/i;
-			const found = cost.match(re);
+			const found = cl.match(re);
 			if (found) {
 				if (i === 0) {
-					firstCost = cost;
-				} else if (cost !== firstCost) {
+					firstCost = cl;
+				} else if (cl !== firstCost) {
 					sameCost = false;
 				}
-				if (sortby !== "sortbyname") {
+				if (sortby === "sortbycost") {
 					let coststr: string;
 					if (found[1] === undefined) {
 						coststr = "-----";
@@ -46,11 +48,11 @@ export function sortSortables(startsort: Element, sortby: string, sortid: string
 							coststr += " ";
 						}
 					}
-					cards.push([coststr + cardname, elems[i]]);
+					sortstr = coststr + sortstr;
 				}
-				break;
 			}
 		}
+		cards.push([(isLandscape ? "L" : "C") + sortstr, elems[i]]);
 	}
 	cards.sort();
 	for (let i = 0; i < cards.length; i++) {
