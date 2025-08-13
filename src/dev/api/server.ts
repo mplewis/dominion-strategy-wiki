@@ -6,6 +6,7 @@ import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 
 import cacheService from "./services/cache.js";
+import { createFileWatcher } from "./services/file-watcher.js";
 import injectorService from "./services/injector.js";
 import { getAvailableCardSets, getWikiPageBySetId } from "./services/scraper.js";
 
@@ -48,6 +49,17 @@ async function buildUI(): Promise<void> {
 /** Initializes and starts the Express server with all routes and middleware */
 async function startServer() {
 	await cacheService.init();
+
+	// Initialize file watcher for src/wiki directory
+	const wikiDir = path.join(__dirname, "../../../src/wiki");
+	const fileWatcher = createFileWatcher(wikiDir);
+
+	fileWatcher.on("fileChanged", (event) => {
+		const relativePath = path.relative(path.join(__dirname, "../../.."), event.filePath);
+		console.log(`🔄 Wiki file changed: ${relativePath}`);
+	});
+
+	fileWatcher.start();
 
 	// Build UI first
 	await buildUI();
