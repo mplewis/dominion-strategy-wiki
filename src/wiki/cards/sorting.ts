@@ -1,10 +1,14 @@
 import { getCookie, setCookie } from "../core/cookies";
 
+enum SortBy {
+	Name = 0,
+	Cost = 1,
+}
 type Sortable = {
 	sortbyname: HTMLElement;
 	sortbycost: HTMLElement;
 	startsort: HTMLElement;
-	sortby: number;
+	sortby: SortBy;
 };
 const sortables: { [key: string]: Sortable } = {};
 
@@ -39,7 +43,7 @@ export function sortSortables(sortid: string): void {
 				} else if (cl !== firstCost) {
 					sameCost = false;
 				}
-				if (sortables[sortid].sortby === 1) {
+				if (sortables[sortid].sortby === SortBy.Cost) {
 					let coststr: string;
 					if (found[1] === undefined) {
 						coststr = "-----";
@@ -70,7 +74,7 @@ export function sortSortables(sortid: string): void {
 		(sortables[sortid].sortbyname as HTMLElement).style.display = "none";
 		(sortables[sortid].sortbycost as HTMLElement).style.display = "none";
 	} else {
-		if (sortables[sortid].sortby === 0) {
+		if (sortables[sortid].sortby === SortBy.Name) {
 			(sortables[sortid].sortbyname as HTMLElement).classList.add("switchsort-active");
 			(sortables[sortid].sortbyname as HTMLElement).style.cursor = "default";
 			(sortables[sortid].sortbycost as HTMLElement).classList.remove("switchsort-active");
@@ -107,14 +111,14 @@ export function startSort(e: Event): void {
 	}
 	let changed = false;
 	if (sortby === "sortbyname") {
-		if (sortables[sortid].sortby !== 0) {
-			sortables[sortid].sortby = 0;
+		if (sortables[sortid].sortby !== SortBy.Name) {
+			sortables[sortid].sortby = SortBy.Name;
 			changed = true;
 		}
 	}
 	if (sortby === "sortbycost") {
-		if (sortables[sortid].sortby !== 1) {
-			sortables[sortid].sortby = 1;
+		if (sortables[sortid].sortby !== SortBy.Cost) {
+			sortables[sortid].sortby = SortBy.Cost;
 			changed = true;
 		}
 	}
@@ -148,7 +152,7 @@ export function initSorting(): void {
 		}
 
 		const cookieVal = getCookie("cardsortby");
-		const sortby = cookieVal === "" ? 0 : Number.parseInt(cookieVal);
+		const sortby = cookieVal === "" ? SortBy.Name : Number.parseInt(cookieVal);
 		const sortbyname = document.querySelectorAll(`.sortbyname.${sortid}`);
 		const sortbycost = document.querySelectorAll(`.sortbycost.${sortid}`);
 		const startsort = document.querySelectorAll(`.startsort.${sortid}`);
@@ -168,11 +172,11 @@ export function initSorting(): void {
 
 /**
  * Applies card sorting preference by programmatically clicking appropriate sort buttons.
- * @param {string|number} curVal - Sort preference: 0/false for name, 1/true for cost
+ * @param {string|number} curVal - Sort preference: SortBy.Name for name, SortBy.Cost for cost
  * @returns {void}
  */
 export function setCardSortBy(curVal: string | number): void {
-	const actualVal = typeof curVal === "string" ? Number.parseInt(curVal) : curVal;
+	const actualVal = (typeof curVal === "string" ? Number.parseInt(curVal) : curVal) as SortBy;
 	for (const sortid in sortables) {
 		if (sortables[sortid].sortby !== actualVal) {
 			sortables[sortid].sortby = actualVal;
@@ -188,9 +192,9 @@ export function setCardSortBy(curVal: string | number): void {
  */
 export function changeCardSortBy(): void {
 	const optionInput = document.querySelector("#cardGallerySorter");
-	let curVal = 0;
+	let curVal = SortBy.Name;
 	if ((optionInput as HTMLInputElement)?.checked) {
-		curVal = 1;
+		curVal = SortBy.Cost;
 	}
 	setCookie("cardsortby", curVal);
 	setCardSortBy(curVal);
