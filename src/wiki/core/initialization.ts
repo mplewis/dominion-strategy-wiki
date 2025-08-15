@@ -39,6 +39,5 @@ export function initCommon(): void {
 	addExpansionSidebarLinks();
 	setSidebarExpansions("cookie");
 	initSorting();
-	setCardSortBy("cookie");
 	clickThings();
 }
