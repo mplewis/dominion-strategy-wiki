@@ -7,8 +7,10 @@ enum SortBy {
 type Sortable = {
 	sortbyname: HTMLElement;
 	sortbycost: HTMLElement;
+	sortbyset: HTMLElement;
 	startsort: HTMLElement;
 	sortby: SortBy;
+	groupsets: boolean;
 };
 const sortables: { [key: string]: Sortable } = {};
 
@@ -25,6 +27,8 @@ export function sortSortables(sortid: string): void {
 	const cards: [string, Element][] = [];
 	let sameCost = true;
 	let firstCost: string | undefined;
+	let sameSet = true;
+	let firstSet: string | undefined;
 	const elems = (sortables[sortid].startsort as Element).querySelectorAll(".cardcost");
 	for (let i = 0; i < elems.length; i++) {
 		let sortstr = elems[i].querySelector("a")?.title || "";
@@ -35,9 +39,9 @@ export function sortSortables(sortid: string): void {
 				isLandscape = true;
 				continue;
 			}
-			const re = /^cost(\$)?(\d\d)?([*+])?((\d\d)[Dd])?([Pp])?$/i;
-			const found = cl.match(re);
-			if (found) {
+			const reCost = /^cost(\$)?(\d\d)?([*+])?((\d\d)[Dd])?([Pp])?$/i;
+			const foundCost = cl.match(reCost);
+			if (foundCost) {
 				if (i === 0) {
 					firstCost = cl;
 				} else if (cl !== firstCost) {
@@ -45,22 +49,34 @@ export function sortSortables(sortid: string): void {
 				}
 				if (sortables[sortid].sortby === SortBy.Cost) {
 					let coststr: string;
-					if (found[1] === undefined) {
+					if (foundCost[1] === undefined) {
 						coststr = "-----";
 					} else {
-						coststr = found[2] !== undefined ? found[2] : "00";
-						if (found[6] !== undefined) {
+						coststr = foundCost[2] !== undefined ? foundCost[2] : "00";
+						if (foundCost[6] !== undefined) {
 							coststr += "PP";
 						} else {
-							coststr += found[5] !== undefined ? found[5] : "00";
+							coststr += foundCost[5] !== undefined ? foundCost[5] : "00";
 						}
-						if (found[3] !== undefined) {
-							coststr += found[3];
+						if (foundCost[3] !== undefined) {
+							coststr += foundCost[3];
 						} else {
 							coststr += " ";
 						}
 					}
 					sortstr = coststr + sortstr;
+				}
+			}
+			const reSet = /^set(\d\d)$/i;
+			const foundSet = cl.match(reSet);
+			if (foundSet) {
+				if (i === 0) {
+					firstSet = cl;
+				} else if (cl !== firstSet) {
+					sameSet = false;
+				}
+				if (sortables[sortid].groupsets) {
+					sortstr = foundSet[1] + sortstr;
 				}
 			}
 		}
@@ -84,6 +100,15 @@ export function sortSortables(sortid: string): void {
 			(sortables[sortid].sortbyname as HTMLElement).style.cursor = "pointer";
 			(sortables[sortid].sortbycost as HTMLElement).classList.add("switchsort-active");
 			(sortables[sortid].sortbycost as HTMLElement).style.cursor = "default";
+		}
+	}
+	if (sameSet) {
+		sortables[sortid].sortbyset.style.display = "none";
+	} else {
+		if (sortables[sortid].groupsets) {
+			(sortables[sortid].sortbyset as HTMLElement).classList.add("switchsort-active");
+		} else {
+			(sortables[sortid].sortbyset as HTMLElement).classList.remove("switchsort-active");
 		}
 	}
 }
@@ -122,6 +147,10 @@ export function startSort(e: Event): void {
 			changed = true;
 		}
 	}
+	if (sortby === "sortbyset") {
+		sortables[sortid].groupsets = !sortables[sortid].groupsets;
+		changed = true;
+	}
 	if (changed) {
 		sortSortables(sortid);
 	}
@@ -155,15 +184,20 @@ export function initSorting(): void {
 		const sortby = cookieVal === "" ? SortBy.Name : Number.parseInt(cookieVal);
 		const sortbyname = document.querySelectorAll(`.sortbyname.${sortid}`);
 		const sortbycost = document.querySelectorAll(`.sortbycost.${sortid}`);
+		const sortbyset = document.querySelectorAll(`.sortbyset.${sortid}`);
 		const startsort = document.querySelectorAll(`.startsort.${sortid}`);
 		sortables[sortid] = {
 			sortbyname: sortbyname[0] as HTMLElement,
 			sortbycost: sortbycost[0] as HTMLElement,
+			sortbyset: sortbyset[0] as HTMLElement,
 			startsort: startsort[0] as HTMLElement,
 			sortby: sortby,
+			groupsets: false,
 		};
 		sortbyname[0].addEventListener("click", startSort);
 		sortbycost[0].addEventListener("click", startSort);
+		sortbyset[0].addEventListener("click", startSort);
+		(sortbyset[0] as HTMLElement).style.cursor = "pointer";
 	}
 	for (const sortid in sortables) {
 		sortSortables(sortid);
