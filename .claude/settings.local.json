@@ -21,6 +21,7 @@
 			"Bash(node:*)",
 			"Bash(touch:*)"
 		],
-		"deny": []
+		"deny": [],
+		"defaultMode": "acceptEdits"
 	}
 }

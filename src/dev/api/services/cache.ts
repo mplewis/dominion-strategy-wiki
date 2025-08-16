@@ -1,6 +1,6 @@
-import fs from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
+import * as fs from "node:fs/promises";
+import * as os from "node:os";
+import * as path from "node:path";
 
 /** Gets the system-appropriate cache directory based on the current platform */
 function getSystemCacheDir(): string {
