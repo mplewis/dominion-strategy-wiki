@@ -35,10 +35,3 @@ export const EXPANSION_LINKS = new Map([
 	["Rising Sun", "Rising Sun"],
 	["Promo", "Promos"],
 ]);
-
-// CSS stylesheet for navbox image control
-
-export const dominionStrategyStyleSheet = new CSSStyleSheet();
-dominionStrategyStyleSheet.replaceSync(
-	".mw-collapsible span.card-popup a:hover+span,.mw-collapsible span.card-popup img{display:none;visibility:hidden;opacity:0}",
-);

@@ -1,10 +1,28 @@
 import { getCookie, setCookie } from "../core/cookies";
 import { type CardCost, compareParsedCosts, parseCostString } from "./cost-parser";
 
-enum SortBy {
+/** Sort method for card galleries */
+export enum SortBy {
 	Name = 0,
 	Cost = 1,
 }
+
+/** Type of card for sorting purposes */
+export enum CardKind {
+	Landscape = "L",
+	Card = "C",
+}
+
+/** Represents a card with its kind, name, set, DOM element, and cost information */
+export type Card = {
+	kind: CardKind;
+	name: string;
+	set: string;
+	element: Element;
+	cost: CardCost;
+};
+
+/** Contains all sorting controls and state for a card gallery */
 type Sortable = {
 	sortbyname: HTMLElement;
 	sortbycost: HTMLElement;
@@ -13,10 +31,45 @@ type Sortable = {
 	sortby: SortBy;
 	groupsets: boolean;
 };
+
+/** Registry of all sortable card galleries on the page, keyed by sort ID */
 const sortables: { [key: string]: Sortable } = {};
 
-// Dummy card to stand in for cards which are missing data
-const ZERO_COST_CARD: CardCost = { coinCost: 0, debtCost: 0, hasPotion: false, modifier: null };
+/** Dummy card to stand in for cards which are missing data */
+export const ZERO_COST_CARD: CardCost = { coinCost: 0, debtCost: 0, hasPotion: false, modifier: null };
+
+/**
+ * Sorts an array of cards based on the specified sort method and grouping preference.
+ * @param {Card[]} cards - Array of cards to sort
+ * @param {SortBy} sortBy - Sort method (Name or Cost)
+ * @param {boolean} groupSets - Whether to group cards by set
+ * @returns {Card[]} New sorted array of cards
+ */
+export function sortCards(cards: Card[], sortBy: SortBy, groupSets: boolean): Card[] {
+	const sortedCards = [...cards];
+
+	if (sortBy === SortBy.Name) {
+		sortedCards.sort((a, b) => a.name.localeCompare(b.name));
+		return sortedCards;
+	}
+
+	sortedCards.sort((a, b) => {
+		if (groupSets) {
+			const setComparison = a.set.localeCompare(b.set);
+			if (setComparison !== 0) return setComparison;
+		}
+
+		if (a.kind !== b.kind) {
+			return a.kind === CardKind.Landscape ? 1 : -1;
+		}
+
+		const costComparison = compareParsedCosts(a.cost || ZERO_COST_CARD, b.cost || ZERO_COST_CARD);
+		if (costComparison !== 0) return costComparison;
+
+		return a.name.localeCompare(b.name);
+	});
+	return sortedCards;
+}
 
 /**
  * Sorts card elements within a container by either name or cost.
@@ -26,9 +79,7 @@ const ZERO_COST_CARD: CardCost = { coinCost: 0, debtCost: 0, hasPotion: false, m
  * @returns {void}
  */
 export function sortSortables(sortid: string): void {
-	// TODO: Replace [0] string with some more descriptive type
-	// TODO: Make cards an array of Card[] and parse Cards
-	const cards: [string, Element, CardCost | null][] = [];
+	const cards: Card[] = [];
 
 	// Track if all cards have identical cost CSS classes to determine
 	// visibility of "sort by cost" and "sort by name" buttons
@@ -45,10 +96,11 @@ export function sortSortables(sortid: string): void {
 	// Parse all cards with costs
 	const elems = (sortables[sortid].startsort as Element).querySelectorAll(".cardcost");
 	for (let i = 0; i < elems.length; i++) {
-		let sortstr = elems[i].querySelector("a")?.title || "";
+		const sortstr = elems[i].querySelector("a")?.title || "";
 		const classList = Array.from(elems[i].classList);
-		const cardKind = classList.includes("landscape") ? "L" : "C";
-		const cost = parseCostString(...classList);
+		const cardKind = classList.includes("landscape") ? CardKind.Landscape : CardKind.Card;
+		const cost = parseCostString(...classList) || ZERO_COST_CARD;
+		let cardSet = "";
 
 		for (let j = 0; j < classList.length; j++) {
 			const cl = classList[j];
@@ -64,47 +116,21 @@ export function sortSortables(sortid: string): void {
 			const reSet = /^set(\d\d)$/i;
 			const foundSet = cl.match(reSet);
 			if (foundSet) {
+				cardSet = foundSet[1];
 				if (i === 0) {
 					firstSet = cl;
 				} else if (cl !== firstSet) {
 					allCardsHaveSameSet = false;
 				}
-				if (sortables[sortid].groupsets) {
-					sortstr = foundSet[1] + sortstr;
-				}
 			}
 		}
-		cards.push([cardKind + sortstr, elems[i], cost]);
+		cards.push({ kind: cardKind, name: sortstr, set: cardSet, element: elems[i], cost });
 	}
 
-	if (sortables[sortid].sortby === SortBy.Cost) {
-		cards.sort((a, b) => {
-			// First compare by set if grouping is enabled
-			if (sortables[sortid].groupsets) {
-				const setComparison = a[0].localeCompare(b[0]);
-				if (setComparison !== 0) return setComparison;
-			}
+	const sortedCards = sortCards(cards, sortables[sortid].sortby, sortables[sortid].groupsets);
 
-			// Then compare by landscape vs portrait
-			const aIsLandscape = a[0].startsWith("L");
-			const bIsLandscape = b[0].startsWith("L");
-			if (aIsLandscape !== bIsLandscape) {
-				return aIsLandscape ? 1 : -1;
-			}
-
-			// Then compare by cost using the cost parser
-			const costComparison = compareParsedCosts(a[2] || ZERO_COST_CARD, b[2] || ZERO_COST_CARD);
-			if (costComparison !== 0) return costComparison;
-
-			// Finally compare by name
-			return a[0].localeCompare(b[0]);
-		});
-	} else {
-		cards.sort((a, b) => a[0].localeCompare(b[0]));
-	}
-
-	for (let i = 0; i < cards.length; i++) {
-		(sortables[sortid].startsort as Element).insertBefore(cards[i][1] as Node, null);
+	for (let i = 0; i < sortedCards.length; i++) {
+		(sortables[sortid].startsort as Element).insertBefore(sortedCards[i].element as Node, null);
 	}
 	if (allCardsHaveSameCost) {
 		(sortables[sortid].sortbyname as HTMLElement).style.display = "none";
