@@ -1,5 +1,5 @@
-import { dominionStrategyStyleSheet } from "../core/config";
 import { getCookie, setCookie } from "../core/cookies";
+import { dominionStrategyStyleSheet } from "../core/stylesheets";
 
 /**
  * Event handler for the navbox images checkbox. Toggles whether card images
@@ -34,7 +34,7 @@ export function setNavboxImages(curVal: string | number): void {
 		while (document.adoptedStyleSheets.pop()) {
 			// Intentionally empty - just removing stylesheets
 		}
-	} else {
+	} else if (dominionStrategyStyleSheet) {
 		document.adoptedStyleSheets.push(dominionStrategyStyleSheet);
 	}
 }
