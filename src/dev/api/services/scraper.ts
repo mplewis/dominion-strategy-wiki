@@ -1,4 +1,5 @@
-import axios, { type AxiosResponse } from "axios";
+import type { AxiosResponse } from "axios";
+import * as axios from "axios";
 import * as cheerio from "cheerio";
 import cacheService from "./cache.js";
 
