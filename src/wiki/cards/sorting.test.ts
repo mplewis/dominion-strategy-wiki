@@ -114,29 +114,28 @@ describe("sortCards", () => {
 			it("sorts cards as expected", () => {
 				const sorted = sortCards(CARD_LIBRARY, sortBy, bySet);
 				expect(sorted.map((c) => c.name)).toEqual([
+					// Cards
 					// Base
 					"Artisan",
 					"Smithy",
 					"Village",
 					"Witch",
-
 					// Empires
-					// Cards
 					"Archive",
 					"Catapult",
 					"Temple",
-					// Landscapes
-					"Arena",
-					"Delve",
-					"Ritual",
-
 					// Rising Sun
-					// Cards
 					"Alley",
 					"Aristocrat",
 					"Gold Mine",
 					"Samurai",
+
 					// Landscapes
+					// Empires
+					"Arena",
+					"Delve",
+					"Ritual",
+					// Rising Sun
 					"Amass",
 					"Panic",
 					"Sea Trade",
@@ -150,6 +149,7 @@ describe("sortCards", () => {
 			it("sorts cards as expected", () => {
 				const sorted = sortCards(CARD_LIBRARY, sortBy, bySet);
 				expect(sorted.map((c) => c.name)).toEqual([
+					// Cards
 					// Base
 					// 3 cost
 					"Village",
@@ -161,23 +161,14 @@ describe("sortCards", () => {
 					"Artisan",
 
 					// Empires
-					// Cards
 					// 3 cost
 					"Catapult",
 					// 4 cost
 					"Temple",
 					// 5 cost
 					"Archive",
-					// Landscapes
-					// 0 cost
-					"Arena",
-					// 2 cost
-					"Delve",
-					// 4 cost
-					"Ritual",
 
 					// Rising Sun
-					// Cards
 					// 3 cost
 					"Aristocrat",
 					// 4 cost
@@ -186,7 +177,16 @@ describe("sortCards", () => {
 					"Gold Mine",
 					// 6 cost
 					"Samurai",
+
 					// Landscapes
+					// Empires
+					// 0 cost
+					"Arena",
+					// 2 cost
+					"Delve",
+					// 4 cost
+					"Ritual",
+					// Rising Sun
 					// 0 cost
 					"Panic",
 					// 2 cost
@@ -306,17 +306,17 @@ describe("sortCards (legacy tests)", () => {
 
 		it("maintains landscape after card ordering when grouping by set", () => {
 			const cards = [
-				card("Set2 Landscape", CardKind.Landscape, "02", "cost$03"),
 				card("Set1 Card", CardKind.Card, "01", "cost$03"),
 				card("Set2 Card", CardKind.Card, "02", "cost$03"),
 				card("Set1 Landscape", CardKind.Landscape, "01", "cost$03"),
+				card("Set2 Landscape", CardKind.Landscape, "02", "cost$03"),
 			];
 
 			const sorted = sortCards(cards, SortBy.Cost, true);
 			expect(sorted.map((c) => c.name)).toEqual([
 				"Set1 Card", // Set 01, card
-				"Set1 Landscape", // Set 01, landscape
 				"Set2 Card", // Set 02, card
+				"Set1 Landscape", // Set 01, landscape
 				"Set2 Landscape", // Set 02, landscape
 			]);
 		});

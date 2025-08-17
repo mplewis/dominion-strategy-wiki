@@ -48,13 +48,13 @@ export const ZERO_COST_CARD: CardCost = { coinCost: 0, debtCost: 0, hasPotion: f
 export function sortCards(cards: Card[], sortBy: SortBy, groupSets: boolean): Card[] {
 	const sortedCards = [...cards];
 	sortedCards.sort((a, b) => {
+		if (a.kind !== b.kind) {
+			return a.kind === CardKind.Landscape ? 1 : -1;
+		}
+
 		if (groupSets) {
 			const setComparison = a.set.localeCompare(b.set);
 			if (setComparison !== 0) return setComparison;
-		}
-
-		if (a.kind !== b.kind) {
-			return a.kind === CardKind.Landscape ? 1 : -1;
 		}
 
 		if (sortBy === SortBy.Cost) {
