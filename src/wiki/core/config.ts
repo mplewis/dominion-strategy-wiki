@@ -1,21 +1,20 @@
-// Constants for card border functionality
-export const BORDER_SIZE_ENABLED = 11;
+/** Width of card border in px */
+export const CARD_BORDER_PX = 11;
+/** Cookie expiration time in years */
 export const COOKIE_EXPIRATION_YEARS = 1;
 
-// Maps image width (px) to appropriate border padding size (px) for card styling
-export const SIZE_MAPPINGS = {
-	75: 4,
-	100: 5,
-	120: 6,
-	150: 8,
-	160: 9,
-	200: 11,
-	320: 11,
-	375: 21,
-	800: 21,
-} as const;
+/** Maps image width (px) to appropriate border padding size (px) for card styling */
+export const SIZE_MAPPINGS = [
+	{ size: 75, padding: 4 },
+	{ size: 100, padding: 5 },
+	{ size: 120, padding: 6 },
+	{ size: 150, padding: 8 },
+	{ size: 160, padding: 9 },
+	{ size: 320, padding: 11 },
+	{ size: Infinity, padding: 21 },
+] as const;
 
-// Map of expansion links with their display names
+/** Map of expansion links with their display names */
 export const EXPANSION_LINKS = new Map([
 	["Dominion (Base Set)", "Dominion"],
 	["Intrigue", "Intrigue"],
