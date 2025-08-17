@@ -10,7 +10,7 @@ import express, { type NextFunction, type Request, type Response } from "express
 import { log } from "../logging.js";
 import cacheService from "./services/cache.js";
 import { createFileWatcher } from "./services/file-watcher.js";
-import injectorService from "./services/injector.js";
+import { processWikiPage } from "./services/injector.js";
 import { getAvailableCardSets, getWikiPageBySetId } from "./services/scraper.js";
 import { webSocketService } from "./services/websocket.js";
 
@@ -164,7 +164,7 @@ async function startServer() {
 			const forceRefresh = req.query.refresh === "true";
 
 			const pageData = await getWikiPageBySetId(setId, forceRefresh);
-			const html = await injectorService.processWikiPage(pageData.content);
+			const html = await processWikiPage(pageData.content, forceRefresh);
 
 			res.json({
 				success: true,
