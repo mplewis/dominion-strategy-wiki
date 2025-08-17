@@ -71,9 +71,10 @@ function getGitCommitHash(): string {
 	return process.env.GITHUB_SHA || "unknown";
 }
 
-/** Get the commit message */
+/** Get the commit message title (first line only) */
 function getCommitMessage(): string {
-	return process.env.GITHUB_EVENT_HEAD_COMMIT_MESSAGE || "Unknown commit";
+	const fullMessage = process.env.GITHUB_EVENT_HEAD_COMMIT_MESSAGE || "Unknown commit";
+	return fullMessage.split("\n")[0];
 }
 
 /** Get the actor/author */
