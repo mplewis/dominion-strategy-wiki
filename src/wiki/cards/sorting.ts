@@ -47,12 +47,6 @@ export const ZERO_COST_CARD: CardCost = { coinCost: 0, debtCost: 0, hasPotion: f
  */
 export function sortCards(cards: Card[], sortBy: SortBy, groupSets: boolean): Card[] {
 	const sortedCards = [...cards];
-
-	if (sortBy === SortBy.Name) {
-		sortedCards.sort((a, b) => a.name.localeCompare(b.name));
-		return sortedCards;
-	}
-
 	sortedCards.sort((a, b) => {
 		if (groupSets) {
 			const setComparison = a.set.localeCompare(b.set);
@@ -63,8 +57,10 @@ export function sortCards(cards: Card[], sortBy: SortBy, groupSets: boolean): Ca
 			return a.kind === CardKind.Landscape ? 1 : -1;
 		}
 
-		const costComparison = compareParsedCosts(a.cost || ZERO_COST_CARD, b.cost || ZERO_COST_CARD);
-		if (costComparison !== 0) return costComparison;
+		if (sortBy === SortBy.Cost) {
+			const costComparison = compareParsedCosts(a.cost || ZERO_COST_CARD, b.cost || ZERO_COST_CARD);
+			if (costComparison !== 0) return costComparison;
+		}
 
 		return a.name.localeCompare(b.name);
 	});
