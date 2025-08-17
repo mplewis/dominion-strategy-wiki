@@ -40,7 +40,7 @@ export function addExpansionSidebarLinks(): void {
 		const expansionSidebarLinks = document.createElement("span");
 		expansionSidebarLinks.id = "expansionSidebarLinks";
 		pNavigationUl.insertBefore(expansionSidebarLinks, null);
-		for (const [link, title] of EXPANSION_LINKS) {
+		for (const [link, title] of Object.entries(EXPANSION_LINKS)) {
 			addExpansionLink(link, title);
 		}
 	}
