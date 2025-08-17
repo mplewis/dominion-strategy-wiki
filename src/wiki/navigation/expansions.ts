@@ -24,10 +24,9 @@ export function applySidebarExpansions(show: boolean): void {
  * @param link - The wiki page name/path for the expansion
  * @param title - Display text for the expansion link
  */
-export function addExpansionLink(link: string, title: string): void {
+export function addExpansionLink(target: Element, link: string, title: string): void {
 	console.debug(`[addExpansionLink] Adding expansion link - title: ${title}, link: ${link}`);
-	const pNavigationUl = document.querySelector("#p-navigation ul");
-	console.debug(`[addExpansionLink] Navigation UL element:`, pNavigationUl);
+	console.debug(`[addExpansionLink] Target element:`, target);
 	const optionLi = document.createElement("li");
 	optionLi.classList.add("showExpansionItem");
 	console.debug(`[addExpansionLink] Created LI element with class showExpansionItem`);
@@ -39,7 +38,7 @@ export function addExpansionLink(link: string, title: string): void {
 	const fullUrl = `${urlBase}${link}`;
 	optionLi.innerHTML = `<a href="${fullUrl}">${title}</a>`;
 	console.debug(`[addExpansionLink] Set LI HTML: ${optionLi.innerHTML}`);
-	pNavigationUl?.insertBefore(optionLi, null);
+	target?.insertBefore(optionLi, null);
 	console.debug(`[addExpansionLink] Inserted expansion link for ${title}`);
 }
 
@@ -61,11 +60,12 @@ export function addExpansionSidebarLinks(): void {
 		pNavigationUl.insertBefore(expansionSidebarLinks, null);
 		console.debug(
 			`[addExpansionSidebarLinks] Inserted container, processing ${Object.keys(EXPANSION_LINKS).length} expansion links`,
+			{ pNavigationUl },
 		);
 		console.debug(`[addExpansionSidebarLinks] Expansion links to add:`, EXPANSION_LINKS);
 		for (const [link, title] of Object.entries(EXPANSION_LINKS)) {
 			console.debug(`[addExpansionSidebarLinks] Processing expansion: ${title} -> ${link}`);
-			addExpansionLink(link, title);
+			addExpansionLink(expansionSidebarLinks, link, title);
 		}
 		console.debug(`[addExpansionSidebarLinks] Completed adding all expansion links`);
 	} else {
