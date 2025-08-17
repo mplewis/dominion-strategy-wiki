@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compareParsedCosts, parseCostString } from "./cost-parser.js";
+import { compareCardCosts, parseCostString } from "./cost-parser.js";
 
 // Scraped from all expansion pages on the wiki on 2025-08-16
 const WIKI_COST_CLASSES = [
@@ -88,7 +88,7 @@ describe("parseCostString", () => {
 		{
 			desc: "cost with no coin amount",
 			input: "cost",
-			expected: { coinCost: 0, debtCost: 0, hasPotion: false, modifier: null },
+			expected: { coinCost: null, debtCost: 0, hasPotion: false, modifier: null },
 		},
 		{
 			desc: "zero cost",
@@ -111,7 +111,7 @@ describe("parseCostString", () => {
 	});
 });
 
-describe("compareParsedCosts", () => {
+describe("compareCardCosts", () => {
 	it.each([
 		{ costA: "cost$04", costB: "cost$05", desc: "sorts simple coin costs numerically" },
 		{ costA: "cost$03", costB: "cost$03P", desc: "sorts potion costs after regular costs" },
@@ -122,18 +122,18 @@ describe("compareParsedCosts", () => {
 	])("$desc", ({ costA, costB }) => {
 		const parsedA = parseCostString(costA);
 		const parsedB = parseCostString(costB);
-		expect(parsedA && parsedB && compareParsedCosts(parsedA, parsedB) < 0).toBe(true);
+		expect(parsedA && parsedB && compareCardCosts(parsedA, parsedB) < 0).toBe(true);
 	});
 
 	it("sorts entire list of parsed cost classes correctly", () => {
-		const parsedCosts = WIKI_COST_CLASSES.map((costClass) => ({
+		const CardCosts = WIKI_COST_CLASSES.map((costClass) => ({
 			original: costClass,
 			parsed: parseCostString(costClass),
 		})).filter((item) => item.parsed !== null);
 
-		const sortedCosts = parsedCosts.sort((a, b) => {
+		const sortedCosts = CardCosts.sort((a, b) => {
 			if (!a.parsed || !b.parsed) throw new Error("failed to parse cost class");
-			return compareParsedCosts(a.parsed, b.parsed);
+			return compareCardCosts(a.parsed, b.parsed);
 		});
 
 		const sortedOriginals = sortedCosts.map((item) => item.original);

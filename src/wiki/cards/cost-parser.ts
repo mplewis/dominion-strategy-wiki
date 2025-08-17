@@ -1,22 +1,23 @@
-/**
- * Represents parsed cost information from a Dominion card cost CSS class
- */
+/** Represents parsed cost information from a Dominion card cost CSS class */
 export type CardCost = {
-	coinCost: number;
+	coinCost: number | null;
 	debtCost: number;
 	hasPotion: boolean;
 	modifier: "*" | "+" | null;
 };
 
 /**
- * Compares two ParsedCost objects for sorting purposes.
+ * Compares two CardCost objects for sorting purposes.
  * Returns negative value if a should come before b, positive if b should come before a, 0 if equal.
  * @param {CardCost} a - First cost to compare
  * @param {CardCost} b - Second cost to compare
  * @returns {number} Comparison result (-1, 0, or 1)
  */
-export function compareParsedCosts(a: CardCost, b: CardCost): number {
+export function compareCardCosts(a: CardCost, b: CardCost): number {
 	if (a.coinCost !== b.coinCost) {
+		// Costless cards are sorted before zero-cost cards
+		if (a.coinCost === null) return -1;
+		if (b.coinCost === null) return 1;
 		return a.coinCost - b.coinCost;
 	}
 
@@ -52,7 +53,12 @@ export function parseCostString(...strings: string[]): CardCost | null {
 	for (const str of strings) {
 		const foundCost = str.match(reCost);
 		if (foundCost) {
-			const coinCost = foundCost[2] ? Number.parseInt(foundCost[2]) : 0;
+			const hasDollarSign = Boolean(foundCost[1]);
+			const coinCost = (() => {
+				if (!hasDollarSign) return null;
+				if (foundCost[2]) return Number.parseInt(foundCost[2]);
+				return 0;
+			})();
 			const debtCost = foundCost[5] ? Number.parseInt(foundCost[5]) : 0;
 			const hasPotion = foundCost[6] !== undefined;
 			const modifier = (foundCost[3] as "*" | "+" | undefined) ?? null;

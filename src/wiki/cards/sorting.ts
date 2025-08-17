@@ -1,5 +1,5 @@
 import { getCookie, setCookie } from "../core/cookies";
-import { type CardCost, compareParsedCosts, parseCostString } from "./cost-parser";
+import { type CardCost, compareCardCosts, parseCostString } from "./cost-parser";
 
 /** Sort method for card galleries */
 export enum SortBy {
@@ -48,17 +48,17 @@ export const ZERO_COST_CARD: CardCost = { coinCost: 0, debtCost: 0, hasPotion: f
 export function sortCards(cards: Card[], sortBy: SortBy, groupSets: boolean): Card[] {
 	const sortedCards = [...cards];
 	sortedCards.sort((a, b) => {
+		if (a.kind !== b.kind) {
+			return a.kind === CardKind.Landscape ? 1 : -1;
+		}
+
 		if (groupSets) {
 			const setComparison = a.set.localeCompare(b.set);
 			if (setComparison !== 0) return setComparison;
 		}
 
-		if (a.kind !== b.kind) {
-			return a.kind === CardKind.Landscape ? 1 : -1;
-		}
-
 		if (sortBy === SortBy.Cost) {
-			const costComparison = compareParsedCosts(a.cost || ZERO_COST_CARD, b.cost || ZERO_COST_CARD);
+			const costComparison = compareCardCosts(a.cost || ZERO_COST_CARD, b.cost || ZERO_COST_CARD);
 			if (costComparison !== 0) return costComparison;
 		}
 
