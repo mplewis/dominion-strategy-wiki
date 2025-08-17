@@ -6,22 +6,14 @@ export type CardCost = {
 	modifier: "*" | "+" | null;
 };
 
-/** Costless cards have no coin cost listed (not even 0 coins) and cannot be purchased */
-const COSTLESS_CARD: CardCost = {
-	coinCost: null,
-	debtCost: 0,
-	hasPotion: false,
-	modifier: null,
-};
-
 /**
- * Compares two ParsedCost objects for sorting purposes.
+ * Compares two CardCost objects for sorting purposes.
  * Returns negative value if a should come before b, positive if b should come before a, 0 if equal.
  * @param {CardCost} a - First cost to compare
  * @param {CardCost} b - Second cost to compare
  * @returns {number} Comparison result (-1, 0, or 1)
  */
-export function compareParsedCosts(a: CardCost, b: CardCost): number {
+export function compareCardCosts(a: CardCost, b: CardCost): number {
 	if (a.coinCost !== b.coinCost) {
 		if (a.coinCost === null) return -1;
 		if (b.coinCost === null) return 1;
@@ -60,9 +52,12 @@ export function parseCostString(...strings: string[]): CardCost | null {
 	for (const str of strings) {
 		const foundCost = str.match(reCost);
 		if (foundCost) {
-			if (!foundCost.includes("$")) return COSTLESS_CARD;
-
-			const coinCost = foundCost[2] ? Number.parseInt(foundCost[2]) : 0;
+			const hasDollarSign = Boolean(foundCost[1]);
+			const coinCost = (() => {
+				if (!hasDollarSign) return null;
+				if (foundCost[2]) return Number.parseInt(foundCost[2]);
+				return 0;
+			})();
 			const debtCost = foundCost[5] ? Number.parseInt(foundCost[5]) : 0;
 			const hasPotion = foundCost[6] !== undefined;
 			const modifier = (foundCost[3] as "*" | "+" | undefined) ?? null;
