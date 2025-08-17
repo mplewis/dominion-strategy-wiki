@@ -88,7 +88,7 @@ describe("parseCostString", () => {
 		{
 			desc: "cost with no coin amount",
 			input: "cost",
-			expected: { coinCost: 0, debtCost: 0, hasPotion: false, modifier: null },
+			expected: { coinCost: null, debtCost: 0, hasPotion: false, modifier: null },
 		},
 		{
 			desc: "zero cost",

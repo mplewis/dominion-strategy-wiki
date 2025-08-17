@@ -20,7 +20,7 @@ const CARD_LIBRARY = [
 	card("Catapult", CardKind.Card, "02", "cost$03"),
 	card("Temple", CardKind.Card, "02", "cost$04"),
 	card("Archive", CardKind.Card, "02", "cost$05"),
-	card("Arena", CardKind.Landscape, "02", "cost$00"),
+	card("Arena", CardKind.Landscape, "02", "cost"),
 	card("Delve", CardKind.Landscape, "02", "cost$02"),
 	card("Ritual", CardKind.Landscape, "02", "cost$04"),
 
@@ -29,7 +29,7 @@ const CARD_LIBRARY = [
 	card("Alley", CardKind.Card, "03", "cost$04"),
 	card("Gold Mine", CardKind.Card, "03", "cost$05"),
 	card("Samurai", CardKind.Card, "03", "cost$06"),
-	card("Panic", CardKind.Landscape, "03", "cost$00"),
+	card("Panic", CardKind.Landscape, "03", "cost"),
 	card("Amass", CardKind.Landscape, "03", "cost$02"),
 	card("Sea Trade", CardKind.Landscape, "03", "cost$04"),
 ];

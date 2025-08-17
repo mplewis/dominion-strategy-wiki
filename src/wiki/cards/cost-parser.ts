@@ -1,11 +1,17 @@
-/**
- * Represents parsed cost information from a Dominion card cost CSS class
- */
+/** Represents parsed cost information from a Dominion card cost CSS class */
 export type CardCost = {
-	coinCost: number;
+	coinCost: number | null;
 	debtCost: number;
 	hasPotion: boolean;
 	modifier: "*" | "+" | null;
+};
+
+/** Costless cards have no coin cost listed (not even 0 coins) and cannot be purchased */
+const COSTLESS_CARD: CardCost = {
+	coinCost: null,
+	debtCost: 0,
+	hasPotion: false,
+	modifier: null,
 };
 
 /**
@@ -17,6 +23,8 @@ export type CardCost = {
  */
 export function compareParsedCosts(a: CardCost, b: CardCost): number {
 	if (a.coinCost !== b.coinCost) {
+		if (a.coinCost === null) return -1;
+		if (b.coinCost === null) return 1;
 		return a.coinCost - b.coinCost;
 	}
 
@@ -52,6 +60,8 @@ export function parseCostString(...strings: string[]): CardCost | null {
 	for (const str of strings) {
 		const foundCost = str.match(reCost);
 		if (foundCost) {
+			if (!foundCost.includes("$")) return COSTLESS_CARD;
+
 			const coinCost = foundCost[2] ? Number.parseInt(foundCost[2]) : 0;
 			const debtCost = foundCost[5] ? Number.parseInt(foundCost[5]) : 0;
 			const hasPotion = foundCost[6] !== undefined;
