@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "../core/cookies";
+import { getCardSortByCost } from "../core/options";
 import { type CardCost, compareCardCosts, parseCostString } from "./cost-parser";
 
 /** Sort method for card galleries */
@@ -33,7 +33,7 @@ type Sortable = {
 };
 
 /** Registry of all sortable card galleries on the page, keyed by sort ID */
-const sortables: { [key: string]: Sortable } = {};
+const galleries: { [key: string]: Sortable } = {};
 
 /** Dummy card to stand in for cards which are missing data */
 export const ZERO_COST_CARD: CardCost = { coinCost: 0, debtCost: 0, hasPotion: false, modifier: null };
@@ -68,13 +68,13 @@ export function sortCards(cards: Card[], sortBy: SortBy, groupSets: boolean): Ca
 }
 
 /**
- * Sorts card elements within a container by either name or cost.
+ * Sorts card elements within a container by card attributes.
  * Extracts card names and cost information from CSS classes, sorts accordingly,
  * and updates the DOM. Also manages visibility of sort toggle buttons.
  * @param {string} sortid - CSS class identifier for this sortable group
  * @returns {void}
  */
-export function sortSortables(sortid: string): void {
+export function sortGalleries(sortid: string): void {
 	const cards: Card[] = [];
 
 	// Track if all cards have identical cost CSS classes to determine
@@ -90,7 +90,7 @@ export function sortSortables(sortid: string): void {
 	let firstSet: string | undefined;
 
 	// Parse all cards with costs
-	const elems = (sortables[sortid].startsort as Element).querySelectorAll(".cardcost");
+	const elems = (galleries[sortid].startsort as Element).querySelectorAll(".cardcost");
 	for (let i = 0; i < elems.length; i++) {
 		const sortstr = elems[i].querySelector("a")?.title || "";
 		const classList = Array.from(elems[i].classList);
@@ -123,34 +123,34 @@ export function sortSortables(sortid: string): void {
 		cards.push({ kind: cardKind, name: sortstr, set: cardSet, element: elems[i], cost });
 	}
 
-	const sortedCards = sortCards(cards, sortables[sortid].sortby, sortables[sortid].groupsets);
+	const sortedCards = sortCards(cards, galleries[sortid].sortby, galleries[sortid].groupsets);
 
 	for (let i = 0; i < sortedCards.length; i++) {
-		(sortables[sortid].startsort as Element).insertBefore(sortedCards[i].element as Node, null);
+		(galleries[sortid].startsort as Element).insertBefore(sortedCards[i].element as Node, null);
 	}
 	if (allCardsHaveSameCost) {
-		(sortables[sortid].sortbyname as HTMLElement).style.display = "none";
-		(sortables[sortid].sortbycost as HTMLElement).style.display = "none";
+		(galleries[sortid].sortbyname as HTMLElement).style.display = "none";
+		(galleries[sortid].sortbycost as HTMLElement).style.display = "none";
 	} else {
-		if (sortables[sortid].sortby === SortBy.Name) {
-			(sortables[sortid].sortbyname as HTMLElement).classList.add("switchsort-active");
-			(sortables[sortid].sortbyname as HTMLElement).style.cursor = "default";
-			(sortables[sortid].sortbycost as HTMLElement).classList.remove("switchsort-active");
-			(sortables[sortid].sortbycost as HTMLElement).style.cursor = "pointer";
+		if (galleries[sortid].sortby === SortBy.Name) {
+			(galleries[sortid].sortbyname as HTMLElement).classList.add("switchsort-active");
+			(galleries[sortid].sortbyname as HTMLElement).style.cursor = "default";
+			(galleries[sortid].sortbycost as HTMLElement).classList.remove("switchsort-active");
+			(galleries[sortid].sortbycost as HTMLElement).style.cursor = "pointer";
 		} else {
-			(sortables[sortid].sortbyname as HTMLElement).classList.remove("switchsort-active");
-			(sortables[sortid].sortbyname as HTMLElement).style.cursor = "pointer";
-			(sortables[sortid].sortbycost as HTMLElement).classList.add("switchsort-active");
-			(sortables[sortid].sortbycost as HTMLElement).style.cursor = "default";
+			(galleries[sortid].sortbyname as HTMLElement).classList.remove("switchsort-active");
+			(galleries[sortid].sortbyname as HTMLElement).style.cursor = "pointer";
+			(galleries[sortid].sortbycost as HTMLElement).classList.add("switchsort-active");
+			(galleries[sortid].sortbycost as HTMLElement).style.cursor = "default";
 		}
 	}
 	if (allCardsHaveSameSet) {
-		sortables[sortid].sortbyset.style.display = "none";
+		galleries[sortid].sortbyset.style.display = "none";
 	} else {
-		if (sortables[sortid].groupsets) {
-			(sortables[sortid].sortbyset as HTMLElement).classList.add("switchsort-active");
+		if (galleries[sortid].groupsets) {
+			(galleries[sortid].sortbyset as HTMLElement).classList.add("switchsort-active");
 		} else {
-			(sortables[sortid].sortbyset as HTMLElement).classList.remove("switchsort-active");
+			(galleries[sortid].sortbyset as HTMLElement).classList.remove("switchsort-active");
 		}
 	}
 }
@@ -162,7 +162,9 @@ export function sortSortables(sortid: string): void {
  * @returns {void}
  */
 export function startSort(e: Event): void {
+	/** CSS class indicating which sort button was clicked (e.g., "sortbyname", "sortbycost", "sortbyset") */
 	let sortby = "";
+	/** CSS class indicating which gallery container this applies to (e.g., "sortid1", "sortid2") */
 	let sortid = "";
 	for (let i = 0; i < (e.target as Element).classList.length; i++) {
 		const re = /^sortby/i;
@@ -178,23 +180,23 @@ export function startSort(e: Event): void {
 	}
 	let changed = false;
 	if (sortby === "sortbyname") {
-		if (sortables[sortid].sortby !== SortBy.Name) {
-			sortables[sortid].sortby = SortBy.Name;
+		if (galleries[sortid].sortby !== SortBy.Name) {
+			galleries[sortid].sortby = SortBy.Name;
 			changed = true;
 		}
 	}
 	if (sortby === "sortbycost") {
-		if (sortables[sortid].sortby !== SortBy.Cost) {
-			sortables[sortid].sortby = SortBy.Cost;
+		if (galleries[sortid].sortby !== SortBy.Cost) {
+			galleries[sortid].sortby = SortBy.Cost;
 			changed = true;
 		}
 	}
 	if (sortby === "sortbyset") {
-		sortables[sortid].groupsets = !sortables[sortid].groupsets;
+		galleries[sortid].groupsets = !galleries[sortid].groupsets;
 		changed = true;
 	}
 	if (changed) {
-		sortSortables(sortid);
+		sortGalleries(sortid);
 	}
 }
 
@@ -205,7 +207,7 @@ export function startSort(e: Event): void {
  * initial sorting based on the current cookie value.
  * @returns {void}
  */
-export function initSorting(): void {
+export async function initSorting(): Promise<void> {
 	const elems = document.querySelectorAll(".startsort");
 	for (let i = 0; i < elems.length; i++) {
 		let sortid = "";
@@ -217,18 +219,18 @@ export function initSorting(): void {
 			}
 		}
 
-		if (sortables[sortid] != null) {
+		if (galleries[sortid] != null) {
 			/* If we got here, there are multiple galleries with the same sorting id. */
 			continue;
 		}
 
-		const cookieVal = getCookie("cardsortby");
-		const sortby = cookieVal === "" ? SortBy.Name : Number.parseInt(cookieVal);
+		const sortByCost = await getCardSortByCost();
+		const sortby = sortByCost ? SortBy.Cost : SortBy.Name;
 		const sortbyname = document.querySelectorAll(`.sortbyname.${sortid}`);
 		const sortbycost = document.querySelectorAll(`.sortbycost.${sortid}`);
 		const sortbyset = document.querySelectorAll(`.sortbyset.${sortid}`);
 		const startsort = document.querySelectorAll(`.startsort.${sortid}`);
-		sortables[sortid] = {
+		galleries[sortid] = {
 			sortbyname: sortbyname[0] as HTMLElement,
 			sortbycost: sortbycost[0] as HTMLElement,
 			sortbyset: sortbyset[0] as HTMLElement,
@@ -241,37 +243,22 @@ export function initSorting(): void {
 		sortbyset[0].addEventListener("click", startSort);
 		(sortbyset[0] as HTMLElement).style.cursor = "pointer";
 	}
-	for (const sortid in sortables) {
-		sortSortables(sortid);
+	for (const sortid in galleries) {
+		sortGalleries(sortid);
 	}
 }
 
 /**
- * Applies card sorting preference by programmatically clicking appropriate sort buttons.
- * @param {string|number} curVal - Sort preference: SortBy.Name for name, SortBy.Cost for cost
+ * Applies card sorting preference to all galleries.
+ * @param curVal - Sort preference: SortBy.Name for name, SortBy.Cost for cost
  * @returns {void}
  */
-export function setCardSortBy(curVal: string | number): void {
-	const actualVal = (typeof curVal === "string" ? Number.parseInt(curVal) : curVal) as SortBy;
-	for (const sortid in sortables) {
-		if (sortables[sortid].sortby !== actualVal) {
-			sortables[sortid].sortby = actualVal;
-			sortSortables(sortid);
+export function applyCardSortByCost(byCost: boolean): void {
+	const sortBy = byCost ? SortBy.Cost : SortBy.Name;
+	for (const sortid in galleries) {
+		if (galleries[sortid].sortby !== sortBy) {
+			galleries[sortid].sortby = sortBy;
+			sortGalleries(sortid);
 		}
 	}
-}
-
-/**
- * Event handler for the card sort preference checkbox. Updates sorting method
- * between alphabetical and cost-based, saves preference to cookie.
- * @returns {void}
- */
-export function changeCardSortBy(): void {
-	const optionInput = document.querySelector("#cardGallerySorter");
-	let curVal = SortBy.Name;
-	if ((optionInput as HTMLInputElement)?.checked) {
-		curVal = SortBy.Cost;
-	}
-	setCookie("cardsortby", curVal);
-	setCardSortBy(curVal);
 }
