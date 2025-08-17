@@ -15,6 +15,7 @@ export type CardCost = {
  */
 export function compareCardCosts(a: CardCost, b: CardCost): number {
 	if (a.coinCost !== b.coinCost) {
+		// Costless cards are sorted before zero-cost cards
 		if (a.coinCost === null) return -1;
 		if (b.coinCost === null) return 1;
 		return a.coinCost - b.coinCost;
