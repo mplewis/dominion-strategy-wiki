@@ -21,23 +21,35 @@ export function getNewSize(width: number): number {
  * @returns {void}
  */
 export function applyBlackBorder(bSize: number): void {
+	console.debug(`[applyBlackBorder] Applying black border with size: ${bSize}`);
 	// TODO: We don't really have to go through all images. If we fix this selector, we could just visit the card images.
 	const imgs = document.querySelectorAll("img");
+	console.debug(`[applyBlackBorder] Found ${imgs.length} images to process`);
 	for (let i = 0; i < imgs.length; i++) {
 		const elem = imgs[i];
 		const newSize = getNewSize(elem.offsetWidth);
-		if (newSize <= 0) continue;
+		console.debug(`[applyBlackBorder] Image ${i}: width=${elem.offsetWidth}, newSize=${newSize}`);
+		if (newSize <= 0) {
+			console.debug(`[applyBlackBorder] Skipping image ${i} - newSize <= 0`);
+			continue;
+		}
 
 		const actualSize = bSize === 0 ? 0 : newSize;
+		console.debug(
+			`[applyBlackBorder] Image ${i}: actualSize=${actualSize}, parent className=${elem.parentElement?.className}`,
+		);
 		if (elem.parentElement?.className !== "cardborderchanger") {
+			console.debug(`[applyBlackBorder] Creating new cardborderchanger wrapper for image ${i}`);
 			elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${actualSize}px; border-radius:${
 				actualSize - 1
 			}px; background:black;">${elem.outerHTML}</span>`;
 		} else if (elem.parentElement?.className === "cardborderchanger") {
+			console.debug(`[applyBlackBorder] Updating existing cardborderchanger for image ${i}`);
 			(elem.parentElement as HTMLElement).style.padding = `${actualSize}px`;
 			(elem.parentElement as HTMLElement).style.borderRadius = `${actualSize - 1}px`;
 		}
 	}
+	console.debug(`[applyBlackBorder] Completed processing all images`);
 }
 
 /**
