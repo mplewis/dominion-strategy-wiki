@@ -1,43 +1,23 @@
 // Card modules
-import { changeBorder, setBlackBorder } from "../cards/borders";
-import { setNavboxImages, toggleNavboxImages } from "../cards/images";
-import { fixCardPopups } from "../cards/popups";
-import { changeCardSortBy, initSorting, setCardSortBy } from "../cards/sorting";
-
-import { addExpansionSidebarLinks, setSidebarExpansions, toggleSidebarExpansions } from "../navigation/expansions";
-// Navigation modules
-import { addSiteOption } from "../navigation/preferences";
-import { clickThings } from "../navigation/sidebar";
+import { initCardPopups } from "../cards/popups";
+import { initSorting } from "../cards/sorting";
+import { addExpansionSidebarLinks } from "../navigation/expansions";
+import { expandAllCardsElements } from "../navigation/sidebar";
+import { initSiteOptions, triggerAllSiteOptions } from "./options";
 
 /**
  * Main initialization function that sets up all wiki functionality.
  * Creates user preference checkboxes, initializes card popups, sorting, expansion links,
  * and applies saved user preferences from cookies.
- * @returns {void}
+ * @returns Promise that resolves when initialization is complete
  */
-export function initCommon(): void {
-	addSiteOption("cardsortby", "cardGallerySorter", "Sort by Cost:", 0, changeCardSortBy, setCardSortBy);
-	addSiteOption("cardbordersize", "cardBorderChanger", "Card Border:", 0, changeBorder, setBlackBorder);
-	fixCardPopups();
-	addSiteOption(
-		"hoverinsidecollapsibles",
-		"hoverInsideCollapsibles",
-		"Navbox Images:",
-		0,
-		toggleNavboxImages,
-		setNavboxImages,
-	);
-	setNavboxImages("cookie");
-	addSiteOption(
-		"showexpansions",
-		"showExpansionsChanger",
-		"Show Expansions:",
-		1,
-		toggleSidebarExpansions,
-		setSidebarExpansions,
-	);
+export async function initCommon(): Promise<void> {
+	initCardPopups();
+
+	await initSiteOptions();
 	addExpansionSidebarLinks();
-	setSidebarExpansions("cookie");
+	await triggerAllSiteOptions();
+
 	initSorting();
-	clickThings();
+	expandAllCardsElements();
 }

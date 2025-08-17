@@ -27,7 +27,7 @@ export function fixCardPopup(e: Event | HTMLElement): void {
  * Processes both link and image elements within card popups.
  * @returns {void}
  */
-export function fixCardPopups(): void {
+export function initCardPopups(): void {
 	let elems = document.querySelectorAll(".card-popup > a");
 	for (let i = 0; i < elems.length; i++) {
 		(elems[i] as HTMLAnchorElement).title = "";
