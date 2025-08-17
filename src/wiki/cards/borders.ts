@@ -1,17 +1,29 @@
-import { SIZE_MAPPINGS } from "../core/config";
-import { getCardBorderEnabled } from "../core/options";
+import { BORDER_SIZE_ENABLED, SIZE_MAPPINGS } from "../core/config";
+import { getCookie, setCookie } from "../core/cookies";
 
 /**
  * Calculates the appropriate border padding size based on image width.
  * Maps specific image widths to corresponding border padding values for card styling.
  * @param {number} width - The width of the image in pixels
- * @returns {number} The padding size in pixels
+ * @returns {number} The padding size in pixels, or 0 if width doesn't match predefined sizes
  */
 export function getNewSize(width: number): number {
-	for (const { size, padding } of SIZE_MAPPINGS) {
-		if (width <= size) return padding;
+	return SIZE_MAPPINGS[width as keyof typeof SIZE_MAPPINGS] || 0;
+}
+
+/**
+ * Event handler for the card border checkbox. Toggles black borders around card images
+ * and saves the preference as a cookie with a 1-year expiration.
+ * @returns {void}
+ */
+export function changeBorder(): void {
+	const optionInput = document.querySelector("#cardBorderChanger");
+	let curVal = 0;
+	if ((optionInput as HTMLInputElement)?.checked) {
+		curVal = BORDER_SIZE_ENABLED;
 	}
-	return 0;
+	setCookie("cardbordersize", curVal);
+	setBlackBorder(curVal);
 }
 
 /**
@@ -20,22 +32,22 @@ export function getNewSize(width: number): number {
  * @param {number} bSize - Border size setting (0 = no border, >0 = show border)
  * @returns {void}
  */
-export function applyBlackBorder(bSize: number): void {
-	// TODO: We don't really have to go through all images. If we fix this selector, we could just visit the card images.
-	const imgs = document.querySelectorAll("img");
-	for (let i = 0; i < imgs.length; i++) {
-		const elem = imgs[i];
+export function setBlackBorder(bSize: number | string): void {
+	const actualBSize = typeof bSize === "string" ? Number.parseInt(bSize) : bSize;
+	const elems = document.querySelectorAll("img");
+	for (let i = 0; i < elems.length; i++) {
+		const elem = elems[i];
 		const newSize = getNewSize(elem.offsetWidth);
-		if (newSize <= 0) continue;
-
-		const actualSize = bSize === 0 ? 0 : newSize;
-		if (elem.parentElement?.className !== "cardborderchanger") {
-			elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${actualSize}px; border-radius:${
-				actualSize - 1
-			}px; background:black;">${elem.outerHTML}</span>`;
-		} else if (elem.parentElement?.className === "cardborderchanger") {
-			(elem.parentElement as HTMLElement).style.padding = `${actualSize}px`;
-			(elem.parentElement as HTMLElement).style.borderRadius = `${actualSize - 1}px`;
+		if (newSize > 0) {
+			const actualSize = actualBSize === 0 ? 0 : newSize;
+			if (elem.parentElement?.className !== "cardborderchanger") {
+				elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${actualSize}px; border-radius:${
+					actualSize - 1
+				}px; background:black;">${elem.outerHTML}</span>`;
+			} else if (elem.parentElement?.className === "cardborderchanger") {
+				(elem.parentElement as HTMLElement).style.padding = `${actualSize}px`;
+				(elem.parentElement as HTMLElement).style.borderRadius = `${actualSize - 1}px`;
+			}
 		}
 	}
 }
@@ -46,22 +58,20 @@ export function applyBlackBorder(bSize: number): void {
  * @param {Event} e - The mouse event (typically mouseover)
  * @returns {void}
  */
-export async function initBlackBorder(e: Event): Promise<void> {
+export function initBlackBorder(e: Event): void {
 	const elem = (e.target as Element)?.parentElement?.parentElement?.querySelector("img") as HTMLImageElement;
-	if (!elem) return;
-
-	const enabled = await getCardBorderEnabled();
-	if (!enabled) return;
-
-	const newSize = getNewSize(elem.offsetWidth);
-	if (newSize <= 0) return;
-
-	if (elem.parentElement?.className !== "cardborderchanger") {
-		elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${
-			newSize - 1
-		}px; background:black;">${elem.outerHTML}</span>`;
-	} else if (elem.parentElement?.className === "cardborderchanger") {
-		(elem.parentElement as HTMLElement).style.padding = `${newSize}px`;
-		(elem.parentElement as HTMLElement).style.borderRadius = `${newSize - 1}px`;
+	const curVal = getCookie("cardbordersize");
+	if (Number.parseInt(curVal) > 0 && elem) {
+		const newSize = getNewSize(elem.offsetWidth);
+		if (newSize > 0) {
+			if (elem.parentElement?.className !== "cardborderchanger") {
+				elem.outerHTML = `<span class="cardborderchanger" style="display:inline-block; padding:${newSize}px; border-radius:${
+					newSize - 1
+				}px; background:black;">${elem.outerHTML}</span>`;
+			} else if (elem.parentElement?.className === "cardborderchanger") {
+				(elem.parentElement as HTMLElement).style.padding = `${newSize}px`;
+				(elem.parentElement as HTMLElement).style.borderRadius = `${newSize - 1}px`;
+			}
+		}
 	}
 }
