@@ -1,2 +1,3 @@
 - always use pnpm and pnpx, not npm or npx
 - when finishing a task, run pnpm tidy to autoformat all files
+- Don't write HTML, JS, CSS templates directly into files. Write them into templates and read the templates from the filesystem.
