@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import api from "./api";
 import { ContentFrame, ErrorAlert, LoadingSpinner, Navigation } from "./components";
 import { useWebSocket } from "./hooks/useWebSocket";
-import type { CardSet, WikiPageData } from "./types";
+import type { WikiPageData } from "./types";
 
 /** Cookie name for storing the last selected card set */
 const SELECTED_SET_COOKIE = "dominion_selected_set";
@@ -48,7 +48,7 @@ const ContentWrapper = styled.div`
 
 /** Main application component */
 const App = () => {
-	const [cardSets, setCardSets] = useState<CardSet[]>([]);
+	const [cardSets, setCardSets] = useState<string[]>([]);
 	const [selectedSet, setSelectedSet] = useState<string>("");
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string>("");
@@ -86,10 +86,10 @@ const App = () => {
 
 			// Try to restore the last selected set from cookie
 			const savedSet = getCookie(SELECTED_SET_COOKIE);
-			if (savedSet && sets.some((set) => set.id === savedSet)) {
+			if (savedSet && sets.some((set) => set === savedSet)) {
 				setSelectedSet(savedSet);
 			} else if (sets.length > 0) {
-				setSelectedSet(sets[0].id);
+				setSelectedSet(sets[0]);
 			}
 		} catch (err) {
 			setError(`Failed to load card sets: ${err instanceof Error ? err.message : String(err)}`);

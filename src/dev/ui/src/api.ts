@@ -1,4 +1,4 @@
-import type { CardSet, WikiPageData } from "./types";
+import type { WikiPageData } from "./types";
 
 /** Base URL for API endpoints */
 const API_BASE = "/api";
@@ -19,23 +19,9 @@ class ApiService {
 		return result.data;
 	}
 
-	/** Makes a DELETE request to the API and returns typed data */
-	async delete<T>(endpoint: string): Promise<T> {
-		const response = await fetch(`${API_BASE}${endpoint}`, { method: "DELETE" });
-		if (!response.ok) {
-			const error = await response.json().catch(() => ({ error: "Network error" }));
-			throw new Error(error.error || `HTTP ${response.status}`);
-		}
-		const result = await response.json();
-		if (!result.success) {
-			throw new Error(result.error || "API error");
-		}
-		return result.data || result.message;
-	}
-
 	/** Fetches all available card sets */
-	async getCardSets(): Promise<CardSet[]> {
-		return this.get<CardSet[]>("/card-sets");
+	async getCardSets(): Promise<string[]> {
+		return this.get<string[]>("/card-sets");
 	}
 
 	/** Fetches processed wiki page data for a card set */

@@ -4,9 +4,9 @@ import * as cheerio from "cheerio";
 import cacheService from "./cache.js";
 
 /** Base URL for the Dominion Strategy Wiki */
-const WIKI_URL = "https://wiki.dominionstrategy.com";
+export const WIKI_URL = "https://wiki.dominionstrategy.com";
 /** User agent string sent with HTTP requests */
-const USER_AGENT = "Dominion Wiki Dev Scraper (https://github.com/mplewis/dominion-strategy-wiki)";
+export const USER_AGENT = "Dominion Wiki Dev Scraper (https://github.com/mplewis/dominion-strategy-wiki)";
 /** Request timeout in milliseconds (30 seconds) */
 const REQUEST_TIMEOUT = 30000;
 
@@ -31,7 +31,6 @@ export enum ExtractGoal {
  * Value:
  * 	 - page: Wiki page name used in URLs (e.g., "Dark_Ages")
  *   - fullContent: If true, extract the full page content. If unset, extract only the "Cards gallery" section.
- * TODO: Merge this with EXPANSION_LINKS
  */
 export const CARD_SETS: Record<string, { page: string; extract: ExtractGoal }> = {
 	"Base Set": { page: "Dominion_(Base_Set)", extract: ExtractGoal.cardsGallery },
@@ -50,6 +49,7 @@ export const CARD_SETS: Record<string, { page: string; extract: ExtractGoal }> =
 	Allies: { page: "Allies", extract: ExtractGoal.cardsGallery },
 	Plunder: { page: "Plunder_(expansion)", extract: ExtractGoal.cardsGallery },
 	"Rising Sun": { page: "Rising_Sun", extract: ExtractGoal.cardsGallery },
+	Promos: { page: "Promo", extract: ExtractGoal.cardsGallery },
 	"All Cards": { page: "Legacy_All_Cards_Navbox", extract: ExtractGoal.pageContent },
 };
 
@@ -204,15 +204,6 @@ export function getCardSetInfo(displayName: string): { name: string; url: string
 		name: displayName,
 		url: `${WIKI_URL}/index.php/${page}`,
 	};
-}
-
-/**
- * Gets all available card sets with their display names and URLs
- * @returns Array of card set objects with id, name, and url
- * TODO: This function is useless, delete it
- */
-export function getAvailableCardSets(): Array<{ id: string; name: string; url: string }> {
-	return Object.keys(CARD_SETS).map((name) => ({ name, id: name, url: `${WIKI_URL}/index.php/${CARD_SETS[name]}` }));
 }
 
 /**
