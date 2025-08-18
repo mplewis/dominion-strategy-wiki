@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import type React from "react";
-import type { CardSet } from "../types";
 import { StatusIndicator } from "./StatusIndicator";
 
 /** Main navigation container with shadow */
@@ -82,7 +81,7 @@ const Button = styled.button<{ disabled?: boolean }>`
 /** Props for the Navigation component */
 interface NavigationProps {
 	selectedSet: string;
-	cardSets: CardSet[];
+	cardSets: string[];
 	loading: boolean;
 	wsConnected: boolean;
 	connectionError: string | null;
@@ -111,8 +110,8 @@ export const Navigation: React.FC<NavigationProps> = ({
 					<Select value={selectedSet} onChange={(e) => onSetChange(e.target.value)} disabled={loading}>
 						<option value="">Select card set...</option>
 						{cardSets.map((set) => (
-							<option key={set.id} value={set.id}>
-								{set.name}
+							<option key={set} value={set}>
+								{set}
 							</option>
 						))}
 					</Select>

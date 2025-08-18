@@ -4,7 +4,7 @@ import type { Request, Response } from "express";
 import { log } from "../logging.js";
 import cacheService from "./services/cache.js";
 import { processWikiPage } from "./services/injector.js";
-import { CARD_SETS, getAvailableCardSets, getWikiPageBySetId } from "./services/scraper.js";
+import { CARD_SETS, getWikiPageBySetId } from "./services/scraper.js";
 
 /**
  * Mounts all API routes on the provided Express application
@@ -13,8 +13,7 @@ import { CARD_SETS, getAvailableCardSets, getWikiPageBySetId } from "./services/
 export function mountRoutes(app: express.Application) {
 	// Get available card sets
 	app.get("/api/card-sets", (_req: Request, res: Response) => {
-		const cardSets = getAvailableCardSets();
-		res.json({ success: true, data: cardSets });
+		res.json({ success: true, data: Object.keys(CARD_SETS) });
 	});
 
 	// Get wiki page content by set ID
