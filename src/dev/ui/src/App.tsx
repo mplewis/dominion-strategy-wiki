@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useCallback, useEffect, useState } from "react";
-import api from "./api";
+import { getCardSets, getWikiPage } from "./api";
 import { ContentFrame, ErrorAlert, LoadingSpinner, Navigation } from "./components";
 import { useWebSocket } from "./hooks/useWebSocket";
 import type { WikiPageData } from "./types";
@@ -81,7 +81,7 @@ const App = () => {
 
 	const loadCardSets = useCallback(async () => {
 		try {
-			const sets = await api.getCardSets();
+			const sets = await getCardSets();
 			setCardSets(sets);
 
 			// Try to restore the last selected set from cookie
@@ -104,7 +104,7 @@ const App = () => {
 			setError("");
 
 			try {
-				const processed = await api.getWikiPage(selectedSet, forceRefresh);
+				const processed = await getWikiPage(selectedSet, forceRefresh);
 				setPageData(processed);
 			} catch (err) {
 				setError(`Failed to load page data: ${err instanceof Error ? err.message : String(err)}`);
