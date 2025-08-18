@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Chariot Race.jpg|200px]]</div>
+
+'''[[Chariot Race]]''' is an [[Action]] card from {{Set|Empires}}. It gives +1 Action and +1 Card, then has you and the player to your left reveal the top cards of your decks. If your revealed card costs more than theirs, you gain {{Costplus|1}} and {{VP|+1}} token. The opponent's revealed card stays on top of their deck, meaning all subsequent Chariot Races that turn compete against the same revealed card. This makes Chariot Race both a [[cantrip]] and a source of [[alt-VP]] and [[virtual coin]].
+
+Even if your opponent tries to buy out the Chariot Race pile early, you can often "win the split" by focusing on raising the average cost of your deck. It's particularly important to trash {{Cost|0}} cards as they are a serious liability when on top of your deck. [[Deck inspector]]s such as {{Card|Cartographer}} are particularly valuable for setting up winning reveals, allowing you to arrange multiple expensive cards on top of your deck.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>
