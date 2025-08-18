@@ -21,8 +21,7 @@ export function getNewSize(width: number): number {
  * @returns {void}
  */
 export function applyBlackBorder(bSize: number): void {
-	// TODO: We don't really have to go through all images. If we fix this selector, we could just visit the card images.
-	const imgs = document.querySelectorAll("img");
+	const imgs = document.querySelectorAll(".cardcost img") as NodeListOf<HTMLImageElement>;
 	for (let i = 0; i < imgs.length; i++) {
 		const elem = imgs[i];
 		const newSize = getNewSize(elem.offsetWidth);

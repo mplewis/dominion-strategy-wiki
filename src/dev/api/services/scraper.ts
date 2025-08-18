@@ -20,29 +20,59 @@ export interface WikiPageData {
 	url: string;
 }
 
+export enum ExtractGoal {
+	pageContent = "PAGE_CONTENT",
+	cardsGallery = "CARDS_GALLERY",
+}
+
 /**
  * Map of display names to wiki page names for Dominion card sets
  * Key: Human-readable display name (e.g., "Dark Ages")
- * Value: Wiki page name used in URLs (e.g., "Dark_Ages")
+ * Value:
+ * 	 - page: Wiki page name used in URLs (e.g., "Dark_Ages")
+ *   - fullContent: If true, extract the full page content. If unset, extract only the "Cards gallery" section.
+ * TODO: Merge this with EXPANSION_LINKS
  */
-export const CARD_SETS: Record<string, string> = {
-	"Base Set": "Dominion_(Base_Set)",
-	Intrigue: "Intrigue",
-	Seaside: "Seaside",
-	Alchemy: "Alchemy",
-	Prosperity: "Prosperity",
-	"Cornucopia & Guilds": "Cornucopia_%26_Guilds",
-	Hinterlands: "Hinterlands",
-	"Dark Ages": "Dark_Ages",
-	Adventures: "Adventures",
-	Empires: "Empires",
-	Nocturne: "Nocturne",
-	Renaissance: "Renaissance",
-	Menagerie: "Menagerie_(expansion)",
-	Allies: "Allies",
-	Plunder: "Plunder_(expansion)",
-	"Rising Sun": "Rising_Sun",
+export const CARD_SETS: Record<string, { page: string; extract: ExtractGoal }> = {
+	"Base Set": { page: "Dominion_(Base_Set)", extract: ExtractGoal.cardsGallery },
+	Intrigue: { page: "Intrigue", extract: ExtractGoal.cardsGallery },
+	Seaside: { page: "Seaside", extract: ExtractGoal.cardsGallery },
+	Alchemy: { page: "Alchemy", extract: ExtractGoal.cardsGallery },
+	Prosperity: { page: "Prosperity", extract: ExtractGoal.cardsGallery },
+	"Cornucopia & Guilds": { page: "Cornucopia_%26_Guilds", extract: ExtractGoal.cardsGallery },
+	Hinterlands: { page: "Hinterlands", extract: ExtractGoal.cardsGallery },
+	"Dark Ages": { page: "Dark_Ages", extract: ExtractGoal.cardsGallery },
+	Adventures: { page: "Adventures", extract: ExtractGoal.cardsGallery },
+	Empires: { page: "Empires", extract: ExtractGoal.cardsGallery },
+	Nocturne: { page: "Nocturne", extract: ExtractGoal.cardsGallery },
+	Renaissance: { page: "Renaissance", extract: ExtractGoal.cardsGallery },
+	Menagerie: { page: "Menagerie_(expansion)", extract: ExtractGoal.cardsGallery },
+	Allies: { page: "Allies", extract: ExtractGoal.cardsGallery },
+	Plunder: { page: "Plunder_(expansion)", extract: ExtractGoal.cardsGallery },
+	"Rising Sun": { page: "Rising_Sun", extract: ExtractGoal.cardsGallery },
+	"All Cards": { page: "Legacy_All_Cards_Navbox", extract: ExtractGoal.pageContent },
 };
+
+/** Extracts the full page body content from the #content div */
+export function extractPageBodySection(htmlContent: string): string {
+	const $ = cheerio.load(htmlContent);
+
+	const contentDiv = $("#content");
+	if (contentDiv.length === 0) {
+		throw new Error("Content section (#content) not found in wiki page");
+	}
+
+	return `<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Page Content</title>
+</head>
+<body>
+	${contentDiv.html()}
+</body>
+</html>`;
+}
 
 /** Extracts only the "Cards gallery" section from wiki HTML content */
 export function extractCardsGallerySection(htmlContent: string): string {
@@ -90,19 +120,14 @@ export function extractCardsGallerySection(htmlContent: string): string {
 	// Create a new cheerio instance to process the extracted content and fix image URLs
 	const $content = cheerio.load(`<div>${content}</div>`);
 
-	// Convert relative image URLs to absolute URLs
+	// Convert relative image URLs to local proxy URLs
 	$content("img").each((_i, img) => {
 		const $img = $content(img);
 		const src = $img.attr("src");
-		const srcset = $img.attr("srcset");
 
-		if (src?.startsWith("/")) {
+		// Redirect non-image resources to pull directly from the wiki
+		if (!src?.startsWith("/images/")) {
 			$img.attr("src", `${WIKI_URL}${src}`);
-		}
-
-		if (srcset) {
-			const fixedSrcset = srcset.replace(/\/images\/[^\s,]+/g, (match) => `${WIKI_URL}${match}`);
-			$img.attr("srcset", fixedSrcset);
 		}
 	});
 
@@ -123,9 +148,6 @@ export function extractCardsGallerySection(htmlContent: string): string {
 <head>
 	<meta charset="utf-8">
 	<title>Cards Gallery</title>
-	<style>
-		body { font-family: Arial, sans-serif; margin: 20px; }
-	</style>
 </head>
 <body>
 	${processedContent}
@@ -138,24 +160,28 @@ export function extractCardsGallerySection(htmlContent: string): string {
  * @param url - Full URL to the wiki page
  * @param forceRefresh - If true, bypasses cache and fetches fresh content
  * @returns Promise containing the extracted Cards gallery content
+ * TODO: Remove defaults from this method
  */
-export async function fetchWikiPage(url: string, forceRefresh = false): Promise<WikiPageData> {
+export async function fetchWikiPage(
+	url: string,
+	extractGoal: ExtractGoal,
+	forceRefresh = false,
+): Promise<WikiPageData> {
 	if (!forceRefresh) {
 		const cached = await cacheService.getPageCache(url);
-		if (cached) {
-			return cached;
-		}
+		if (cached) return cached;
 	}
 
 	const response: AxiosResponse<string> = await axios.get(url, {
-		headers: {
-			"User-Agent": USER_AGENT,
-		},
+		headers: { "User-Agent": USER_AGENT },
 		timeout: REQUEST_TIMEOUT,
 	});
 
 	const fullContent = response.data;
-	const cardsGalleryContent = extractCardsGallerySection(fullContent);
+	const cardsGalleryContent =
+		extractGoal === ExtractGoal.cardsGallery
+			? extractCardsGallerySection(fullContent)
+			: extractPageBodySection(fullContent);
 	const cacheResult = await cacheService.setPageCache(url, cardsGalleryContent);
 
 	return {
@@ -171,25 +197,22 @@ export async function fetchWikiPage(url: string, forceRefresh = false): Promise<
  * @returns Object with name and URL, or null if not found
  */
 export function getCardSetInfo(displayName: string): { name: string; url: string } | null {
-	const pageId = CARD_SETS[displayName];
-	if (!pageId) return null;
+	const { page } = CARD_SETS[displayName];
+	if (!page) return null;
 
 	return {
 		name: displayName,
-		url: `${WIKI_URL}/index.php/${pageId}`,
+		url: `${WIKI_URL}/index.php/${page}`,
 	};
 }
 
 /**
  * Gets all available card sets with their display names and URLs
  * @returns Array of card set objects with id, name, and url
+ * TODO: This function is useless, delete it
  */
 export function getAvailableCardSets(): Array<{ id: string; name: string; url: string }> {
-	return Object.keys(CARD_SETS).map((displayName) => ({
-		id: displayName,
-		name: displayName,
-		url: `${WIKI_URL}/index.php/${CARD_SETS[displayName]}`,
-	}));
+	return Object.keys(CARD_SETS).map((name) => ({ name, id: name, url: `${WIKI_URL}/index.php/${CARD_SETS[name]}` }));
 }
 
 /**
@@ -198,11 +221,15 @@ export function getAvailableCardSets(): Array<{ id: string; name: string; url: s
  * @param forceRefresh - If true, bypasses cache and fetches fresh content
  * @returns Promise containing the extracted Cards gallery content
  */
-export async function getWikiPageBySetId(displayName: string, forceRefresh = false): Promise<WikiPageData> {
+export async function getWikiPageBySetId(
+	displayName: string,
+	extractGoal: ExtractGoal,
+	forceRefresh = false,
+): Promise<WikiPageData> {
 	const cardSet = getCardSetInfo(displayName);
 	if (!cardSet) {
 		throw new Error(`Unknown card set: ${displayName}`);
 	}
 
-	return fetchWikiPage(cardSet.url, forceRefresh);
+	return fetchWikiPage(cardSet.url, extractGoal, forceRefresh);
 }

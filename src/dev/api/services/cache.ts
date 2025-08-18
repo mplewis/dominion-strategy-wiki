@@ -28,6 +28,8 @@ const CACHE_EXPIRY_DAYS = 7;
 interface CacheMetadata {
 	/** Map of cache keys to page cache entries */
 	pages: Record<string, CacheEntry>;
+	/** Map of cache keys to image cache entries */
+	images: Record<string, CacheEntry>;
 	/** ISO timestamp of when the cache was first created */
 	created: string;
 }
@@ -63,12 +65,18 @@ class CacheService {
 	async init(): Promise<void> {
 		await fs.mkdir(CACHE_DIR, { recursive: true });
 		await fs.mkdir(path.join(CACHE_DIR, "html"), { recursive: true });
+		await fs.mkdir(path.join(CACHE_DIR, "images"), { recursive: true });
 
 		try {
 			const metaContent = await fs.readFile(META_FILE, "utf8");
 			this.meta = JSON.parse(metaContent);
+			// Ensure images field exists for backward compatibility
+			if (this.meta && !this.meta.images) {
+				this.meta.images = {};
+				await this.saveMeta();
+			}
 		} catch (_error) {
-			this.meta = { pages: {}, created: new Date().toISOString() };
+			this.meta = { pages: {}, images: {}, created: new Date().toISOString() };
 			await this.saveMeta();
 		}
 	}
@@ -139,6 +147,54 @@ class CacheService {
 		await this.saveMeta();
 
 		return { key, timestamp };
+	}
+
+	/**
+	 * Retrieves a cached image by URL if it exists and hasn't expired
+	 * @param url - The URL of the image to retrieve from cache
+	 * @returns The image file path or null if not found or expired
+	 */
+	async getImageCache(url: string): Promise<string | null> {
+		const key = this.generateCacheKey(url);
+		const cacheInfo = this.meta?.images[key];
+		if (!cacheInfo || this.isExpired(cacheInfo.timestamp)) return null;
+
+		try {
+			// Determine file extension from URL or use .bin as fallback
+			const urlParts = url.split(".");
+			const extension = urlParts.length > 1 ? urlParts[urlParts.length - 1] : "bin";
+			const filePath = path.join(CACHE_DIR, "images", `${key}.${extension}`);
+
+			// Check if file exists
+			await fs.access(filePath);
+			return filePath;
+		} catch (_error) {
+			return null;
+		}
+	}
+
+	/**
+	 * Stores an image in the cache with the given URL and binary data
+	 * @param url - The URL of the image to cache
+	 * @param data - The binary image data
+	 * @returns Object containing the cache key and timestamp
+	 * @throws Error if caching fails
+	 */
+	async setImageCache(url: string, data: Buffer): Promise<{ key: string; timestamp: string; filePath: string }> {
+		const key = this.generateCacheKey(url);
+
+		// Determine file extension from URL or use .bin as fallback
+		const urlParts = url.split(".");
+		const extension = urlParts.length > 1 ? urlParts[urlParts.length - 1] : "bin";
+		const filePath = path.join(CACHE_DIR, "images", `${key}.${extension}`);
+
+		const timestamp = new Date().toISOString();
+		await fs.writeFile(filePath, data);
+
+		if (this.meta) this.meta.images[key] = { url, timestamp, size: data.length };
+		await this.saveMeta();
+
+		return { key, timestamp, filePath };
 	}
 }
 
