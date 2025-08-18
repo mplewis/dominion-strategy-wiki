@@ -160,12 +160,11 @@ export function extractCardsGallerySection(htmlContent: string): string {
  * @param url - Full URL to the wiki page
  * @param forceRefresh - If true, bypasses cache and fetches fresh content
  * @returns Promise containing the extracted Cards gallery content
- * TODO: Remove defaults from this method
  */
 export async function fetchWikiPage(
 	url: string,
 	extractGoal: ExtractGoal,
-	forceRefresh = false,
+	forceRefresh: boolean,
 ): Promise<WikiPageData> {
 	if (!forceRefresh) {
 		const cached = await cacheService.getPageCache(url);
@@ -215,12 +214,9 @@ export function getCardSetInfo(displayName: string): { name: string; url: string
 export async function getWikiPageBySetId(
 	displayName: string,
 	extractGoal: ExtractGoal,
-	forceRefresh = false,
+	forceRefresh: boolean,
 ): Promise<WikiPageData> {
 	const cardSet = getCardSetInfo(displayName);
-	if (!cardSet) {
-		throw new Error(`Unknown card set: ${displayName}`);
-	}
-
+	if (!cardSet) throw new Error(`Unknown card set: ${displayName}`);
 	return fetchWikiPage(cardSet.url, extractGoal, forceRefresh);
 }

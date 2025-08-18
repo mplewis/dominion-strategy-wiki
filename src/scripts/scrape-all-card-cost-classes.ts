@@ -18,7 +18,7 @@ async function scrapeAllCardCostClasses(): Promise<string[]> {
 	const allCostClasses = new Set<string>();
 	for (const cardSet of cardSets) {
 		console.log(`Processing ${cardSet.name}...`);
-		const pageData = await fetchWikiPage(cardSet.url, ExtractGoal.cardsGallery);
+		const pageData = await fetchWikiPage(cardSet.url, ExtractGoal.cardsGallery, true);
 		const $ = cheerio.load(pageData.content);
 		$(".cardcost").each((_i, element) => {
 			const classList = $(element).attr("class")?.split(/\s+/) || [];

@@ -23,7 +23,7 @@ export async function getCardSets(): Promise<string[]> {
 }
 
 /** Fetches processed wiki page data for a card set */
-export async function getWikiPage(setId: string, forceRefresh = false): Promise<WikiPageData> {
+export async function getWikiPage(setId: string, forceRefresh: boolean): Promise<WikiPageData> {
 	const query = forceRefresh ? "?refresh=true" : "";
 	return apiGet<WikiPageData>(`/wiki/${setId}${query}`);
 }
