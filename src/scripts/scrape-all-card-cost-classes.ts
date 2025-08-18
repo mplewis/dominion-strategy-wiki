@@ -4,7 +4,7 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import * as cheerio from "cheerio";
-import { fetchWikiPage, getAvailableCardSets } from "../dev/api/services/scraper.js";
+import { ExtractGoal, fetchWikiPage, getAvailableCardSets } from "../dev/api/services/scraper.js";
 
 const reCost = /^cost(\$)?(\d\d)?([*+])?((\d\d)[Dd])?([Pp])?$/i;
 
@@ -15,7 +15,7 @@ async function scrapeAllCardCostClasses(): Promise<string[]> {
 	const allCostClasses = new Set<string>();
 	for (const cardSet of cardSets) {
 		console.log(`Processing ${cardSet.name}...`);
-		const pageData = await fetchWikiPage(cardSet.url);
+		const pageData = await fetchWikiPage(cardSet.url, ExtractGoal.cardsGallery);
 		const $ = cheerio.load(pageData.content);
 		$(".cardcost").each((_i, element) => {
 			const classList = $(element).attr("class")?.split(/\s+/) || [];

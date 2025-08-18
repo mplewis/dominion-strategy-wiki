@@ -127,7 +127,7 @@ describe("extractCardsGallerySection", () => {
 		expect(result).toContain("</html>");
 	});
 
-	it("includes CSS styles for card display", () => {
+	it("includes basic HTML structure without inline styles", () => {
 		const mockHtml = `
 				<html>
 					<body>
@@ -138,7 +138,9 @@ describe("extractCardsGallerySection", () => {
 			`;
 
 		const result = extractCardsGallerySection(mockHtml);
-		expect(result).toContain("<style>");
+		expect(result).toContain("<!DOCTYPE html>");
+		expect(result).toContain("<title>Cards Gallery</title>");
+		expect(result).not.toContain("<style>");
 	});
 
 	it("handles case where gallery is at end of document", () => {
@@ -212,7 +214,8 @@ describe("extractCardsGallerySection", () => {
 		expect(result).toContain("cardcost cost$04");
 		expect(result).toContain('href="https://wiki.dominionstrategy.com/index.php/Altar"');
 		expect(result).toContain('href="https://wiki.dominionstrategy.com/index.php/Armory"');
-		expect(result).toContain("https://wiki.dominionstrategy.com/images/");
+		expect(result).toContain('src="/images/thumb/b/b3/Altar.jpg/200px-Altar.jpg"');
+		expect(result).toContain('src="/images/thumb/a/a7/Armory.jpg/200px-Armory.jpg"');
 		expect(result).toContain("Altar.jpg");
 		expect(result).toContain("Armory.jpg");
 		expect(result).not.toContain("Next section");
