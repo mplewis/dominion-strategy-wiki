@@ -254,22 +254,11 @@ export async function initSorting(): Promise<void> {
  * @returns {void}
  */
 export function applyCardSortByCost(byCost: boolean): void {
-	console.debug(`[applyCardSortByCost] Applying sort by cost: ${byCost}`);
 	const sortBy = byCost ? SortBy.Cost : SortBy.Name;
-	console.debug(`[applyCardSortByCost] Sort method: ${sortBy === SortBy.Cost ? "Cost" : "Name"}`);
-	console.debug(`[applyCardSortByCost] Available galleries:`, Object.keys(galleries));
 	for (const sortid in galleries) {
-		console.debug(
-			`[applyCardSortByCost] Checking gallery ${sortid}: current=${galleries[sortid].sortby}, new=${sortBy}`,
-		);
 		if (galleries[sortid].sortby !== sortBy) {
-			console.debug(`[applyCardSortByCost] Updating gallery ${sortid} sort method`);
 			galleries[sortid].sortby = sortBy;
 			sortGalleries(sortid);
-			console.debug(`[applyCardSortByCost] Completed sorting for gallery ${sortid}`);
-		} else {
-			console.debug(`[applyCardSortByCost] Gallery ${sortid} already has correct sort method`);
 		}
 	}
-	console.debug(`[applyCardSortByCost] Completed applying sort preference to all galleries`);
 }

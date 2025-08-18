@@ -14,7 +14,7 @@
 		"rules": {
 			"recommended": true,
 			"suspicious": {
-				"noConsole": "off"
+				"noConsole": "warn"
 			},
 			"correctness": {
 				"noUnusedVariables": "error"

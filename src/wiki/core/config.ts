@@ -15,7 +15,7 @@ export const SIZE_MAPPINGS = [
 ] as const;
 
 /** Map of expansion links with their display names */
-export const EXPANSION_LINKS = new Map([
+export const EXPANSION_LINKS = [
 	["Dominion (Base Set)", "Dominion"],
 	["Intrigue", "Intrigue"],
 	["Seaside", "Seaside"],
@@ -33,4 +33,4 @@ export const EXPANSION_LINKS = new Map([
 	["Plunder (expansion)", "Plunder"],
 	["Rising Sun", "Rising Sun"],
 	["Promo", "Promos"],
-]);
+] as const;
