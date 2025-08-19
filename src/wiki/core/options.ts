@@ -43,7 +43,7 @@ async function getCookie(name: string): Promise<string | null> {
 async function setCookie(name: string, value: string | number): Promise<void> {
 	const cookieDate = new Date();
 	cookieDate.setFullYear(cookieDate.getFullYear() + COOKIE_EXPIRATION_YEARS);
-	await cookieStore.set({ name, value: String(value), expires: cookieDate.getTime(), sameSite: "strict" });
+	await cookieStore.set({ name, value: String(value), expires: cookieDate.getTime(), sameSite: "strict", path: "/" });
 	return;
 }
 
