@@ -1,10 +1,8 @@
-#!/usr/bin/env node
-
-require("dotenv/config");
-const axios = require("axios");
-const fs = require("node:fs");
-const path = require("node:path");
-const pino = require("pino");
+import "dotenv/config";
+import * as fs from "node:fs";
+import type { AxiosResponse } from "axios";
+import * as axios from "axios";
+import { log } from "./logging.js";
 
 const MEDIAWIKI_BASE_URL = "https://wiki.dominionstrategy.com";
 const TARGET_PAGE_NAME = "MediaWiki:Common.js";
@@ -13,17 +11,6 @@ const GITHUB_REPO_URL = "https://github.com/mplewis/dominion-strategy-wiki";
 
 const MEDIAWIKI_API_URL = `${MEDIAWIKI_BASE_URL}/api.php`;
 const VERIFY_CONTENT_URL = `${MEDIAWIKI_BASE_URL}/index.php?title=${TARGET_PAGE_NAME}&action=raw`;
-
-const log = pino({
-	transport: {
-		target: "pino-pretty",
-		options: {
-			colorize: true,
-			translateTime: "HH:MM:ss",
-			ignore: "pid,hostname",
-		},
-	},
-});
 
 /** Get a required environment variable, throwing an error if it's not set */
 function mustEnv(key: string): string {
@@ -36,16 +23,7 @@ function mustEnv(key: string): string {
 
 const MEDIAWIKI_USERNAME = mustEnv("MEDIAWIKI_USERNAME");
 const MEDIAWIKI_PASSWORD = mustEnv("MEDIAWIKI_PASSWORD");
-const COMPILED_JS_PATH = path.join(__dirname, "..", "common.js");
-
-interface AxiosResponse {
-	headers: Record<string, string | string[]>;
-	data: {
-		login?: { result: string; reason?: string };
-		query?: { tokens: { logintoken?: string; csrftoken?: string } };
-		edit?: { result: string };
-	};
-}
+const COMPILED_JS_PATH = "dist/common.js";
 
 const cookies: string[] = [];
 let editToken: string | null = null;

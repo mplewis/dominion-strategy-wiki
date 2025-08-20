@@ -19,7 +19,8 @@
 			"Bash(tsx:*)",
 			"Bash(pnpx tsx:*)",
 			"Bash(node:*)",
-			"Bash(touch:*)"
+			"Bash(touch:*)",
+			"WebFetch(domain:wiki.dominionstrategy.com)"
 		],
 		"deny": [],
 		"defaultMode": "acceptEdits"

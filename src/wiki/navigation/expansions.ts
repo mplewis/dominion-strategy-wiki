@@ -41,7 +41,6 @@ export function addExpansionSidebarLinks(): void {
 	if (existingLinks) return;
 	const pNavigationUl = document.querySelector("#p-navigation ul");
 	if (!pNavigationUl) {
-		console.warn("Target container not found: #p-navigation ul");
 		return;
 	}
 
