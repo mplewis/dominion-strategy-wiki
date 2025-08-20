@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Embargo.jpg|200px]]</div>
+
+'''[[Embargo]]''' is an [[Action]] card from the first edition of {{Set|Seaside}}. It is a [[one-shot]] [[terminal Silver]] that gives {{Costplus|2}} and trashes itself to add an Embargo token to a [[Supply]] pile, causing anyone who buys from that pile to gain a {{Card|Curse}}. The effect is permanent and cumulative, but can be avoided by using [[gainer]]s instead of buying. It's typically used for its cheap economy boost rather than its cursing effect, as targeting useful cards hurts the Embargo player too.
+
+Originally designed as a card that prevented other players from buying from chosen piles, Donald X. Vaccarino changed it to the current design because complete shutout effects had timing issues. Embargo was replaced by [[Blockade]] in Seaside Second Edition because it required dedicated tokens for a card that was often ignored.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

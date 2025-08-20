@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Gamble.jpg|200px]]</div>
+
+'''[[Gamble]]''' is an [[Event]] from {{Set|Menagerie}} costing {{Cost|2}}. It provides '''+1 Buy''' and discards your deck's top card, allowing you to play it if it's an [[Action]] or [[Treasure]]. This creates opportunities to play cards during your [[Buy phase]] or convert buying power into immediate card effects, though success depends on deck composition and luck.
+
+Gamble has multiple strategic applications: converting coins into card plays during the Buy phase, functioning as an expensive [[sifter]], and enabling powerful [[gain-and-play]] combinations. It works particularly well with {{Card|Stockpile}}, [[Duration]] draw effects, and consistent [[payload]] cards, but can also support specialized "Gamble engines" in Kingdoms with strong trashing and terminal payload but limited traditional draw.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

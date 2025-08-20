@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Madman.jpg|200px]]</div>
+
+'''[[Madman]]''' is a [[one-shot]] [[Action]] card from {{Set|Dark Ages}} that can only be obtained by playing {{Card|Hermit}}. It provides '''+2 Actions''' and returns itself to the Madman pile, then draws cards equal to your current hand size - effectively doubling your hand. This makes it an extremely powerful source of [[non-terminal draw]], but it can only be used once per copy.
+
+Madman originated as a {{Cost|5}} card in {{Set|Intrigue}} that was too powerful, allowing players like Bill Barksdale to buy multiples and draw their entire deck to buy out {{Card|Province|Provinces}}. Donald X. moved it to being obtainable only through {{Card|Hermit}}, fitting the thematic idea that "if he doesn't go into town often enough, he goes mad."
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

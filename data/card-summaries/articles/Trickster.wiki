@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Trickster.jpg|200px]]</div>
+
+'''[[Trickster]]''' is an [[Action]]-[[Attack]] card from {{Set|Plunder}}. It gives each other player a {{Card|Curse}}, making it a straightforward [[curser]]. Additionally, once per turn when you discard a [[Treasure]] from play, you may set it aside and put it back in your hand at the end of your turn. This allows you to save valuable Treasures like {{Card|Gold}} or special Treasures from Plunder to use again next turn, providing both offensive cursing and economic advantage.
+
+The card's wording was tweaked during development, but Donald X. Vaccarino noted that its core functionality remained the same throughout the design process.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

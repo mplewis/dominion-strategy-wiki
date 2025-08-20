@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Quartermaster.jpg|200px]]</div>
+
+'''[[Quartermaster]]''' is an [[Action]]-[[Duration]] card from {{Set|Plunder}}. It stays [[in play]] for the rest of the game, providing a permanent choice each turn: either [[gain]] a card costing up to {{Cost|4}} and [[set aside|set it aside]] on the Quartermaster, or take a previously gained card from it into your hand. This creates a long-term strategic resource that accumulates useful cards for future deployment.
+
+Quartermaster works particularly well with cards that have powerful [[when-gain|on-gain]] effects like {{Card|Cavalry}}, {{Card|Cemetery}}, or {{Card|Villa}}, where you might gain the card primarily for its immediate benefit rather than planning to use the card itself. The ability to effectively [[exile]] cards like {{Card|Estate|Estates}} forever also provides unique strategic options.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

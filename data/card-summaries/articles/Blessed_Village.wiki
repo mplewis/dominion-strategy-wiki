@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Blessed Village.jpg|200px]]</div>
+
+'''[[Blessed Village]]''' is an [[Action]]-[[Fate]] card from {{Set|Nocturne}}. It functions as a standard {{Cost|4}} [[Village (card category)|village]] providing '''+1 Card''' and '''+2 Actions''', but also grants a [[Boon]] when gained, which you can receive immediately or save for the start of your next turn. This timing flexibility adds strategic depth to an otherwise vanilla village.
+
+Blessed Village offers value beyond typical engine building through its [[when-gain|on-gain]] Boon effect. Early acquisition can provide useful acceleration through Boons like {{Boon|The Flame's Gift}} for trashing or {{Boon|The Forest's Gift}} for coin, while the option to delay Boons enables tactical timing around effects that are more valuable on future turns.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

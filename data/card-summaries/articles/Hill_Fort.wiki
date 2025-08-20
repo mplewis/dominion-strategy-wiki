@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Hill Fort.jpg|200px]]</div>
+
+'''[[Hill Fort]]''' is an [[Action]]-[[Fort]] card from {{Set|Allies}}. It is a flexible [[gainer]] that allows you to [[gain]] a card costing up to {{Cost|4}}, then choose whether to put that card directly into your hand for immediate use, or instead get '''+1 Card''' and '''+1 Action''' to make it a [[cantrip]]. Hill Fort is part of the {{Card|Forts}} [[split pile]], shared with {{Card|Tent}}, {{Card|Garrison}}, and {{Card|Stronghold}}.
+
+Hill Fort provides strategic versatility by letting you decide whether you need immediate access to the gained card or prefer the card draw and action. The choice is made after the card is gained and all [[on-gain]] effects have resolved, giving you full information to make the optimal decision for your current situation.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

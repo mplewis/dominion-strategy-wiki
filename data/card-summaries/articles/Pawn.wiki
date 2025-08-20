@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Pawn.jpg|200px]]</div>
+
+'''[[Pawn]]''' is an [[Action]] card from {{Set|Intrigue}}. It offers a [[choice]] of two different benefits from four options: '''+1 Card''', '''+1 Action''', '''+1 Buy''', or {{Costplus|1}}. This flexibility makes it useful in various situations, from providing [[cantrip]] utility to offering [[+Buy]] or [[payload]], depending on what your deck needs at any given moment.
+
+Pawn is one of Donald X.'s personal favorites, originally called "Spare Room." It was considered for the main set but moved to {{Set|Intrigue}} because it slowed down new players who would stare at the card forever considering all possibilities. The card never changed mechanically from its original design, representing the perfect balance of simple flexibility.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Peddler.jpg|200px]]</div>
+
+'''[[Peddler]]''' is an [[Action]] card from {{Set|Prosperity}} with a base cost of {{Cost|8}}. It's a [[cantrip]] providing +1 Card, +1 Action, and {{Costplus|1}}, but during your [[Buy phase]], it costs {{Cost|2}} less per Action card in play. This unique cost-reduction mechanic makes it potentially free when you have 4+ Actions in play.
+
+Peddler evolved from "costs {{Cost|2}} less per Action played this turn" to its current form counting Actions in play to avoid memory issues. The change to only reduce cost during Buy phase enables powerful combos like using {{Card|Remodel}} to upgrade it to {{Card|Platinum}} at its full {{Cost|8}} cost, creating exciting synergies with [[trash-for-benefit]] effects.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

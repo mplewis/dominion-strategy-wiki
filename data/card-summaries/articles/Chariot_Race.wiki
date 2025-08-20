@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Chariot Race.jpg|200px]]</div>
+
+'''[[Chariot Race]]''' is an [[Action]] card from {{Set|Empires}}. It gives +1 Action and +1 Card (revealing the drawn card), then has you and the player to your left reveal the top cards of your decks. If your revealed card costs more than theirs, you gain {{Costplus|1}} and {{VP|+1}} token. The opponent's card stays on top of their deck, so once you know what they revealed, all subsequent Chariot Races that turn will compete against the same card. This makes Chariot Race both a [[cantrip]] and a source of [[alt-VP]], though its effectiveness depends heavily on deck composition and luck.
+
+Donald X. Vaccarino noted that the decision of whether to leave the opponent's card on top was debated during design, as discarding it would feel too much like an attack, but leaving it there creates the strategic element where one revelation affects all Chariot Races for the turn.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Bard.jpg|200px]]</div>
+
+'''[[Bard]]''' is an [[Action]]-[[Fate]] card from {{Set|Nocturne}} costing {{Cost|4}}. It functions as a [[terminal silver]] providing {{Costplus|2}} while also granting a [[Boon]]. This makes it useful for hitting early price points while providing additional random benefits, though its terminal nature requires careful consideration of long-term [[terminal space]].
+
+Bard most commonly serves as an opening buy to help afford {{Cost|5}} cards on the second shuffle while providing a Boon bonus. However, since it's terminal, it's only advisable when you expect sufficient terminal space later in the game - otherwise, buying {{Card|Silver}} often provides similar early-game benefits without future deck constraints.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

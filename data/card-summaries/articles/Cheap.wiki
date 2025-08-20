@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Cheap.jpg|200px]]</div>
+
+'''[[Cheap]]''' is a [[Trait]] from {{Set|Plunder}}. Cards with this trait have their [[cost]] reduced by {{Cost|1}} for the entire game, with costs unable to go below {{Cost|0}}. This simple effect can dramatically alter game balance by making otherwise unviable strategies powerful, particularly when attached to key [[engine]] components that would normally be too expensive for certain [[gainer]]s like {{Card|Workshop}} or {{Card|Ironworks}}. Cheap can also create interesting interactions with [[trash-for-benefit]] cards and attacks that reference card costs, such as {{Card|Swindler}} or {{Card|Rogue}}.
+
+Donald X. Vaccarino noted that while Cheap wasn't one of the first Traits designed, it was an obvious one to try eventually, and it remained unchanged throughout development.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

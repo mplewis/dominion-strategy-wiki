@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Magnate.jpg|200px]]</div>
+
+'''[[Magnate]]''' is an [[Action]] card from the second edition of {{Set|Prosperity}}. It provides [[terminal draw]] equal to the number of [[Treasure]]s in your hand when played, making it potentially powerful in kingdoms with good [[village]] support but limited action-based [[payload]]. Unlike {{Card|Counting House}}, Magnate doesn't require {{Card|Copper|Coppers}} specifically and draws any cards, not just more Treasures. It works particularly well with {{Card|Worker's Village}} for the +Buy needed to spend the Treasures, and can scale dramatically when multiple copies are played in sequence.
+
+Donald X. Vaccarino designed Magnate as a successor to the weak {{Card|Counting House}}, noting that while he used to intentionally make weak cards for niche situations, he later realized he would "make those cards without trying" and focused on making better designs.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

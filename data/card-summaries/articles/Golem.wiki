@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Golem.jpg|200px]]</div>
+
+'''[[Golem]]''' is an [[Action]] card from {{Set|Alchemy}} costing {{Cost|4|P}}. It [[dig]]s through your deck to reveal 2 [[Action]] cards (other than Golems) and forces you to play them in either order. This makes it an unconventional [[village (card category)|village]] and draw substitute, but with significant drawbacks due to limited control over what gets played.
+
+Golem's {{Cost||||P}} cost and inability to play other Golems create major constraints: it's slow to gain, difficult to scale up, and risks playing two [[terminal]]s or suboptimal card combinations. While it offers useful [[sifting]] in junk-heavy decks, it's typically used as pseudo-draw in the late midgame alongside more reliable villages, rather than as a primary engine component.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

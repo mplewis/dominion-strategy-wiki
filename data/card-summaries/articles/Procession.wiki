@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Procession.jpg|200px]]</div>
+
+'''[[Procession]]''' is an [[Action]] card from {{Set|Dark Ages}} costing {{Cost|4}}. It combines {{Card|Throne Room}} and {{Card|Upgrade}} effects by playing a non-[[Duration]] Action twice, then trashing it to gain an Action costing exactly {{Cost|1}} more. This creates a powerful but double-edged effect that improves your deck while consuming the cards you most want to double.
+
+Procession excels when the Kingdom offers powerful cards to throne (like {{Card|Horse|Horses}} or {{Card|Experiment}}), ways to gain those cards in bulk, and desirable Actions at the right price points. It enables explosive [[gain-and-play]] chains and rapid [[three-pile ending|pileouts]], but requires careful setup to avoid trashing valuable Actions without adequate replacements.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

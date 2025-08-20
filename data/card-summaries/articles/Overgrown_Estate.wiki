@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Overgrown Estate.jpg|200px]]</div>
+
+'''[[Overgrown Estate]]''' is one of the three [[Shelter]] cards from {{Set|Dark Ages}} that replaces starting {{Card|Estate|Estates}} in Dark Ages games. It is worth {{VP|0}} but provides '''+1 Card''' when trashed, making it an attractive early trashing target. Despite being worthless for scoring, it retains the [[Victory]] card type, allowing it to interact with Victory-related effects.
+
+Overgrown Estate is the only Victory card that is never worth any points, and its art shows an overgrown version of the original {{Card|Estate}} artwork. The card provides useful deck cycling when trashed early, often drawing a {{Card|Copper}} that can immediately contribute to your buying power that turn.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

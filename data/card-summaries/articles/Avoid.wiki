@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Avoid.jpg|200px]]</div>
+
+'''[[Avoid]]''' is an [[Event]] from {{Set|Plunder}}. For {{Cost|2}}, it gives +1 Buy and allows you to exclude up to 3 cards from your next [[shuffle]] this turn by putting them into your discard pile instead. This effectively lets you skip unwanted cards like starting junk or [[Victory]] cards, improving your deck quality for the next time through. The effect is cumulative if you buy Avoid multiple times, potentially letting you exclude up to 9 cards from a single shuffle.
+
+The concept of cards missing shuffles originated in {{Set|Hinterlands}} outtakes and appeared on {{Event|Annex}}, but Donald X. Vaccarino noted it finally became "worth something" when made cheap enough, originally costing {{Cost|3}} without +Buy.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

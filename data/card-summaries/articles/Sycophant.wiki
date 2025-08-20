@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Sycophant.jpg|200px]]</div>
+
+'''[[Sycophant]]''' is an [[Action]]-[[Liaison]] card from {{Set|Allies}}. It provides '''+1 Action''' and requires you to discard 3 cards, giving {{Costplus|3}} if you discarded at least one. Additionally, it grants '''+2 Favors''' whenever you [[gain]] or [[trash]] it. This makes it a [[non-terminal]] [[discard-for-benefit]] card that can provide significant [[payload]] while feeding the [[Favor]] economy.
+
+Sycophant originally didn't require discarding at least one card, simply giving {{Costplus|3}} for discarding 3 cards. However, online tester JNails discovered it could create oppressive strategies with certain [[Ally|Allies]] like {{Ally|League of Shopkeepers}}, leading to games where players bought only Sycophants and {{Card|Province|Provinces}}. Donald X. added the restriction to prevent these problematic interactions.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

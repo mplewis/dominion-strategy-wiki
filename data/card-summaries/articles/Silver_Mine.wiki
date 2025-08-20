@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Silver Mine.jpg|200px]]</div>
+
+'''[[Silver Mine]]''' is a [[Treasure]] card from {{Set|Plunder}}. It gains a [[Treasure]] costing less than itself (typically {{Card|Silver}}) directly to your hand, providing both immediate buying power and deck improvement. While usually limited to gaining Silver, it becomes much stronger when cheaper alternative Treasures like {{Card|Gondola}} are available in the Supply.
+
+Donald X. designed Silver Mine as a simple card, noting that "Dominion needs some simple cards" in response to criticism about its straightforward nature. Originally the gained Treasure was played immediately, but it was changed to go to hand instead. The card initially was under "frequent attack" during playtesting but Donald X. remained happy with its inclusion.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

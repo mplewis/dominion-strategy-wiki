@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Fishmonger.jpg|200px]]</div>
+
+'''[[Fishmonger]]''' is an [[Action]]-[[Shadow]] card from {{Set|Rising Sun}}. It provides '''+1 Buy''' and {{Costplus|1}}, but as a [[Shadow]] card, you can play it directly from your deck as if it were in your hand. This makes it a reliable source of [[+Buy]] that doesn't require drawing to access, and particularly useful for guaranteeing {{Cost|5}} in opening turns.
+
+Fishmonger developed from Donald X.'s experiments with Shadow cards beyond {{Card|Ninja}}, testing both "+2 Cards" and "+1 Buy {{Costplus|2}}" versions. He chose the smaller version because it creates interesting gameplay in opening turns where it can guarantee specific price points, making it strategically valuable despite its modest effects.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

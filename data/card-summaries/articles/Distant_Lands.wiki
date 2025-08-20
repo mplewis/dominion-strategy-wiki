@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Distant Lands.jpg|200px]]</div>
+
+'''[[Distant Lands]]''' is an [[Action]]-[[Reserve]]-[[Victory]] card from {{Set|Adventures}} costing {{Cost|5}}. When played, it goes to your [[Tavern mat]] permanently and is worth {{VP|4}} at game end if still there ({{VP|0}} otherwise). This creates a dense [[alt-VP]] source that provides more points than {{Card|Duchy}} at the same cost, but requires being drawn and played to score.
+
+Distant Lands works best in [[engine]]s with good [[draw]] and spare [[terminal space]], as it needs to be played to provide any value. It excels in early [[greening]] scenarios or [[gain-and-play]] situations with cards like {{Card|Artisan}} or {{Project|Innovation}}, where you can score without deck disruption. However, it can be worse than {{Card|Duchy}} in endgame situations where you might not draw it before the game ends.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

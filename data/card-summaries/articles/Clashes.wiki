@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Clashes.jpg|200px]]</div>
+
+'''[[Clashes]]''' is a [[split pile]] from {{Set|Allies}} containing 4 copies each of {{Card|Battle Plan}}, {{Card|Archer}}, {{Card|Warlord}}, and {{Card|Territory}} in that order. Only the top card can be gained at any time, but {{Card|Battle Plan}} allows you to "rotate" the pile by moving all copies of the current top card to the bottom. The pile represents a military invasion progression from planning through conquest.
+
+The Clashes pile was designed with a top-down thematic approach, with Donald X. considering various military-themed names like Campaign, General, and Army before settling on the final four. The cards tell a story of military progression while providing strategic rotation mechanics that allow players to access different cards throughout the game.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

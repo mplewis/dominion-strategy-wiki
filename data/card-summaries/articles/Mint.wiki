@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Mint.jpg|200px]]</div>
+
+'''[[Mint]]''' is an [[Action]] card from {{Set|Prosperity}}. It allows you to reveal a [[Treasure]] card from your hand to [[gain]] a copy of it, and has a powerful [[on-gain]] effect that trashes all non-[[Duration]] Treasures you have [[in play]] when you gain it. This makes it effective for clearing out starting {{Card|Copper|Coppers}} while also serving as a [[Treasure]] [[gainer]].
+
+Mint was added to {{Set|Prosperity}} when Donald X. expanded the set from 20 to 22 cards, and originally had no on-gain effect. The trashing penalty was moved from {{Card|Mountebank}} to strengthen Mint and weaken Mountebank. The card received [[2022 Errata]] to change from [[when-buy]] to [[when-gain]] and exclude Duration Treasures to avoid tracking issues.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

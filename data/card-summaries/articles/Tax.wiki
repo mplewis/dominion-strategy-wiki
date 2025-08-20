@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Tax.jpg|200px]]</div>
+
+'''[[Tax]]''' is an [[Event]] from {{Set|Empires}} that fundamentally changes game economics through its setup effect: every [[Supply]] pile starts with {{Debt|1}} on it. When players [[gain]] a card during their [[Buy phase]], they take all {{Debt}} from that pile. The Event itself can be bought to add {{Debt|2}} to any Supply pile, functioning as a pseudo-[[Attack]] by making future purchases more expensive.
+
+Tax started as an [[Action]] card that gave {{Costplus|2}} and put {{Debt}} tokens on piles, but Donald X. converted it to an Event to save space in the set. He later admitted the card was "kind of a dud" despite enjoying the setup effect that kept it alive, as it primarily serves to slow down games rather than create interesting strategic decisions.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

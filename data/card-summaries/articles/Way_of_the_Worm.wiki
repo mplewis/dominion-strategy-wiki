@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Way of the Worm.jpg|200px]]</div>
+
+'''[[Way of the Worm]]''' is a [[Way]] from {{Set|Menagerie}}. It provides a simple but effective ability: [[exile]] an {{Card|Estate}} from the [[Supply]], giving you {{VP|1}} without adding a [[stop card]] to your deck. This makes it an excellent way to turn dead or poorly-timed [[Action]] cards into productive plays that generate victory points.
+
+Way of the Worm excels at converting bad situations into small victories - whether you've drawn a useless hand as an [[engine]] player or been hit by a [[discard attack]] like {{Card|Militia}}. Its simplicity is its strength, offering a reliable fallback option that doesn't clog your deck while providing incremental scoring throughout the game.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

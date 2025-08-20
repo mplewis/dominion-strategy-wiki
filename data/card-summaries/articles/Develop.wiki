@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Develop.jpg|200px]]</div>
+
+'''[[Develop]]''' is an [[Action]] card from {{Set|Hinterlands}}. It is a [[terminal]] [[remodeler]] that trashes a card from your hand and gains two cards onto your deck: one costing exactly {{Cost|1}} more and one costing exactly {{Cost|1}} less than the trashed card, in either order. This makes it a unique [[gainer]] that can produce more cards than it trashes.
+
+Develop's strength varies greatly depending on the [[Kingdom]], as it requires useful cards at consecutive price points to be truly effective. It excels as an {{Card|Estate}} trasher early in the game and can become a powerful gainer later when there are cards available at the right costs, particularly benefiting from cards like {{Card|Fortress}} that are designed to be trashed for benefit.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

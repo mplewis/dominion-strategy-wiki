@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Bury.jpg|200px]]</div>
+
+'''[[Bury]]''' is an [[Event]] from {{Set|Plunder}}. It provides '''+1 Buy''' and allows you to put any card from your discard pile on the bottom of your deck, making that card more likely to be drawn sooner than it otherwise would be. This creates opportunities to set up future turns or accelerate access to key cards without the repetitive gameplay of similar topdeck effects.
+
+Bury went through extensive development, starting as a more complex {{Card|Scavenge}}-like effect that could manipulate your entire deck. Donald X. eventually settled on the bottom-decking concept to avoid repetitive gameplay while maintaining the thematic flavor of "burying" cards, creating a novel mechanic that's less repetitive than typical {{Card|Scheme}} variants.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Lost City.jpg|200px]]</div>
+
+'''[[Lost City]]''' is an [[Action]] card from {{Set|Adventures}}. It provides '''+2 Cards''' and '''+2 Actions''', combining the effects of {{Card|Laboratory}} and {{Card|Village}} into one powerful [[non-terminal draw]] and [[village (card category)|village]] card. However, this power comes with a significant penalty: when you [[gain]] Lost City, each other player draws a card.
+
+Lost City's [[when-gain|on-gain]] penalty creates interesting strategic considerations, as opponents receive immediate benefits while you must wait for your deck to shuffle before accessing the card. This tempo disadvantage is most problematic early in the game but becomes less significant once opponents have reliable [[deck control]], making timing crucial for optimal Lost City acquisition.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

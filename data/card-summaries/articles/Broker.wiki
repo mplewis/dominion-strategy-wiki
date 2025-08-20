@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Broker.jpg|200px]]</div>
+
+'''[[Broker]]''' is an [[Action]]-[[Liaison]] card from {{Set|Allies}}. It is a flexible [[trash-for-benefit]] card that trashes a card from your hand and gives you a choice of four different benefits scaled to the trashed card's cost: '''+1 Card''', '''+1 Action''', {{Costplus|1}}, or '''+1 Favor''' per {{Cost|1}} the card costs. This makes it similar to {{Card|Apprentice}} and {{Card|Salvager}}, but with added versatility through its choice mechanism.
+
+Broker represents an "old idea" that Donald X. finally realized with the help of [[Favor]]s from the {{Set|Allies}} expansion. While flexible, it's often not worth buying due to being slow at deck thinning and requiring expensive cards to be truly efficient. It synergizes well with {{Card|Trail}}, which can be trashed repeatedly to effectively turn Broker into a powerful draw engine.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

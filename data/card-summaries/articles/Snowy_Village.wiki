@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Snowy Village.jpg|200px]]</div>
+
+'''[[Snowy Village]]''' is an [[Action]] card from {{Set|Menagerie}}. It is a powerful [[village (card category)|village]] that provides '''+1 Card''', '''+4 Actions''', and '''+1 Buy''', but comes with the restriction that you ignore any further '''+Actions''' you get for the rest of the turn. This creates a unique strategic decision about when to play it in your action sequence.
+
+Snowy Village originated as a joke card in a parody Christmas Kingdom created by Donald X. and head playtester LastFootnote. The original version cost {{Cost|2}} and gave only +2 Actions with no +Buy, but Donald X. found the concept compelling enough to develop into a real card with more exciting numbers and effects.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

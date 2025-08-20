@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Dame Natalie.jpg|200px]]</div>
+
+'''[[Dame Natalie]]''' is one of the ten {{Card|Knights}} from {{Set|Dark Ages}}. Like other [[Knight]]s, she is an [[Action]]-[[Attack]]-[[Knight]] that performs a [[trashing attack]], but she also functions as a [[gainer]] that allows you to gain a card costing up to {{Cost|3}}. This dual functionality makes her particularly valuable when there are useful {{Cost|3}} cards in the Supply.
+
+Dame Natalie can sometimes be especially worth prioritizing if the Kingdom contains strong {{Cost|3}} cards that you want multiple copies of, such as [[village (card category)|villages]] or other key engine pieces. Her gaining ability provides immediate deck improvement alongside the standard Knight attack, making her one of the more versatile Knights in the pile.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

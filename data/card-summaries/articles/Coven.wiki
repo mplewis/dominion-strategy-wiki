@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Coven.jpg|200px]]</div>
+
+'''[[Coven]]''' is an [[Action]]-[[Attack]] card from {{Set|Menagerie}}. It gives +1 Action and {{Costplus|2}}, then forces each other player to [[Exile]] a {{Card|Curse}} from the Supply, or if no Curses remain, discard all their Exiled Curses into their deck. This creates a delayed [[curser]] effect where Curses accumulate in [[Exile]] until the pile runs out, then all hit at once. Unlike other cursers, the Exiling doesn't count as "gaining" so it can't be blocked by {{Card|Watchtower}} or {{Card|Trader}}.
+
+Donald X. Vaccarino noted that Coven "never changed" during development and was "pretty pleased" with it, though he found it amusing that players were initially scared of the card when previewed.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

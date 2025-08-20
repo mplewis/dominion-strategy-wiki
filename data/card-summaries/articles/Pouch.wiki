@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Pouch.jpg|200px]]</div>
+
+'''[[Pouch]]''' is a [[Treasure]]-[[Heirloom]] card from {{Set|Nocturne}} that replaces one of your starting {{Card|Copper|Coppers}} when {{Card|Tracker}} is in the [[Kingdom]]. It provides {{Cost|1}} and '''+1 Buy''', making it essentially a {{Card|Copper}} with an additional purchase. This makes it particularly valuable early in the game for gaining multiple cheap cards or later for enabling multi-{{Card|Province}} turns.
+
+Pouch originally provided {{Cost|0}} and only +1 Buy, but Donald X. changed it to produce {{Cost|1}} after Matt's playtest group found the slower games unenjoyable. The card pairs thematically well with {{Card|Tracker}}'s {{Card|Royal Seal}} ability, as the extra Buy helps utilize the topdeck effect more effectively.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

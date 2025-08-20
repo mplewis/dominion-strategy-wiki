@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Knights.jpg|200px]]</div>
+
+'''[[Knights]]''' are an [[Action]]-[[Attack]] [[Supply]] pile from {{Set|Dark Ages}} containing 10 differently-named unique cards with the [[Knight]] type. When selected as a [[Kingdom]] card, they are shuffled into a single face-down pile with only the top card visible and available for purchase. Each Knight costs {{Cost|5}} (except {{Card|Sir Martin}} at {{Cost|4}}) and shares the same [[trashing attack]] that can destroy other Knights.
+
+The Knights pile creates unique strategic dynamics as players compete for specific Knights with useful secondary abilities like {{Card|Dame Anna}}'s trashing or {{Card|Dame Josephine}}'s {{VP|2}}. The shared attack ability means Knights can destroy each other, creating a self-limiting mechanic where playing Knights against Knight-heavy opponents can backfire, leading to interesting tactical decisions about timing and targeting.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

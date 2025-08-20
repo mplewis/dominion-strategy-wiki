@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Improve.jpg|200px]]</div>
+
+'''[[Improve]]''' is an [[Action]] card from {{Set|Renaissance}} costing {{Cost|3}}. It's a [[terminal silver]] that provides {{Costplus|2}}, and at the start of [[Clean-up]], you may [[trash]] an Action card you would discard from play to gain a card costing exactly {{Cost|1}} more. This combines immediate payload with deck improvement.
+
+Improve was requested by Ben and Steveie to create card progression reminiscent of {{Card|Procession}}. Originally costing {{Cost|4}} and triggering when discarding from play, it shifted to Clean-up timing to avoid complex interactions with other discard effects. The ability to trash and upgrade the Improve itself creates interesting strategic decisions throughout the game.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

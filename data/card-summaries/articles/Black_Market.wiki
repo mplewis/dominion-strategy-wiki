@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Black Market.jpg|200px]]</div>
+
+'''[[Black Market]]''' is a promotional [[Action]] card that provides {{Costplus|2}} and allows you to buy [[Kingdom card]]s from a special deck containing cards not in the current game's [[Supply]]. You reveal 3 cards from this deck, may play [[Treasure]]s from your hand, and can buy one of the revealed cards during your [[Action phase]]. This creates high variance games since the Black Market deck contains only one copy of each card in random order.
+
+Black Market has a reputation for swingy, unpredictable games but enables unique combos by allowing Treasure play during the Action phase. It's particularly famous for the [[Combo: Black Market and Tactician|Black Market/Tactician combo]] and synergies with variety-loving cards like {{Card|Fairgrounds}} and {{Card|Horn of Plenty}}, though success requires careful engine building and flexibility rather than relying on specific cards appearing.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

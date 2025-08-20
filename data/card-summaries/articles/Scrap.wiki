@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Scrap.jpg|200px]]</div>
+
+'''[[Scrap]]''' is an [[Action]] card from {{Set|Menagerie}}. It is a flexible [[trash for benefit]] card that trashes a card from your hand and provides a different benefit per {{Cost|1}} the trashed card costs, choosing from: '''+1 Card''', '''+1 Action''', '''+1 Buy''', {{Costplus|1}}, gain a {{Card|Silver}}, or gain a {{Card|Horse}}. This makes it an excellent {{Card|Estate}} trasher that provides two benefits per Estate trashed.
+
+Scrap originated as a "very old idea" that Donald X. finally implemented, initially costing {{Cost|2}}. Its flexibility makes it valuable beyond the opening, serving as a source of [[+Buy]] and continuing to provide utility by trashing other junk or deriving benefit from cards that have outlived their usefulness, though it becomes significantly weaker in games with [[Shelter]]s.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

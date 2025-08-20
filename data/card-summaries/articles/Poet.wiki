@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Poet.jpg|200px]]</div>
+
+'''[[Poet]]''' is an [[Action]]-[[Omen]] card from {{Set|Rising Sun}}. It gives {{Sunplus}}, +1 Card, and +1 Action, then reveals the top card of your deck and puts it into your hand if it costs {{Cost|3}} or less. This makes Poet a [[cantrip]] that can become [[non-terminal draw]] when it successfully reveals an inexpensive card. As an [[Omen]], it also advances [[Prophecies]] toward taking effect, adding strategic value beyond its card-drawing potential.
+
+During design, Donald X. Vaccarino experimented with different cost thresholds, noting he initially tried cards costing {{Cost|2}} or less before settling on {{Cost|3}} or less, realizing that the former effect already existed on {{Card|Will-o'-Wisp}}.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

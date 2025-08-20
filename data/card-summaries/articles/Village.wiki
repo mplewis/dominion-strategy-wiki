@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Village.jpg|200px]]</div>
+
+'''[[Village]]''' is an [[Action]] card from the {{Set|Dominion|Base set}} costing {{Cost|3}}. It provides +1 Card and +2 Actions, making it one of the simplest and most important [[villages]] for enabling [[engine]]s. Village allows you to play multiple [[terminal]] Action cards per turn by increasing your [[terminal space]].
+
+Village evolved significantly during early development, starting as a {{Cost|5}} card that only gave "you may play two more actions" without the card draw. Donald X. gradually improved it over several weeks, lowering the cost to {{Cost|4}}, then {{Cost|3}}, and finally adding +1 Card when he realized that drawing Village meant fewer cards in hand to use as those actions.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

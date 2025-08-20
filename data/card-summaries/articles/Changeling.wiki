@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Changeling.jpg|200px]]</div>
+
+'''[[Changeling]]''' is a [[Night]] card from {{Set|Nocturne}}. It's a [[one-shot]] [[gainer]] that copies any card you have [[in play]], making it one of the few gainers with no [[cost]] or [[type]] restriction. Additionally, when Changeling is in the Supply, you may [[exchange]] any card you gain costing {{Cost|3}} or more for a Changeling instead, allowing you to effectively convert unwanted gains into copies of cards already in your deck.
+
+Changeling originally started as just the top ability during development, but the exchange ability was added to increase flavor and strategic interest. This dual nature makes Changeling particularly effective with gainers that normally provide restricted or unwanted cards, such as {{Card|Paddock}} gaining [[Horse]]s or {{Card|Jack of All Trades}} gaining {{Card|Silver}}s, effectively converting these into unrestricted gains.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

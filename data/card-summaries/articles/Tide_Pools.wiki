@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Tide Pools.jpg|200px]]</div>
+
+'''[[Tide Pools]]''' is an [[Action]]-[[Duration]] card from the [[second edition]] of {{Set|Seaside}}. It provides powerful [[non-terminal draw]] with '''+3 Cards''' and '''+1 Action''' when played, but requires you to discard 2 cards at the start of your next turn. This creates a timing tension between immediate card advantage and future hand size reduction.
+
+Tide Pools offers substantial immediate draw power that can help launch strong turns, but the delayed discard penalty must be carefully managed. The card works particularly well when you can sequence multiple Duration effects optimally - for example, discarding all cards to multiple Tide Pools before drawing new cards from other Duration sources like {{Card|Wharf}}.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

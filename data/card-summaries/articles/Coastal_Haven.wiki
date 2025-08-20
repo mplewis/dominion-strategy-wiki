@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Coastal Haven.jpg|200px]]</div>
+
+'''[[Coastal Haven]]''' is an [[Ally]] from {{Set|Allies}}. It allows you to spend [[Favor]] tokens during [[Clean-up]] to keep cards in your hand for the next turn, while still drawing your normal hand of 5 cards. This effectively increases your hand size for the following turn by letting you retain useful cards that would otherwise be discarded.
+
+Coastal Haven provides flexibility in hand management, allowing players to save key cards across turns when they have accumulated [[Favor]]s from other [[Allies]] cards. The wording underwent multiple revisions during development while maintaining the same core functionality of preserving cards between turns.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

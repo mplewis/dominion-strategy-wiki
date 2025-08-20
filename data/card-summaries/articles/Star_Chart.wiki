@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Star Chart.jpg|200px]]</div>
+
+'''[[Star Chart]]''' is a [[Project]] from {{Set|Renaissance}}. For {{Cost|3}}, it gives you the ability to pick one card to go on top of your deck every time you [[shuffle]]. This simple but powerful effect provides unconditional and transferable topdecking that works regardless of your hand composition or deck state, making it extremely reliable compared to conditional topdecking cards like {{Card|Harbinger}} or {{Card|Pearl Diver}}. Star Chart helps ensure crucial cards like {{Card|Chapel}} or key engine components don't miss the shuffle, significantly improving deck consistency.
+
+Originally designed as various "gain a card when you shuffle" effects, Donald X. Vaccarino found those versions had "problems every which way" and proved "too fast to empty piles," leading to the current topdecking design which was "a better fit for thing to do when you shuffle."
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Vault.jpg|200px]]</div>
+
+'''[[Vault]]''' is an [[Action]] card from {{Set|Prosperity}}. It draws +2 Cards and lets you discard any number of cards for {{Costplus|1}} each, making it both a [[terminal draw]] card and a source of variable economy. Each other player may discard 2 cards to draw 1, giving opponents a minor benefit. Vault is particularly powerful in [[Big Money]] strategies where it can guarantee {{Card|Gold}} purchases and works exceptionally well with {{Card|Grand Market}}, and in deck-drawing [[engine]]s where discarded cards can be redrawn and discarded again for additional {{Cost}}.
+
+Originally, Vault had no penalty for opponents, but Donald X. Vaccarino found it "too good" and added the opponent benefit to balance it, noting that adding +2 Cards to the basic discard-for-coin effect transformed it from weak to "monster."
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Citadel.jpg|200px]]</div>
+
+'''[[Citadel]]''' is a [[Project]] from {{Set|Renaissance}} costing {{Cost|8}}. Once bought, it automatically replays the first [[Action]] card you play each turn, functioning like a permanent [[Throne Room variant|Throne Room]] that provides both extra [[terminal space]] and effectively an extra copy of your opening card each turn.
+
+Citadel significantly improves engine reliability by ensuring a strong start to each turn, particularly valuable when your [[draw]] cards are [[terminal]] or when you need village support. Despite its high cost, it's often worth buying as your first {{Cost|8}} purchase in the midgame, as it provides ongoing benefit that can transform unreliable engines into consistent powerhouses.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

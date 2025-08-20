@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Humble Castle.jpg|200px]]</div>
+
+'''[[Humble Castle]]''' is a [[Treasure]]-[[Victory]]-[[Castle]] card from {{Set|Empires}}, positioned first in the {{Card|Castles}} [[split pile]]. It provides {{Cost|1}} as a Treasure and is worth {{VP|1}} per Castle you have (including itself). This scaling victory point mechanism rewards players who commit to acquiring multiple Castles throughout the game.
+
+Humble Castle's dual nature as both Treasure and Victory card makes it unique among basic payload options. While initially worth only {{VP|1}}, it can become significantly more valuable with additional Castle acquisitions, creating interesting timing decisions around when to prioritize Castle accumulation versus other strategic pursuits in the {{Card|Castles}} pile progression.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

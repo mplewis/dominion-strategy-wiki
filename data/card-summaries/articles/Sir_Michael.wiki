@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Sir Michael.jpg|200px]]</div>
+
+'''[[Sir Michael]]''' is one of the ten {{Card|Knights}} from {{Set|Dark Ages}}. Like other [[Knight]]s, he performs the standard [[trashing attack]], but uniquely also functions as a [[discard attack]] that forces each other player to discard down to 3 cards in hand before the trashing occurs. This dual attack makes him particularly disruptive.
+
+Sir Michael's discard attack is most effective in the midgame when players have moved beyond having mostly junk to discard but haven't yet achieved reliable [[deck control]]. The combination of hand size reduction followed by deck trashing creates a powerful one-two punch that can severely disrupt opponents' turns and long-term strategies.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

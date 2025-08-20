@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Peril.jpg|200px]]</div>
+
+'''[[Peril]]''' is an [[Event]] from {{Set|Plunder}} costing {{Cost|2}}. It allows you to [[trash]] an [[Action]] card from your hand to [[gain]] a [[Loot]]. This provides a way to convert unwanted or obsolete Action cards into the powerful and varied Treasure-Loot cards that can significantly boost your buying power.
+
+Peril offers strategic flexibility by turning dead draws or outdated engine pieces into valuable resources. Donald X. described its flavor as "sending someone to their certain death, but you do get the Loot they were after," capturing both the mechanical trade-off and the thematic risk-reward nature of exchanging your forces for valuable plunder.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

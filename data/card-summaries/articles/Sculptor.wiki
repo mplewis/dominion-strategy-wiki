@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Sculptor.jpg|200px]]</div>
+
+'''[[Sculptor]]''' is an [[Action]] card from {{Set|Renaissance}}. It [[gainer|gains]] a card costing up to {{Cost|4}} directly to your hand, and provides +1 [[Villager]] if the gained card is a [[Treasure]]. This makes it a flexible gainer similar to {{Card|Artisan}} but without reducing hand size, allowing for powerful in-turn plays when you have spare actions or Villagers. Sculptor excels with [[cost reduction]], enabling it to gain more expensive cards and create infinite loops with cards like {{Card|Scepter}} or [[Throne Room variant]]s to empty piles rapidly.
+
+Originally designed with a "+1 Action every other time" mechanic like {{Card|Lackeys}}, Donald X. Vaccarino switched it to the Villager system, making it one of the first cards in the Renaissance set.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

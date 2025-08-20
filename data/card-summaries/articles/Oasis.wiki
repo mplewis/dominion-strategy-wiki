@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Oasis.jpg|200px]]</div>
+
+'''[[Oasis]]''' is an [[Action]] card from {{Set|Hinterlands}}. It's a [[cantrip]] that provides +1 Card, +1 Action, and {{Costplus|1}}, but requires you to discard a card from your hand. This makes it function as a weak [[Peddler variant]] that reduces hand size rather than maintaining it, limiting its usefulness in bulk. Oasis works best in decks with [[junk]] to discard, cards that benefit from being discarded like {{Card|Village Green}}, or [[draw-to-X]] [[engine]]s that can handle smaller hand sizes.
+
+An old card that "never changed" during development, Donald X. Vaccarino noted that one playtester thought it was "too good relative to {{Card|Silver}}," but time has shown this perspective was overly optimistic, though he still tends to "get some."
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

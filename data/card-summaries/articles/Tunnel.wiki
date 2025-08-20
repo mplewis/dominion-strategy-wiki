@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Tunnel.jpg|200px]]</div>
+
+'''[[Tunnel]]''' is a [[Victory]]-[[Reaction]] card from {{Set|Hinterlands}}. It's worth {{VP|2}} and has the unique ability to gain a {{Card|Gold}} whenever you discard it outside of Clean-up phase. This makes it both a Victory card and a situational {{Card|Gold}}-[[gainer]], particularly powerful when combined with [[sifting|sifters]] like {{Card|Warehouse}} or effects like {{Event|Gamble}} that can discard it multiple times per turn. Despite its attractive {{VP}}/{{Cost}} ratio compared to {{Card|Estate}}, it requires specific synergies to be effective.
+
+Originally designed as various "when discarded" effects including card draw and as a {{Card|Witch}} variant, Donald X. Vaccarino eventually settled on Gold-gaining and made it a Victory card when Hinterlands gained extra space, creating the first Victory-Reaction in the game.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

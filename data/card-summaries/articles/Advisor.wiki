@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Advisor.jpg|200px]]</div>
+
+'''[[Advisor]]''' is an [[Action]] card from {{Set|Cornucopia & Guilds}}, originally from {{Set|Guilds}}. It provides '''+1 Action''' and is a [[non-terminal draw]] card that reveals the top 3 cards of your deck, allowing the player to your left to choose one for you to discard while the rest go into your hand. This opponent choice mechanism makes Advisor's effectiveness highly dependent on your deck composition.
+
+Advisor works best with a high ratio of good to bad cards, making it stronger in well-thinned decks and weaker against [[junking attack]]s. Its effectiveness varies throughout the game: weak in openings when key cards might be discarded, strongest in the midgame after thinning, and problematic again during greening when [[Victory]] cards become discard targets for opponents.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

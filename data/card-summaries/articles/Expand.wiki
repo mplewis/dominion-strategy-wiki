@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Expand.jpg|200px]]</div>
+
+'''[[Expand]]''' is an [[Action]] card from {{Set|Prosperity}}. It functions as a stronger but more expensive version of {{Card|Remodel}}, allowing you to trash a card from your hand and gain a card costing up to {{Cost|3}} more than it (compared to Remodel's {{Cost|2}} more). While this enables powerful upgrades like {{Card|Estate}} to {{Cost|5}} cards or {{Card|Gold}} to {{Card|Province}}, its high cost of {{Cost|7}} creates significant [[opportunity cost]] and timing issues. The card typically competes directly with {{Card|Gold}} and strong {{Cost|5}} cards, making it situational despite its power.
+
+Originally costing {{Cost|6}}, Donald X. Vaccarino explained that the {{Cost|7}} cost is "something of a trick" that delays acquisition but doesn't change its fundamental value comparison to {{Card|Gold}}, while making experienced players carefully consider opportunity costs rather than making it "just worthless."
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

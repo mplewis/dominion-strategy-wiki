@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Capitalism.jpg|200px]]</div>
+
+'''[[Capitalism]]''' is a [[Project]] from {{Set|Renaissance}}. Once bought, it makes all [[Action]] cards with {{Costplus}} amounts in their text also become [[Treasure]]s during your turns. This allows these cards to be played during your [[Buy phase]] without using [[Action play]]s, effectively making them [[non-terminal]] and allowing them to interact with Treasure-specific effects like {{Card|Mine}} or {{Card|Magpie}}.
+
+Capitalism developed from earlier concepts that tried making Silvers into {{Card|Peddler|Peddlers}} during the Action phase, then making Treasures into Actions. Donald X. eventually settled on the current design, which transforms many terminal payload cards into non-terminal ones, particularly benefiting cards like {{Card|Monument}}, {{Card|Bridge}}, and {{Card|Wine Merchant}} whose effects stack well when played in multiples.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

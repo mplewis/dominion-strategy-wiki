@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Moneylender.jpg|200px]]</div>
+
+'''[[Moneylender]]''' is an [[Action]] card from the {{Set|Dominion|Base set}}. When played, it lets you [[trash]] a {{Card|Copper}} from your hand and gives you {{Costplus|3}} if you do. This provides both economy and deck improvement in a single action, giving you a net boost of {{Cost|2}} compared to playing the Copper while permanently removing it from your deck. Moneylender allows you to purchase expensive cards early while cleaning up your starting deck, though it only trashes one card at a time.
+
+Moneylender was one of the original cards that never changed during development, though designer Donald X. Vaccarino later noted in retrospect that it should have said "you may" rather than being mandatory, which was fixed in the Second Edition.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

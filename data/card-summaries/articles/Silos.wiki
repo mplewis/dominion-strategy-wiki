@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Silos.jpg|200px]]</div>
+
+'''[[Silos]]''' is a [[Project]] from {{Set|Renaissance}}. For {{Cost|4}}, it gives you the ability to discard any number of {{Card|Copper|Coppers}} at the start of your turn (revealed to prove they're Coppers) and draw that many cards. This effectively allows you to [[sifter|sift]] past Coppers in your starting hand, providing useful deck [[cycling]] and reliability improvements. Silos works particularly well in kingdoms with slow [[thinning]] or as a supplement to Copper trashing, and synergizes with cards that benefit from having Coppers in your discard pile.
+
+Donald X. Vaccarino noted that Silos remained "unchanged" throughout playtesting, and described it as letting you "{{Card|Cellar}} away {{Card|Copper|Coppers}} at the start of your turn."
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

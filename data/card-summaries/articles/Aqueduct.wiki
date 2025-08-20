@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Aqueduct.jpg|200px]]</div>
+
+'''[[Aqueduct]]''' is a [[Landmark]] from {{Set|Empires}}. It functions like a [[Gathering]] card, accumulating {{VP}} tokens as players gain [[Treasure]]s (moving {{VP|1}} from the Treasure's pile to Aqueduct), then giving all accumulated tokens to the first player who gains a [[Victory]] card. The setup places {{VP|8}} on the {{Card|Silver}} and {{Card|Gold}} piles to seed the system.
+
+Aqueduct creates interesting timing decisions around when to green, as the first player to gain a Victory card claims all accumulated points. This can incentivize earlier greening or enable "megaturn" strategies where a player gains many Treasures (such as with {{Card|Masterpiece}}) before claiming the tokens with a single {{Card|Estate}} purchase.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

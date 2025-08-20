@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Travelling Fair.jpg|200px]]</div>
+
+'''[[Travelling Fair]]''' is an [[Event]] from {{Set|Adventures}}. It provides '''+2 Buys''' and allows you to [[topdeck]] any cards you [[gain]] for the rest of the turn. This creates a flexible tool for both acquiring multiple cards and setting up your next turn by ensuring important cards are drawn immediately.
+
+Travelling Fair particularly rewards strong [[engine]]s with good [[payload]], allowing players to convert excess buying power into additional purchases. Its topdecking effect enables powerful opening strategies (like playing a {{Cost|4}} card on turn 2) and creates interesting [[combo]]s like the synergy with the removed card {{Card|Counting House}}, which could create powerful infinite loops.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

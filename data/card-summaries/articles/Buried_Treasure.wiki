@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Buried Treasure.jpg|200px]]</div>
+
+'''[[Buried Treasure]]''' is a [[Treasure]]-[[Duration]] card from {{Set|Plunder}}. It automatically plays itself when gained and provides +1 Buy and {{Costplus|3}} at the start of your next turn. This makes it a delayed [[payload]] card that gives significant economy and purchasing power the turn after acquisition. As Donald X. Vaccarino described it, Buried Treasure is "the payload version of {{Card|Den of Sin}}," providing economic benefit rather than draw.
+
+Originally costing {{Cost|3}} with no +Buy, Buried Treasure was increased to {{Cost|5}} and given +Buy after online testing revealed it was "nuts" at the lower cost, demonstrating how powerful delayed economy can be.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

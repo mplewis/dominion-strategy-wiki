@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Defiled Shrine.jpg|200px]]</div>
+
+'''[[Defiled Shrine]]''' is a [[Landmark]] from {{Set|Empires}}. It functions like a [[Gathering]] card, placing {{VP|2}} on each non-Gathering [[Action]] Supply pile at setup, then moving {{VP|1}} to the Shrine when players gain Actions. Players can claim all accumulated {{VP}} by gaining a {{Card|Curse}} during their [[Buy phase]], creating an interesting risk-reward decision.
+
+Defiled Shrine received [[2022 Errata]] to change from "when you buy a Curse" to "when you gain a Curse in your Buy phase," broadening the trigger while maintaining the Buy phase restriction. This creates strategic tension between accumulating Actions (which feeds the Shrine) and eventually accepting a Curse to claim the victory points.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

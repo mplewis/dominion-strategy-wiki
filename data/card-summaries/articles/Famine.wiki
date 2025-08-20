@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Famine.jpg|200px]]</div>
+
+'''[[Famine]]''' is a [[Hex]] from {{Set|Nocturne}}. When received, it forces you to reveal the top 3 cards of your deck, discard any [[Action]]s among them, and shuffle the remaining cards back into your deck. This creates a [[deck order attack]] that can disrupt your next few draws by removing Actions while also forcing a shuffle that scrambles your deck order. As a Hex, Famine is typically received from cards like {{Card|Familiar}} or {{Card|Leprechaun}} rather than being directly chosen.
+
+Originally designed to discard cards costing {{Cost|3}}-{{Cost|6}}, Donald X. Vaccarino simplified it to target Actions, and changed it from putting cards back on top (which "ended up helping you too often") to shuffling them back in.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

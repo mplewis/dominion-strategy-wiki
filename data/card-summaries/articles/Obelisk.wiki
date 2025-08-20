@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Obelisk.jpg|200px]]</div>
+
+'''[[Obelisk]]''' is a [[Landmark]] from {{Set|Empires}}. At game setup, it randomly selects an [[Action]] [[Supply]] pile, and when scoring, each card you have from that pile is worth {{VP|2}}. This creates a powerful incentive for [[piledriving|pile-driving]] strategies where players compete to accumulate as many copies as possible of the chosen card.
+
+Obelisk works particularly well with [[gainer]]s like {{Card|Workshop}}, {{Card|Ironworks}}, and {{Card|Cobbler}} that can quickly accumulate multiple copies of the target card. Similar to {{Landmark|Tower}}, it rewards players who risk opening turns to pile-drive, potentially weaving those cards into novel winning strategies centered around mass acquisition rather than traditional engine or money approaches.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

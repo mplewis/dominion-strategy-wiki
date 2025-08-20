@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Prepare.jpg|200px]]</div>
+
+'''[[Prepare]]''' is an [[Event]] from {{Set|Plunder}} costing {{Cost|3}}. It sets aside your entire hand face up, then at the start of your next turn, automatically plays all [[Action]]s and [[Treasure]]s from those cards in any order before discarding the rest. This allows you to save unusable cards for next turn without using up [[Action play]]s.
+
+Prepare offers an exciting way to carry over your hand to the next turn, particularly useful when you have Actions or Treasures that you can't use effectively this turn. The only change during development was adding "face up" to clarify the cards' visibility, making it a straightforward but powerful tool for turn planning.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

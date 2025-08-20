@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Animal Fair.jpg|200px]]</div>
+
+'''[[Animal Fair]]''' is an [[Action]] card from {{Set|Menagerie}} costing {{Cost|7}}. It provides {{Costplus|4}} and '''+1 Buy''' per empty [[Supply]] pile, making it increasingly powerful as the game progresses. Uniquely, instead of paying its cost, you can buy it by [[trash]]ing an [[Action]] card from your hand, making it accessible even without {{Cost|7}}.
+
+Animal Fair started with '''+2 Cards +2 Actions''' but was deemed "too important to madly try to acquire." The alternative payment method was the original concept, with the scaling +Buy effect added late in development to provide [[Non-Attack interaction|player interaction]] and make it less critical to acquire early. This creates strategic opportunities like opening with it by trashing {{Card|Necropolis}} in [[Shelter]] games.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

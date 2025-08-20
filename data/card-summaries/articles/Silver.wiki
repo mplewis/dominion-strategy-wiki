@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Silver.jpg|200px]]</div>
+
+'''[[Silver]]''' is a [[basic cards|basic]] [[Treasure]] card included in all games of Dominion, costing {{Cost|3}} and providing {{Costplus|2}}. Its role fluctuates from moderately effective [[payload]] to actively harmful [[stop card]], depending on alternative options and the feasibility of [[deck control]]. Silver is most notable in openings where it helps afford {{Cost|5}} cards, with Silver/Silver providing excellent odds to hit {{Cost|5}} on turn 3 or 4.
+
+Silver performs differently in [[engine]]s versus [[Big Money|money]] decks: engines generally treat it as a necessary evil stop card that impedes deck control, while money decks embrace it for cost-effective [[money density]] improvement. The card's ubiquity has made it a frequent target for specific interactions, with many cards designed to gain Silver as a decent but not overpowering benefit.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

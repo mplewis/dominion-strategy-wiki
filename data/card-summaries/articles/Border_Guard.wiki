@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Border Guard.jpg|200px]]</div>
+
+'''[[Border Guard]]''' is an [[Action]] card from {{Set|Renaissance}}. It gives +1 Action and reveals the top 2 cards of your deck, letting you choose one to put in your hand and discard the other. If both revealed cards are Actions, you can take either the {{Artifact|Lantern}} (which makes future Border Guards reveal 3 cards instead of 2) or the {{Artifact|Horn}} (which lets you topdeck a Border Guard from your discard pile at the start of your turn). This makes Border Guard a cheap [[cantrip]] [[sifter]] that can improve over time with its [[Artifact]]s.
+
+Border Guard originally had no Artifacts attached, but Donald X. Vaccarino added them to include more Artifacts in the Renaissance set, making it the only [[Kingdom]] card that can provide two different Artifacts.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

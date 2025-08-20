@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Journeyman.jpg|200px]]</div>
+
+'''[[Journeyman]]''' is an [[Action]] card from {{Set|Cornucopia & Guilds}}, originally from {{Set|Guilds}}. It's a [[terminal draw]] card that lets you name a card, then reveals from your deck until finding 3 cards without that name, putting those in your hand and discarding the rest. This creates selective draw that [[sifter|sifts]] past unwanted cards.
+
+Journeyman works best in the early midgame when junk diversity is low, particularly effective at cycling past starting {{Card|Copper|Coppers}}. Its sifting becomes less valuable as deck diversity increases, but it provides useful [[deck control]] for sequencing draws. The ability to name non-existent cards like {{Card|Curse}} can prevent unwanted reshuffles when managing deck cycling.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

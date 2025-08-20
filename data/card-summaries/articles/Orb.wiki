@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Orb.jpg|200px]]</div>
+
+'''[[Orb]]''' is a [[Treasure]]-[[Loot]] card from {{Set|Plunder}}. It provides a flexible choice: either look through your [[discard pile]] and play an [[Action]] or [[Treasure]] from it, or gain '''+1 Buy''' and {{Costplus|3}} like many other [[Loot]] cards. This versatility allows Orb to act as either a powerful [[payload]] card or a way to replay useful cards from your discard pile without needing to draw them.
+
+During development, Orb started as a much more powerful card that cost only {{Cost|2}} and always played a card from the discard pile. Donald X. eventually added the choice mechanism and the standard Loot alternative to balance the card's strength while maintaining its unique discard pile interaction.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

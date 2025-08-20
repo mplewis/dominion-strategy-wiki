@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Druid.jpg|200px]]</div>
+
+'''[[Druid]]''' is an [[Action]]-[[Fate]] card from {{Set|Nocturne}}. It provides +1 Buy and lets you choose to receive one of three [[Boon]]s that were set aside face-up during setup, leaving the chosen Boon in place for future use. This makes Druid unique among [[Fate]] cards as it offers consistent choice rather than randomness, and the specific Boons available can dramatically alter its value. For example, access to {{Boon|The Swamp's Gift}} can create powerful {{Card|Will-o'-Wisp}} engines, while other combinations may focus on economy or deck manipulation.
+
+Originally designed to gain a {{Card|Silver}} with conditional Boon mechanics, Donald X. Vaccarino switched it to +1 Buy and found he "liked it a lot more," noting how the card evolved from choice-of-3 to random Boons and back to choice-of-3 as the set developed.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

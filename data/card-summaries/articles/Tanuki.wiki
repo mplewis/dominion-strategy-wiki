@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Tanuki.jpg|200px]]</div>
+
+'''[[Tanuki]]''' is an [[Action]]-[[Shadow]] card from {{Set|Rising Sun}} costing {{Cost|5}}. It functions as a [[Remodel variant|remodeler]], trashing a card from your hand to gain one costing up to {{Cost|2}} more. As a [[Shadow]] card, it can be played directly from your deck as if it were in your hand, providing flexible access to remodeling effects without requiring the card to be drawn.
+
+Tanuki immediately proved effective during development, offering reliable deck improvement that doesn't depend on drawing it. Donald X. noted it's "a terror in the hands of the TGG bot," suggesting its power when optimally utilized. The ability to remodel from your deck creates consistent upgrade opportunities throughout the game.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

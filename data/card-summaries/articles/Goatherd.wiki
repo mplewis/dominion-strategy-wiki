@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Goatherd.jpg|200px]]</div>
+
+'''[[Goatherd]]''' is an [[Action]] card from {{Set|Menagerie}}. It is a [[non-terminal]] [[trasher]] that gives '''+1 Action''' and allows you to trash a card from your hand, then provides '''+1 Card''' for each card the player to your right trashed on their last turn. This creates an [[Non-Attack interaction|interactive]] trasher that rewards you when your opponent is also trashing cards.
+
+Goatherd went through extensive development, starting as a card that counted copies of itself in the trash, then various versions that counted different things in the global trash pile. Donald X. eventually settled on the current design that creates player interaction without requiring global tracking, though he noted the card still requires players to count trashed cards, which adds some complexity.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

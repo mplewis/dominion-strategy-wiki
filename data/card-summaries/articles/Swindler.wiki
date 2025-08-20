@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Swindler.jpg|200px]]</div>
+
+'''[[Swindler]]''' is an [[Action]]-[[Attack]] card from {{Set|Intrigue}}. It provides {{Costplus|2}} and forces each other player to trash the top card of their deck, then gain a card with the same [[cost]] that you choose. This creates a highly variable but potentially devastating attack that can replace opponents' valuable cards with junk, such as turning a {{Cost|5}} engine piece into a {{Card|Duchy}}.
+
+Swindler's effectiveness depends greatly on random chance and the Kingdom's card pricing. It excels when there are poor replacement options available, particularly using [[basic cards]] to downgrade {{Card|Copper}} to {{Card|Curse}} or valuable cards to less useful alternatives. However, it can backfire by helping opponents cycle through junk or accidentally providing beneficial on-gain effects.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

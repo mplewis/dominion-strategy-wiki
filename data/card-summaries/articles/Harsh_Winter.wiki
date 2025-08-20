@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Harsh Winter.jpg|200px]]</div>
+
+'''[[Harsh Winter]]''' is a [[Prophecy]] from {{Set|Rising Sun}}. Once activated, it creates a tax-like effect where every time you [[gain]] a card on your turn, you either take any {{Debt}} already on that pile, or if there's no {{Debt}} on the pile, you add {{Debt|2}} to it. This effectively makes every other gain from each pile cost {{Debt|2}} more, functioning like an automatic {{Event|Tax}} that affects all piles. The effect only applies when gaining cards on your own turn, leaving other players' gains unaffected.
+
+Originally designed as a kingdom card called "Jito" that was a {{Debt}} version of {{Card|Swamp Hag}}, Donald X. Vaccarino found it problematic when multiple copies could be played, leading to piles accumulating massive amounts of {{Debt}}. As a Prophecy, it can never be duplicated, solving this balance issue.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

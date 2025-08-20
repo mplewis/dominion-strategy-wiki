@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Seaway.jpg|200px]]</div>
+
+'''[[Seaway]]''' is an [[Event]] from {{Set|Adventures}} costing {{Cost|5}}. It gains an [[Action]] card costing up to {{Cost|4}} and moves your {{AdvToken|+1 Buy}} to that card's pile, giving you '''+1 Buy''' whenever you play a card from that pile. This combines immediate deck improvement with long-term [[+Buy]] utility.
+
+Seaway works best when targeting useful cards you want multiple copies of anyway, particularly [[cantrip]]s or [[Village (card category)|villages]] that don't impede [[deck control]]. It has especially strong synergy with {{Card|Highway}}, as a single Highway's [[cost reduction]] brings it into Seaway's price range, creating a powerful cost-reducing cantrip with built-in +Buy.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Artisan.jpg|200px]]</div>
+
+'''[[Artisan]]''' is an [[Action]] card from the [[second edition]] of the {{Set|Dominion|Base set}}. It is a powerful but expensive [[gainer]] costing {{Cost|6}} that allows you to gain a card costing up to {{Cost|5}} to your hand, then put a card from your hand onto your deck. This makes it excellent for quickly adding strong cards to your deck and potentially playing them immediately.
+
+Artisan shines in Kingdoms with strong [[Village (card category)|villages]] and [[draw]] that can mitigate the topdecking drawback and enable gain-and-play strategies. Even without perfect support, it remains valuable for rapidly acquiring powerful {{Cost|5}} cards and can be useful for gaining [[Victory]] cards like {{Card|Duchy|Duchies}} in the endgame when other buying options are limited.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

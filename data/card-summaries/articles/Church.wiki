@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Church.jpg|200px]]</div>
+
+'''[[Church]]''' is a promotional [[Action]]-[[Duration]] card that provides '''+1 Action''' and allows you to set aside up to 3 cards from your hand face down. At the start of your next turn, you put them into your hand and may trash a card. This makes it both a [[trasher]] and a flexible tool for setting up future turns by carrying specific cards forward.
+
+Church was designed for a German tournament commemorating ten years of Dominion, representing {{w|Schwerin Cathedral}} after Mecklenburg-Vorpommern won a 12-month competition. The card originated in {{Set|Nocturne}} development as a more powerful version that set aside up to 2 cards and trashed up to 2, but was moved to become a promo with adjusted numbers for better balance.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Way of the Monkey.jpg|200px]]</div>
+
+'''[[Way of the Monkey]]''' is a [[Way]] from {{Set|Menagerie}}. It allows any [[Action]] card to function like {{Card|Herbalist}}, providing '''+1 Buy''' and {{Costplus|1}}. While not particularly powerful on its own, it adds useful flexibility and can be crucial when no other source of [[+Buy]] is available in the Kingdom.
+
+Way of the Monkey is considered so simple that it doesn't have an official FAQ. Its primary value lies in converting otherwise useless Action cards (like a {{Card|Chapel}} after deck cleaning or a {{Card|Necropolis}} in the opening) into productive terminal payload, and in facilitating [[three-pile ending|pile-out]] opportunities by providing extra Buys when needed.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

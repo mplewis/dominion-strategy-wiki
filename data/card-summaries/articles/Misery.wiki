@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Misery.jpg|200px]]</div>
+
+'''[[Misery]]''' is a [[Hex]] from {{Set|Nocturne}}. It is the only [[Attack]]-style effect that exclusively damages your score without affecting your deck or hand. When you first receive it, you take the {{State|Miserable}} state ({{VP|-2}}), and if you receive it again, you flip to {{State|Twice Miserable}} ({{VP|-4}} total). Additional instances have no further effect.
+
+Misery is unique among Hexes in that it provides purely scoring punishment rather than tactical disruption. This makes it a straightforward but potentially devastating penalty that accumulates over time, particularly dangerous in games where {{Card|Familiar}} or other [[Hex]] sources are frequently activated, as the scoring penalty can significantly impact final results.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

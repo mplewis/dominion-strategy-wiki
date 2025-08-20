@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Treasury.jpg|200px]]</div>
+
+'''[[Treasury]]''' is an [[Action]] card from {{Set|Seaside}}. It's a [[Peddler variant]] that provides +1 Card, +1 Action, and {{Costplus|1}}, functioning as a [[cantrip]] with virtual coin. At the end of your [[Buy phase]], if you didn't gain any [[Victory]] cards, you may place Treasury on top of your deck, allowing consistent access to its effects.
+
+Treasury received [[2022 Errata]] that changed its topdecking condition from "didn't buy a Victory card" to "didn't gain a Victory card in your Buy phase," broadening the restriction while adding the phase requirement. This made it slightly more restrictive as effects like {{Card|Villa}} returning to the Action phase now count as ending the Buy phase, allowing multiple Treasury toppings per turn.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

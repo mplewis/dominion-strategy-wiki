@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Masterpiece.jpg|200px]]</div>
+
+'''[[Masterpiece]]''' is a [[Treasure]] card from {{Set|Cornucopia & Guilds}}, originally from {{Set|Guilds}}. It provides {{Cost|1}} like a [[Copper]], but has an [[overpay]] ability that gains a {{Card|Silver}} for each extra {{Cost|1}} paid above its {{Cost|3}} cost. This card was [[removed]] in the [[second edition]] of Cornucopia & Guilds due to its limited strategic utility.
+
+Masterpiece was rarely useful in most games, functioning primarily as a tool for specific synergies like {{Card|Feodum}} (which scores points based on Silver count) or {{Project|Guildhall}} (which rewards Silver gaining). Donald X. noted it had "mild charm" but acknowledged it was "pretty weak," making it a prime candidate for removal when creating the second edition.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

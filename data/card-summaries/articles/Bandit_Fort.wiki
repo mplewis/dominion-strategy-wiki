@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Bandit Fort.jpg|200px]]</div>
+
+'''[[Bandit Fort]]''' is a [[Landmark]] from {{Set|Empires}}. It heavily penalizes players by giving {{VP|-2}} for each {{Card|Silver}} and {{Card|Gold}} they have when scoring, making traditional [[Treasure]]-based [[payload]] strategies much less viable. This forces players to seek alternative sources of buying power through [[Action]] cards or other [[Treasure]]s like {{Card|Platinum}} or {{Card|Spices}}.
+
+Bandit Fort originally awarded {{VP|8}} if you had no Silver and Gold, but Donald X. changed it to punish each individual card to create more interesting decisions. Players can still use Silver and Gold temporarily but must consider trashing them before the game ends, with {{Event|Donate}} being particularly effective for last-turn cleanup.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

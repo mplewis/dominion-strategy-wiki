@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Thief.jpg|200px]]</div>
+
+'''[[Thief]]''' is an [[Action]]-[[Attack]] card from the first edition of {{Set|Dominion}}. It forces each other player to reveal their top 2 cards, trash a [[Treasure]] of your choice if any are revealed, and allows you to gain any or all of the trashed Treasures. Despite its intimidating appearance, Thief is extremely weak because it often helps opponents by trashing their unwanted {{Card|Copper|Coppers}}.
+
+Thief was [[removed]] in the [[second edition]] and replaced with {{Card|Bandit}}. Donald X. acknowledged it as "one of the weakest cards in the game," noting that while it scared new players, experienced players realized they shouldn't gain the Coppers and were often happy to lose them. The only changes made by Valerie and Dale during original development were to make it discard rather than return untrashed cards.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

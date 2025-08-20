@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Pilgrimage.jpg|200px]]</div>
+
+'''[[Pilgrimage]]''' is an [[Event]] from {{Set|Adventures}}. It costs {{Cost|4}} and can only be bought once per turn, flipping your {{AdvToken|Journey}} token (which starts face up). If the token ends face up after flipping, you choose up to three differently named cards you have in play and gain a copy of each. This effectively costs {{Cost|8}} over two turns but can gain very expensive cards like {{Card|King's Court}} or {{Card|Familiar}} that you already have in play, making it potentially extremely profitable for engines that want multiples of their key components.
+
+Originally it didn't have the "once per turn" restriction, but Donald X. Vaccarino found it "too attractive to pay {{Cost|8}} and 2 Buys for" without that limitation.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

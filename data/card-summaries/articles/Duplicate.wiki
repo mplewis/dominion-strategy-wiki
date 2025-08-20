@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Duplicate.jpg|200px]]</div>
+
+'''[[Duplicate]]''' is an [[Action]]-[[Reserve]] card from {{Set|Adventures}}. When played, it goes onto your [[Tavern mat]] where it can be [[call]]ed when you gain a card costing up to {{Cost|6}} to gain a copy of that card. This makes it a flexible [[gainer]] similar to {{Card|Smugglers}} but copying your own gains rather than opponents', and {{Card|Talisman}} but capable of duplicating more expensive cards including [[Victory]] cards.
+
+Duplicate excels in the late game where it can suddenly force [[three-pile ending]]s or gain multiple {{Card|Duchy|Duchies}} for massive scoring swings. The strategic challenge lies in timing when to place Duplicates on the Tavern mat versus when to call them, balancing early deck improvement against late-game explosive plays.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

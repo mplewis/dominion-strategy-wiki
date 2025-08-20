@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Delve.jpg|200px]]</div>
+
+'''[[Delve]]''' is an [[Event]] from {{Set|Empires}} costing {{Cost|2}}. It provides '''+1 Buy''' and gains a {{Card|Silver}}, essentially making Silver cheaper and not requiring a Buy to acquire. This enables rapid Silver accumulation, particularly powerful in opening turns where you can gain 3 Silvers to dramatically improve early price point consistency.
+
+Delve creates viable money strategies by allowing quick Silver flooding, giving significantly better odds of hitting {{Cost|5}}, {{Cost|6}}, and multiple {{Cost|5}}s in early turns. It works particularly well with {{Card|Feodum}} strategies and can occasionally enable money approaches to compete with weak engines, though it shouldn't distract from building stronger decks when available.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

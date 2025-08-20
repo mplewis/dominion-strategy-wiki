@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Fellowship of Scribes.jpg|200px]]</div>
+
+'''[[Fellowship of Scribes]]''' is an [[Ally]] from {{Set|Allies}}. After playing an [[Action]] card, if you have 4 or fewer cards in hand, you may spend a [[Favor]] to draw a card. This provides conditional card draw that helps maintain hand size when playing cards that don't naturally replace themselves or when your hand is depleted.
+
+Fellowship of Scribes represents Donald X.'s tweaked version of {{Card|Horse|Horses}} adapted for the [[Allies]] token system. It offers reliable but limited card draw that scales with your [[Favor]] accumulation, particularly valuable in engines that struggle with hand size management or when you need to convert Favors into immediate deck cycling benefits.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

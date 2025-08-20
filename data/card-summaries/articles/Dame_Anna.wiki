@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Dame Anna.jpg|200px]]</div>
+
+'''[[Dame Anna]]''' is one of the ten {{Card|Knights}} from {{Set|Dark Ages}}. Like other [[Knight]]s, she is an [[Action]]-[[Attack]]-[[Knight]] that performs a [[trashing attack]] against opponents, but uniquely also functions as a [[trasher]] for yourself. She allows you to trash up to 2 cards from your hand before attacking other players, making her particularly valuable when no other trashing is available.
+
+Dame Anna's self-trashing ability only applies when you voluntarily use the first part of her effect - trashing a Knight from your own hand won't cause Dame Anna to trash herself. This dual functionality makes her one of the most desirable Knights, especially if she appears near the top of the Knights pile where she's more likely to be acquired early in the game.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

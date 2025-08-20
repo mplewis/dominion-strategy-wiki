@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Ironworks.jpg|200px]]</div>
+
+'''[[Ironworks]]''' is an [[Action]] card from {{Set|Intrigue}}. It is a [[Workshop variant]] that gains a card costing up to {{Cost|4}} and provides an additional bonus based on the gained card's type: [[Action]] cards give '''+1 Action''', [[Treasure]] cards give {{Costplus|1}}, and [[Victory]] cards give '''+1 Card'''. This makes it particularly valuable as a [[non-terminal]] [[gainer]] for Action cards during [[engine]] building.
+
+Ironworks excels when many relevant engine pieces cost {{Cost|4}} or less, and becomes significantly stronger with [[cost reduction]] effects like {{Card|Highway}} or {{Project|Canal}}. Its dual-type synergy is especially powerful with cards like {{Card|Mill}} and {{Card|Island}}, which provide both bonuses simultaneously, making Ironworks function as a [[cantrip]] when gaining them.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

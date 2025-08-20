@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Festival.jpg|200px]]</div>
+
+'''[[Festival]]''' is an [[Action]] card from the {{Set|Dominion|Base}} set costing {{Cost|5}}. It provides '''+2 Actions''', '''+1 Buy''', and {{Costplus|2}}, functioning as both a [[Village (card category)|village]] and [[payload]] source. However, as a [[stop card]] that doesn't draw cards, it requires effective deck-drawing to reach its potential.
+
+Festival excels in [[draw-to-X]] engines, particularly with {{Card|Library}}, where its lack of card draw helps reduce hand size while providing the [[virtual coin]] and [[+Buy]] needed for deck-drawing strategies. Its Action-based economy enables useful interactions with cards like {{Card|Vassal}} and {{Card|Throne Room}}, making it a versatile engine component when properly supported.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

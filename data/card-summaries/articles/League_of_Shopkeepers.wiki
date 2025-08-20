@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:League of Shopkeepers.jpg|200px]]</div>
+
+'''[[League of Shopkeepers]]''' is an [[Ally]] from {{Set|Allies}}. It provides escalating bonuses after playing [[Liaison]] cards based on your accumulated [[Favor]] count: {{Costplus|1}} if you have 5 or more Favors, plus '''+1 Action''' and '''+1 Buy''' if you have 10 or more. These bonuses don't consume Favors, making every Liaison increasingly powerful as your Favor count grows.
+
+League of Shopkeepers creates interesting timing decisions around when to spend versus accumulate Favors. The thresholds reward sustained Favor accumulation over immediate spending, and the scaling bonuses can transform modest Liaisons into significant engine pieces once you reach the higher threshold, providing both payload and the actions needed to continue your turn.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

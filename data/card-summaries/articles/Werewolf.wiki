@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Werewolf.jpg|200px]]</div>
+
+'''[[Werewolf]]''' is an [[Action]]-[[Night]]-[[Attack]]-[[Doom]] card from {{Set|Nocturne}}. It functions as a versatile card that provides '''+3 Cards''' when played during your [[Action phase]], but can alternatively be played during your [[Night phase]] to give each other player the next [[Hex]]. This dual nature makes it useful even when drawn dead or when terminal space is limited.
+
+Werewolf is essentially an expensive {{Card|Smithy}} that offers additional utility through its Night-time [[Hex]]ing ability. While the attack component provides variable impact, the flexibility to switch between draw and attack modes means Werewolf rarely becomes completely useless, and it can even be played with [[Way]]s during the Night phase for unique strategic advantages.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

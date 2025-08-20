@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Envy.jpg|200px]]</div>
+
+'''[[Envy]]''' is a [[Hex]] from {{Set|Nocturne}}. It is a [[turn-worsening attack]] that gives you the {{State|Envious}} state if you don't already have {{State|Deluded}} or {{State|Envious}}. While Envious, your {{Card|Silver|Silvers}} and {{Card|Gold|Golds}} effectively function as {{Card|Copper|Coppers}}, severely reducing your buying power for that turn.
+
+Envy uses the same two-sided state card as {{Hex|Delusion}}, with the effects being mutually exclusive - you cannot have both states simultaneously. This creates a simple but potentially devastating penalty that can significantly impact payload-heavy strategies, making it one of the more straightforward but impactful Hexes in terms of economic disruption.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

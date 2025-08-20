@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Cartographer.jpg|200px]]</div>
+
+'''[[Cartographer]]''' is an [[Action]] card from {{Set|Hinterlands}} costing {{Cost|5}}. It's a [[cantrip]] [[deck inspector]] that lets you look at the top 4 cards of your deck, discard any number of them, and put the rest back in any order. This provides [[sifter|sifting]] and [[cycling]] effects for deck control.
+
+Cartographer is often skipped due to its high [[opportunity cost]] compared to other {{Cost|5}} Action cards, but can be valuable when [[deck control]] is problematic or when you need to cycle quickly through shuffles. Donald X. moved it from a later set to Hinterlands because he wanted another conceptually simple {{Cost|5}} card, and it never changed during development.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

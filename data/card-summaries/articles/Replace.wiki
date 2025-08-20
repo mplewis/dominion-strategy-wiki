@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Replace.jpg|200px]]</div>
+
+'''[[Replace]]''' is an [[Action]]-[[Attack]] card from the [[second edition]] of {{Set|Intrigue}}. It is a [[Remodel variant|remodeler]] that trashes a card from your hand to gain one costing up to {{Cost|2}} more, with additional effects based on the gained card's type: [[Action]] and [[Treasure]] cards go on top of your deck, while [[Victory]] cards cause each other player to gain a {{Card|Curse}}. This makes Replace particularly effective when used to gain Victory cards, as it curses opponents while you green.
+
+Replace was designed to replace {{Card|Saboteur}} in the second edition, functioning as a "{{Card|Witch}} that doesn't hit for a while" unless players are willing to gain an {{Card|Estate}} early. Donald X. tried various bonuses during development, including giving copies of Action/Treasure cards gained, but settled on the current design for balance and wordiness concerns.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Catapult.jpg|200px]]</div>
+
+'''[[Catapult]]''' is an [[Action]]-[[Attack]] card from {{Set|Empires}}. It gives {{Costplus|1}} and requires you to [[trash]] a card from your hand, then attacks other players based on what you trashed: if the card costs {{Cost|3}} or more, each other player gains a {{Card|Curse}}, and if it's a [[Treasure]], each other player discards down to 3 cards in hand. Both effects can trigger simultaneously if you trash an expensive Treasure like {{Card|Silver}}. Catapult is the top card in a [[split pile]] with {{Card|Rocks}}, which are designed as the optimal trashing target to maximize the Attack effects.
+
+The card initially triggered its Cursing effect on cards costing {{Cost|4}} or more, but Donald X. Vaccarino lowered the threshold to {{Cost|3}} when he also changed Catapult's own cost to {{Cost|3}}.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>
