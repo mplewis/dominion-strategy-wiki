@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Aqueduct.jpg|200px]]</div>
+
+'''[[Aqueduct]]''' is a [[Landmark]] from {{Set|Empires}}. It functions like a [[Gathering]] card, accumulating {{VP}} tokens as players gain {{Card|Silver}}s and {{Card|Gold}}s, then awarding its tokens to the next player who gains a [[Victory]] card. Setup for this Event places {{VP|8}} on each of the Silver and Gold piles.
+
+In a typical game, players buy some Silver and Gold, meaning Aqueduct will often gather at least a few tokens. Because of this, the presence of Aqueduct in a kingdom typically adds pressure to [[greening|green]] slightly earlier than usual, in a manner similar to {{Card|Battlefield}}.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

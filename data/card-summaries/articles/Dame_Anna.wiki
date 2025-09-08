@@ -1,0 +1,5 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Dame Anna.jpg|200px]]</div>
+
+'''[[Dame Anna]]''' is one of the ten {{Card|Knights}} from {{Set|Dark Ages}}. Like other [[Knight]]s, this card is an [[Action]]-[[Attack]]-[[Knight]] that performs a [[trashing attack]] against opponents. This card's unique ability allows you to [[trash]] up to 2 cards from your hand, making it particularly valuable when no other trashing is available in the [[Kingdom]].
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

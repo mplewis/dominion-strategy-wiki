@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Chancellor.jpg|200px]]</div>
+
+'''[[Chancellor]]''' is an [[Action]] card from the first edition of {{Set|Dominion}}. It provides {{Costplus|2}} and allows you to discard your entire deck to your discard pile, accelerating reshuffles to find stronger cards sooner. However, it's essentially a [[terminal silver]] with an often-irrelevant ability and was [[removed]] from the [[second edition]].
+
+Chancellor suffers from high [[opportunity cost]] at {{Cost|3}}, competing with stronger cards and requiring valuable [[terminal space]]. Its deck-discarding ability becomes inconsequential with good draw or trashing, and its effectiveness is frustratingly random depending on deck position. Even when conditions favor it, Chancellor rarely provides meaningful advantage over simply buying {{Card|Silver}} or nothing.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>

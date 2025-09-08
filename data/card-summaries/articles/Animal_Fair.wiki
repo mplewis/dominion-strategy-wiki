@@ -1,0 +1,7 @@
+<div style="float: left; margin: 0.5em 0.9em 0.4em 0;">[[File:Animal Fair.jpg|200px]]</div>
+
+'''[[Animal Fair]]''' is an [[Action]] card from {{Set|Menagerie}} costing {{Cost|7}}. It provides {{Costplus|4}} and +1 Buy per empty [[Supply]] pile, making it increasingly powerful as the game progresses. Uniquely, you can also buy it by [[trash]]ing an [[Action]] card from your hand, making it accessible even without {{Cost|7}}. This can lead to opportunities to cheaply acquire this card by "paying" with a {{Card|Rats}} or {{Card|Necropolis}}.
+
+Since Animal Fair's +Buy effect only starts to occur near the end of the game, it's often better to focus on acquiring it early for its {{Costplus|4}} bonus. If {{Way|Way of the Butterfly}} is available, you can return this card to its pile to gain a {{Card|Province}}.
+
+<div style="float: right; margin: 0.5em 0.9em 0.4em 0;">[[List of Featured Articles]]</div>
